@@ -17,19 +17,30 @@ handler.get(async (req, res) => {
 
 handler.post(async (req, res) => {
     const { 
-        nome,
+        nomeCompleto,
         email,
-        senha,
-        instrumento
+        oficinas,
+        endereco,
+        contatoTelefonico,
+        tipoMusico,
+        tempoAtuacao,
+        banda,
+        senha
     } = req.body
 
     hash(senha, 10, async (error, senhaEncriptada) => {
 
         const newDocument = {
-            nome,
+            nomeCompleto,
             email,
+            oficinas,
+            endereco,
+            contatoTelefonico,
+            tipoMusico,
+            tempoAtuacao,
+            banda,
             senha: senhaEncriptada,
-            instrumento
+            autorizacao: 1
         }
 
         const response = await req.db.collection(COLLECTION_NAME).insertOne(newDocument)
@@ -38,15 +49,21 @@ handler.post(async (req, res) => {
 
         if (response.insertedCount) {  
             const conteudo = {
-                nome: participante.nome,
-                instrumento: participante.instrumento, 
-                email: participante.email
+                nomeCompleto: participante.nomeCompleto,
+                email: participante.email,
+                oficinas: participante.oficinas,
+                endereco: participante.endereco,
+                contatoTelefonico: participante.contatoTelefonico,
+                tipoMusico: participante.tipoMusico,
+                tempoAtuacao: participante.tempoAtuacao,
+                banda: participante.banda,
+                autorizacao: participante.autorizacao,
+                id: participante._id
             }
             const jwt = sign(conteudo, process.env.SIGN, { expiresIn: '1h' })
 
             return res.status(200).json({
                 authToken: jwt,
-                id: participante.id
             })
         }
 
@@ -55,20 +72,35 @@ handler.post(async (req, res) => {
 })
 
 handler.put(async (req, res) => {
-    const { id, nome, instrumento, email } = req.body
+
+    const novo = req.body
+    const anterior = await req.db.collection(COLLECTION_NAME).findOne({ "_id": ObjectID(novo._id) })
+    
+    let participante = {}
+
+    for(let chave in anterior) {
+        if (novo.hasOwnProperty(chave)) participante[chave] = novo[chave]
+        else participante[chave] = anterior[chave] 
+    }
 
     try {
         const response = await req.db.collection(COLLECTION_NAME).updateOne(
-            { "_id": ObjectID(id) },
+            { "_id": ObjectID(novo._id) },
             {
                 $set: {
-                    nome,
-                    email,
-                    instrumento
+                    nomeCompleto: participante.nomeCompleto,
+                    email: participante.email,
+                    oficinas: participante.oficinas,
+                    endereco: participante.endereco,
+                    contatoTelefonico: participante.contatoTelefonico,
+                    tipoMusico: participante.tipoMusico,
+                    tempoAtuacao: participante.tempoAtuacao,
+                    banda: participante.banda,
+                    autorizacao: participante.autorizacao
                 }
             }
         )
-
+        
         if (response.modifiedCount) {
             return res.status(200).json({ mensagem: 'Documento atualizado com sucesso' })
         }

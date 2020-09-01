@@ -21,9 +21,16 @@ handler.post(async (req, res) => {
         compare(senha, participante.senha, (error, result) => {
             if(!error && result) {
                 const conteudo = {
-                    nome: participante.nome,
-                    instrumento: participante.instrumento,
-                    email: participante.email
+                    nomeCompleto: participante.nomeCompleto,
+                    email: participante.email,
+                    oficinas: participante.oficinas,
+                    endereco: participante.endereco,
+                    contatoTelefonico: participante.contatoTelefonico,
+                    tipoMusico: participante.tipoMusico,
+                    tempoAtuacao: participante.tempoAtuacao,
+                    banda: participante.banda,
+                    autorizacao: participante.autorizacao,
+                    id: participante._id
                 }
                 const jwt = sign(conteudo, process.env.SIGN, { expiresIn: '1h' })
 
