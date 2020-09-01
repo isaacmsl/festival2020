@@ -96,7 +96,7 @@ handler.put(async (req, res) => {
                     tipoMusico: participante.tipoMusico,
                     tempoAtuacao: participante.tempoAtuacao,
                     banda: participante.banda,
-                    autorizacao: participante.autorizacao
+                    senha: participante.senha
                 }
             }
         )
