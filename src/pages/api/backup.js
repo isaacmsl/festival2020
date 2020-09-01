@@ -1,0 +1,72 @@
+import nextConnect from 'next-connect'
+import dbMiddleware from '../../middlewares/database'
+import { ObjectID } from 'mongodb'
+
+const handler = nextConnect()
+
+const COLLECTION_NAME = 'alunos'
+
+handler.use(dbMiddleware)
+
+handler.get(async (req, res) => {
+    const response = await req.db.collection(COLLECTION_NAME).find({}).toArray()
+    res.json(response)
+})
+
+handler.post(async (req, res) => {
+    const newDocument = {
+        nome: req.body.nome,
+        email: req.body.email,
+        instrumento: req.instrumento
+    }
+
+    const response = await req.db.collection(COLLECTION_NAME).insertOne(newDocument)
+    
+    if (response.insertedCount) {
+        return res.status(200).json({ mensagem: 'Documento inserido com sucesso',
+            insertedId: response.insertedId })
+    }
+
+    return res.status(500).json({ mensagem: 'Desculpa, algo inesperado aconteceu. Por favor, cheque os dados enviados' })
+})
+
+handler.put(async (req, res) => {
+    const { id, nome, instrumento, email } = req.body
+
+    try {
+        const response = await req.db.collection(COLLECTION_NAME).updateOne(
+            { "_id": ObjectID(id) },
+            {
+                $set: {
+                    nome,
+                    email,
+                    instrumento
+                }
+            }
+        )
+
+        if (response.modifiedCount) {
+            return res.status(200).json({ mensagem: 'Documento atualizado com sucesso' })
+        }
+
+        return res.status(404).json({ mensagem: 'Documento não foi encontrado. Por favor cheque os dados enviados' })
+
+    } catch (e) {
+        return res.status(500).json({ mensagem: 'Desculpa, algo inesperado aconteceu. Por favor, cheque os dados enviados' })
+    }
+    
+})
+
+handler.delete(async (req, res) => {
+    const { id } = req.body
+
+    const response = await req.db.collection(COLLECTION_NAME).deleteOne({"_id": ObjectID(id)})
+    
+    if (response.deletedCount) {
+        return res.status(200).json({ mensagem: 'Documento deletado com sucesso' })
+    }
+
+    return res.status(500).json({ mensagem: 'Desculpa, algo inesperado aconteceu. Por favor, cheque os dados enviados' })
+})
+
+export default handler

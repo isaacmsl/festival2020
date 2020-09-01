@@ -1,0 +1,5 @@
+- [] Participantes
+    - [] POST
+    - [] GET
+    - [] DELETE
+    - [] UPDATE
