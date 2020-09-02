@@ -15,29 +15,54 @@ handler.use(dbMiddleware)
 handler.get(authenticated(async (req, res) => {
     const participantes = await req.db.collection(COLLECTION_NAME).find({}).toArray()
     
-    const novosParticipantes = []
+    let reqParticipante
     
     participantes.forEach(participante => {
         delete participante.senha
+
         if(participante._id == req.participante.id) {
-            novosParticipantes.unshift(participante)
+            reqParticipante = participante
         }
-        else novosParticipantes.push(participante)
     })
-    switch(novosParticipantes[0].autorizacao) {
+
+    switch (reqParticipante.autorizacao) {
         case 1:
-            return res.status(200).json(novosParticipantes[0])
+            const alunoResponse = {
+                participante: reqParticipante,
+                professores: []
+            }
+
+            alunoResponse.professores = participantes.filter(part => {
+                return part.autorizacao === 2 && reqParticipante.oficinas.indexOf(part.oficinas[0]) > -1
+            }) 
+
+            alunoResponse.professores.forEach(professor => {
+                delete professor._id
+                delete professor.endereco
+                delete professor.autorizacao
+            })
+
+            return res.status(200).json(alunoResponse)
         case 2:
-            const primeiraOficina = novosParticipantes[0].oficinas[0].toLowerCase()
-            const participantesFiltrados = novosParticipantes.filter(participante => { 
-                const indexOficina = participante.oficinas.findIndex(oficina => {
-                   return oficina.toLowerCase() === primeiraOficina;
-                })
-                return indexOficina > -1
-            })     
-            return res.status(200).json(participantesFiltrados)       
+            const professorResponse = {
+                professor: reqParticipante,
+                alunos: []
+            }
+
+            professorResponse.alunos = participantes.filter(part => {
+                return part.autorizacao === 1 && part.oficinas.indexOf(part.oficinas[0]) > -1
+            })
+
+            professorResponse.alunos.forEach(aluno => {
+                delete aluno._id
+                delete aluno.oficinas
+                delete aluno.endereco
+                delete aluno.autorizacao
+            })
+
+            return res.status(200).json(professorResponse)
         case 3:   
-            return res.status(200).json(novosParticipantes)                
+            return res.status(200).json(participantes)                
     }
     
 }))
