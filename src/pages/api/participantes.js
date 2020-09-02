@@ -15,27 +15,30 @@ handler.use(dbMiddleware)
 handler.get(authenticated(async (req, res) => {
     const participantes = await req.db.collection(COLLECTION_NAME).find({}).toArray()
     
+    const novosParticipantes = []
+    
     participantes.forEach(participante => {
         delete participante.senha
+        if(participante._id == req.participante.id) {
+            novosParticipantes.unshift(participante)
+        }
+        else novosParticipantes.push(participante)
     })
-
-    const primeiraOficina = req.participante.oficinas[0]
-
-    switch(req.participante.autorizacao) {
+    switch(novosParticipantes[0].autorizacao) {
         case 1:
-            return res.status(401).json({ mensagem: "Você não tem autorização" })
-            break
+            return res.status(200).json(novosParticipantes[0])
         case 2:
-            const participantesFiltrados = participantes.filter(participante => { return participante.oficinas.indexOf(primeiraOficina) > -1 })
-            
+            const primeiraOficina = novosParticipantes[0].oficinas[0].toLowerCase()
+            const participantesFiltrados = novosParticipantes.filter(participante => { 
+                const indexOficina = participante.oficinas.findIndex(oficina => {
+                   return oficina.toLowerCase() === primeiraOficina;
+                })
+                return indexOficina > -1
+            })     
             return res.status(200).json(participantesFiltrados)       
-            break
         case 3:   
-            // para cada participante, remova a key "senha"
-            return res.status(200).json(participantes)       
-            break         
+            return res.status(200).json(novosParticipantes)                
     }
-
     
 }))
 
@@ -74,15 +77,6 @@ handler.post(async (req, res) => {
 
         if (response.insertedCount) {  
             const conteudo = {
-                nomeCompleto: participante.nomeCompleto,
-                email: participante.email,
-                oficinas: participante.oficinas,
-                endereco: participante.endereco,
-                contatoTelefonico: participante.contatoTelefonico,
-                tipoMusico: participante.tipoMusico,
-                tempoAtuacao: participante.tempoAtuacao,
-                banda: participante.banda,
-                autorizacao: participante.autorizacao,
                 id: participante._id
             }
             const jwt = sign(conteudo, process.env.SIGN, { expiresIn: '1h' })
