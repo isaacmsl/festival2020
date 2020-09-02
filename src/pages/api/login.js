@@ -2,6 +2,7 @@ import nextConnect from 'next-connect'
 import dbMiddleware from '../../middlewares/database'
 import { compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
+import cookie from 'cookie'
 
 const handler = nextConnect()
 
@@ -34,7 +35,15 @@ handler.post(async (req, res) => {
                 }
                 const jwt = sign(conteudo, process.env.SIGN, { expiresIn: '1h' })
 
-                return res.status(200).json({ authToken: jwt })
+                res.setHeader('Set-Cookie', cookie.serialize('authorization', jwt, {
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV !== 'development',
+                    sameSite: 'strict',
+                    maxAge: 3600,
+                    path: '/'
+                }))
+
+                return res.status(200).json({ mensagem: 'Logado com sucesso!'})
             }
 
             return res.status(401).json({ mensagem: 'Não logou' })
