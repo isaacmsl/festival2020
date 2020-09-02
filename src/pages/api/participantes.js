@@ -12,8 +12,14 @@ const COLLECTION_NAME = 'participantes'
 handler.use(dbMiddleware)
 
 handler.get(authenticated(async (req, res) => {
-    const response = await req.db.collection(COLLECTION_NAME).find({}).toArray()
-    res.json(response)
+    const participantes = await req.db.collection(COLLECTION_NAME).find({}).toArray()
+    
+    // para cada participante, remova a key "senha"
+    participantes.forEach(participante => {
+        delete participante.senha
+    })
+
+    res.json(participantes)
 }))
 
 handler.post(async (req, res) => {
