@@ -8,12 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "autoprefixer": "^9.8.6",
     "bcrypt": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.0",
     "next": "9.5.2",
     "next-connect": "^0.8.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "tailwindcss": "^1.7.6"
   }
 }

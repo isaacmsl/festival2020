@@ -89,7 +89,7 @@ handler.put(async (req, res) => {
         if (novosDados.hasOwnProperty(chave)) participanteAtualizado[chave] = novosDados[chave]
         else participanteAtualizado[chave] = dadosAtuais[chave] 
     }
-  
+
     try {
         // se novos dados conter senha, encripte
         let senha = (novosDados.senha)
@@ -122,7 +122,7 @@ handler.put(async (req, res) => {
         return res.status(500).json({ mensagem: 'Desculpa, algo inesperado aconteceu. Por favor, cheque os dados enviados' })
     }
 
-}))
+})
 
 handler.delete(authenticated(async (req, res) => {
     const { id } = req.body
