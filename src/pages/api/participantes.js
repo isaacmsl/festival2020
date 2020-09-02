@@ -3,6 +3,7 @@ import dbMiddleware from '../../middlewares/database'
 import { ObjectID } from 'mongodb'
 import { hash, hashSync } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
+import { authenticated } from './authenticated'
 
 const handler = nextConnect()
 
@@ -10,10 +11,16 @@ const COLLECTION_NAME = 'participantes'
 
 handler.use(dbMiddleware)
 
-handler.get(async (req, res) => {
-    const response = await req.db.collection(COLLECTION_NAME).find({}).toArray()
-    res.json(response)
-})
+handler.get(authenticated(async (req, res) => {
+    const participantes = await req.db.collection(COLLECTION_NAME).find({}).toArray()
+    
+    // para cada participante, remova a key "senha"
+    participantes.forEach(participante => {
+        delete participante.senha
+    })
+
+    res.json(participantes)
+}))
 
 handler.post(async (req, res) => {
     const { 
@@ -82,7 +89,7 @@ handler.put(async (req, res) => {
         if (novosDados.hasOwnProperty(chave)) participanteAtualizado[chave] = novosDados[chave]
         else participanteAtualizado[chave] = dadosAtuais[chave] 
     }
-
+  
     try {
         // se novos dados conter senha, encripte
         let senha = (novosDados.senha)
@@ -115,9 +122,9 @@ handler.put(async (req, res) => {
         return res.status(500).json({ mensagem: 'Desculpa, algo inesperado aconteceu. Por favor, cheque os dados enviados' })
     }
 
-})
+}))
 
-handler.delete(async (req, res) => {
+handler.delete(authenticated(async (req, res) => {
     const { id } = req.body
 
     const response = await req.db.collection(COLLECTION_NAME).deleteOne({ "_id": ObjectID(id) })
@@ -127,6 +134,6 @@ handler.delete(async (req, res) => {
     }
 
     return res.status(500).json({ mensagem: 'Desculpa, algo inesperado aconteceu. Por favor, cheque os dados enviados' })
-})
+}))
 
 export default handler
