@@ -96,11 +96,12 @@ handler.post(async (req, res) => {
             autorizacao: 1
         }
 
+        const findEmail = await req.db.collection(COLLECTION_NAME).findOne({ "email": email})
         const response = await req.db.collection(COLLECTION_NAME).insertOne(newDocument)
-        
+    
         const participante = response.ops[0]
 
-        if (response.insertedCount) {  
+        if (response.insertedCount && !findEmail) {  
             const conteudo = {
                 id: participante._id
             }
