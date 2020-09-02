@@ -1,7 +1,7 @@
 import nextConnect from 'next-connect'
 import dbMiddleware from '../../middlewares/database'
 import { ObjectID } from 'mongodb'
-import { hash } from 'bcrypt'
+import { hash, hashSync } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
 
 const handler = nextConnect()
@@ -73,30 +73,35 @@ handler.post(async (req, res) => {
 
 handler.put(async (req, res) => {
 
-    const novo = req.body
-    const anterior = await req.db.collection(COLLECTION_NAME).findOne({ "_id": ObjectID(novo._id) })
+    const novosDados = req.body
+    const dadosAtuais = await req.db.collection(COLLECTION_NAME).findOne({ "_id": ObjectID(novosDados._id) })
     
-    let participante = {}
+    let participanteAtualizado = {}
 
-    for(let chave in anterior) {
-        if (novo.hasOwnProperty(chave)) participante[chave] = novo[chave]
-        else participante[chave] = anterior[chave] 
+    for(let chave in dadosAtuais) {
+        if (novosDados.hasOwnProperty(chave)) participanteAtualizado[chave] = novosDados[chave]
+        else participanteAtualizado[chave] = dadosAtuais[chave] 
     }
 
     try {
+        // se novos dados conter senha, encripte
+        let senha = (novosDados.senha)
+            ? hashSync(novosDados.senha, 10)
+            : participanteAtualizado.senha
+
         const response = await req.db.collection(COLLECTION_NAME).updateOne(
-            { "_id": ObjectID(novo._id) },
+            { "_id": ObjectID(novosDados._id) },
             {
                 $set: {
-                    nomeCompleto: participante.nomeCompleto,
-                    email: participante.email,
-                    oficinas: participante.oficinas,
-                    endereco: participante.endereco,
-                    contatoTelefonico: participante.contatoTelefonico,
-                    tipoMusico: participante.tipoMusico,
-                    tempoAtuacao: participante.tempoAtuacao,
-                    banda: participante.banda,
-                    senha: participante.senha
+                    nomeCompleto: participanteAtualizado.nomeCompleto,
+                    email: participanteAtualizado.email,
+                    oficinas: participanteAtualizado.oficinas,
+                    endereco: participanteAtualizado.endereco,
+                    contatoTelefonico: participanteAtualizado.contatoTelefonico,
+                    tipoMusico: participanteAtualizado.tipoMusico,
+                    tempoAtuacao: participanteAtualizado.tempoAtuacao,
+                    banda: participanteAtualizado.banda,
+                    senha
                 }
             }
         )
@@ -106,7 +111,6 @@ handler.put(async (req, res) => {
         }
 
         return res.status(404).json({ mensagem: 'Documento não foi encontrado. Por favor cheque os dados enviados' })
-
     } catch (e) {
         return res.status(500).json({ mensagem: 'Desculpa, algo inesperado aconteceu. Por favor, cheque os dados enviados' })
     }
