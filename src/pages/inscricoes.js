@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import axios from 'axios'
+import { useRouter } from 'next/router'
+
 
 import styles from '../../styles/Inscricoes.module.css'
 import { useState, useEffect } from 'react'
@@ -28,7 +30,8 @@ const ImagensInstrumento = () => (
 export default function Inscricoes() {
     const [ufs, setUfs] = useState([]);
     const [cities, setCities] = useState([]);
-    
+    const [aguarde, setAguarde] = useState('')
+
     const [contatoTelefonico, setContatoTelefonico] = useState('')
     const [selectedTipoMusico, setSelectedTipoMusico] = useState('1')
     const [selectedTempoAtuacao, setSelectedTempoAtuacao] = useState('1')
@@ -65,6 +68,9 @@ export default function Inscricoes() {
             });
 
     }, [selectedUf]);
+
+    const router = useRouter()
+
 
     function handleInputChange(e) {
         const { name, value } = e.target
@@ -106,16 +112,11 @@ export default function Inscricoes() {
 
     function handleContatoTelefonico(e) {
         let { value } = e.target
-        value = value.replace('(', '')
-        value = value.replace(')', '')
-    
-        if(value.length <= 2) {
+        setContatoTelefonico(value)
+        if (value.length == 2 && !value.includes('(')) {
             setContatoTelefonico(`(${value})`)
-        } else if(value.length > 2) {
-            const ddd = value[0] + value[1]    
-            setContatoTelefonico(setContatoTelefonico(`(${ddd})${value}`))
-        } 
-
+        }
+  
         /*const noPostalCodeRegex = new RegExp('^[1-9]{2}$')
 
         if (noPostalCodeRegex.test(value.trim())) {
@@ -124,7 +125,7 @@ export default function Inscricoes() {
 
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
         const participante = {
             nomeCompleto: formData.nomeCompleto,
@@ -134,9 +135,24 @@ export default function Inscricoes() {
             tempoAtuacao: selectedTempoAtuacao,
             banda: selectedBanda,
             oficinas: selectedOficinas,
-            endereco: `${selectedCity}, ${selectedUf}. ${formData.endereco}`    
+            endereco: `${selectedCity}, ${selectedUf}. ${formData.endereco}`,    
+            contatoTelefonico     
         }
-        console.log(participante)
+        if(participante.oficinas.length === 0) {
+            alert('É necessário escolher uma oficinas ou mais')
+        } else {
+            setAguarde('Estamos te inscrevendo, por favor aguarde...')
+            try {
+                await axios.post('/api/participantes', participante)
+                alert('Participante cadastrado com sucesso')
+                router.push('/')
+            } catch (e) {
+                alert('Desculpe. Esse email já foi cadastrado')
+            }
+        }
+
+        setAguarde('')
+
     }
 
     return (
@@ -426,6 +442,7 @@ export default function Inscricoes() {
                                 className="bg-strongOrange font-bold px-4 py-2 rounded" type="submit"
                                 value="Me inscrever!" />
                         </div>
+                        <span className="">{aguarde}</span>
                     </form>
                 </div>
             </main>
@@ -437,3 +454,4 @@ export default function Inscricoes() {
         </div>
     )
 }
+
