@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import styles from '../../styles/Inscricoes.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const tailStyles = {
     Labels: 'mb-2 font-bold',
@@ -25,34 +25,73 @@ const ImagensInstrumento = () => (
 )
 
 export default function Inscricoes() {
-    const [nomeCompleto, setNomeCompleto] = useState('')
-    const [email, setEmail] = useState('')
-    const [senha, setSenha] = useState('')
     const [contatoTelefonico, setContatoTelefonico] = useState('')
-    const [endereco, setEndereco] = useState('')
+    const [selectedTipoMusico, setSelectedTipoMusico] = useState('1')
+    const [selectedTempoAtuacao, setSelectedTempoAtuacao] = useState('1')
+    const [selectedBanda, setSelectedBanda] = useState('Não sou integrante de banda')
 
+    const [selectedOficinas, setSelectedOficinas] = useState([]);
+
+    const [formData, setFormData] = useState({
+        nomeCompleto: '',
+        email: '',
+        senha: '',
+        endereco: ''
+    })
+
+    function handleInputChange(e) {
+        const { name, value } = e.target
+        
+        setFormData({ ...formData, [name]: value })
+    }
+
+    function handleSelectTipoMusico(e) {
+        const tipoMusico = e.target.value
+        setSelectedTipoMusico(tipoMusico);
+    }
+    function handleSelectTempoAtuacao(e) {
+        const tempoAtuacao = e.target.value;
+        setSelectedTempoAtuacao(tempoAtuacao);
+    }
+    function handleSelectBanda(e) {
+        const banda = e.target.value;
+        setSelectedBanda(banda);
+    }
+    function handleSelectOficina(e) {
+        const oficina = e.target.value
+       
+        if(e.target.checked) {
+            selectedOficinas.push(oficina)
+            setSelectedOficinas(selectedOficinas)
+        } else if(!e.target.checked && selectedOficinas.includes(oficina)) {
+            selectedOficinas.splice(selectedOficinas.indexOf(oficina), 1)
+        }
+    }
 
     function handleContatoTelefonico(e) {
-        const { value } = e.target
+        let { value } = e.target
+        value = value.replace('(', '')
+        value = value.replace(')', '')
+    
+        if(value.length <= 2) {
+            setContatoTelefonico(`(${value})`)
+        } else if(value.length > 2) {
+            const ddd = value[0] + value[1]    
+            setContatoTelefonico(setContatoTelefonico(`(${ddd})${value}`))
+        } 
 
-        const noPostalCodeRegex = new RegExp('^[1-9]{2}$')
+        /*const noPostalCodeRegex = new RegExp('^[1-9]{2}$')
 
         if (noPostalCodeRegex.test(value.trim())) {
             e.target.value = `(${value}) `
-        }
+        }*/
 
     }
 
     function handleSubmit(event) {
         event.preventDefault()
         
-        console.log({
-            nomeCompleto,
-            email,
-            senha,
-            contatoTelefonico,
-            endereco
-        })
+        console.log(formData, selectedTipoMusico, selectedTempoAtuacao, selectedBanda, selectedOficinas)
     }
 
     return (
@@ -85,40 +124,105 @@ export default function Inscricoes() {
                                 <div className="grid gap-2 grid-cols-2">
                                     <div>
                                         <label className={styles.checkboxContainer}>Clarinete
-                                            <input type="checkbox" />
+                                            <input 
+                                                type="checkbox"
+                                                value="Clarinete"
+                                                onChange={handleSelectOficina}
+                                            />
                                             <span className={styles.checkmark}></span>
                                         </label>
                                     </div>
                                     <div>
-                                        <label className={styles.checkboxContainer}>Clarinete
-                                            <input type="checkbox" />
+                                        <label className={styles.checkboxContainer}>Flauta
+                                            <input 
+                                                type="checkbox"
+                                                value="Flauta"
+                                                onChange={handleSelectOficina}
+                                            />
                                             <span className={styles.checkmark}></span>
                                         </label>
                                     </div>
                                     <div>
-                                        <label className={styles.checkboxContainer}>Clarinete
-                                            <input type="checkbox" />
+                                        <label className={styles.checkboxContainer}>Saxofone
+                                            <input 
+                                                type="checkbox"
+                                                value="Saxofone"
+                                                onChange={handleSelectOficina}
+                                            />
                                             <span className={styles.checkmark}></span>
                                         </label>
                                     </div>
                                     <div>
-                                        <label className={styles.checkboxContainer}>Clarinete
-                                            <input type="checkbox" />
+                                        <label className={styles.checkboxContainer}>Trompa
+                                            <input 
+                                                type="checkbox"
+                                                value="Trompa"
+                                                onChange={handleSelectOficina}
+                                            />
                                             <span className={styles.checkmark}></span>
                                         </label>
                                     </div>
                                     <div>
-                                        <label className={styles.checkboxContainer}>Clarinete
-                                            <input type="checkbox" />
+                                        <label className={styles.checkboxContainer}>Trompete
+                                            <input 
+                                                type="checkbox"
+                                                value="Trompete"
+                                                onChange={handleSelectOficina}
+                                            />
                                             <span className={styles.checkmark}></span>
                                         </label>
                                     </div>
                                     <div>
-                                        <label className={styles.checkboxContainer}>Clarinete
-                                            <input type="checkbox"/>
+                                        <label className={styles.checkboxContainer}>Trombone
+                                            <input 
+                                                type="checkbox"
+                                                value="Trombone"
+                                                onChange={handleSelectOficina}
+                                            />
                                             <span className={styles.checkmark}></span>
                                         </label>
                                     </div>
+                                    <div>
+                                        <label className={styles.checkboxContainer}>Tuba
+                                            <input 
+                                                type="checkbox"
+                                                value="Tuba"
+                                                onChange={handleSelectOficina}
+                                            />
+                                            <span className={styles.checkmark}></span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label className={styles.checkboxContainer}>Percussão
+                                            <input 
+                                                type="checkbox"
+                                                value="Percussão"
+                                                onChange={handleSelectOficina}
+                                            />
+                                            <span className={styles.checkmark}></span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label className={styles.checkboxContainer}>Regência
+                                            <input 
+                                                type="checkbox"
+                                                value="Regência"
+                                                onChange={handleSelectOficina}
+                                            />
+                                            <span className={styles.checkmark}></span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label className={styles.checkboxContainer}>Educação Musical
+                                            <input 
+                                                type="checkbox"
+                                                value="Educação Musical"
+                                                onChange={handleSelectOficina}
+                                            />
+                                            <span className={styles.checkmark}></span>
+                                        </label>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4">
@@ -128,6 +232,8 @@ export default function Inscricoes() {
                                         id="tipoMusicoInput"
                                         name="tipoMusico"
                                         className={tailStyles.Input}
+                                        value={selectedTipoMusico}
+                                        onChange={handleSelectTipoMusico}
                                         defaultValue="1"
                                         required
                                     >
@@ -142,6 +248,8 @@ export default function Inscricoes() {
                                         id="tempoAtuacaoInput"
                                         name="tempoAtuacao"
                                         className={tailStyles.Input}
+                                        value={selectedTempoAtuacao}
+                                        onChange={handleSelectTempoAtuacao}
                                         defaultValue="1"
                                         required
                                     >
@@ -157,8 +265,7 @@ export default function Inscricoes() {
                                 <input
                                     id="nomeCompletoInput"
                                     name="nomeCompleto"
-                                    value={nomeCompleto}
-                                    onChange={e => setNomeCompleto(e.target.value)}
+                                    onChange={handleInputChange}
                                     className={tailStyles.Input}
                                     type="text"
                                     placeholder="Felinto Lúcio Dantas"
@@ -170,8 +277,7 @@ export default function Inscricoes() {
                                 <input 
                                     id="emailInput"
                                     name="email"
-                                    value={email}
-                                    onChange={e => setEmail(e.target.value)}
+                                    onChange={handleInputChange}
                                     className={tailStyles.Input}
                                     type="email"
                                     placeholder="felinto20@gmail.com"
@@ -184,6 +290,8 @@ export default function Inscricoes() {
                                     id="bandaInput"
                                     name="banda"
                                     className={tailStyles.Input}
+                                    value={selectedBanda}
+                                    onChange={handleSelectBanda}
                                     defaultValue="1"
                                     required
                                 >
@@ -198,8 +306,7 @@ export default function Inscricoes() {
                                 <input 
                                     id="senhaInput"
                                     name="senha"
-                                    value={senha}
-                                    onChange={e => setSenha(e.target.value)}
+                                    onChange={handleInputChange}
                                     className={tailStyles.Input}
                                     type="password"
                                     placeholder="***********"
@@ -215,10 +322,7 @@ export default function Inscricoes() {
                                     value={contatoTelefonico}
                                     placeholder="(84) 995154184"
                                     pattern="^\([1-9]{2}\).[0-9]{8,9}$"
-                                    onChange={e => {
-                                        setContatoTelefonico(e.target.value)
-                                        handleContatoTelefonico(e)
-                                    }}
+                                    onChange={handleContatoTelefonico}
                                     className={tailStyles.Input}
                                     required
                                 />
@@ -228,8 +332,7 @@ export default function Inscricoes() {
                                 <input 
                                     id="enderecoInput"
                                     name="endereco"
-                                    value={endereco}
-                                    onChange={e => setEndereco(e.target.value)}
+                                    onChange={handleInputChange}
                                     className={tailStyles.Input}
                                     type="text"
                                     placeholder="Rua Flores, 25, Carnaúba dos Dantas, RN"
