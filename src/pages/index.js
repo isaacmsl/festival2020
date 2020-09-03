@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div 
       style={{
-        background: 'url(https://drive.google.com/thumbnail?id=13IGZJCyDOE9mDglQYeYPcXEPXlY0nkvQ) no-repeat center',
+        background: 'url(/assets/background.png) no-repeat center',
         backgroundSize: 'cover'
       }}
       className="min-h-screen w-full flex flex-col items-center">
