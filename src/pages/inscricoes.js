@@ -40,9 +40,12 @@ export default function Inscricoes() {
         <div id="inscricoesContainer" className="relative bg-bgMain min-h-full w-full flex flex-col items-center justify-center">
             <Head>
                 <title>Festival - Inscrições</title>
-                <meta charsert="UTF-8" />
-                <meta name="theme-color" content="#FFFBDB" />
-                <link rel="icon" href="/favicon.ico" />
+                <meta charSet="UTF-8 " />
+                <meta name="author" content="Isaac Lourenço, Paulo Borges, Tiago Rodrigues" />
+                <meta name="description" content="Projeto desenvolvido para o 11º Festival Maestro Felinto Lúcio Dantas, evento realizado entre os dias 14 e 18 em setembro de 2020" />
+                <meta name="keywords" content="festival, felinto lúcio dantas, santa cruz rn" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta httpEquiv="content-language" content="pt-br" />
             </Head>
 
             <ImagensInstrumento />
