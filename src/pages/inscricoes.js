@@ -1,6 +1,7 @@
 import Head from 'next/head'
 
 import styles from '../../styles/Inscricoes.module.css'
+import { useState } from 'react'
 
 const tailStyles = {
     Labels: 'mb-2 font-bold',
@@ -24,6 +25,12 @@ const ImagensInstrumento = () => (
 )
 
 export default function Inscricoes() {
+    const [nomeCompleto, setNomeCompleto] = useState('')
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+    const [contatoTelefonico, setContatoTelefonico] = useState('')
+    const [endereco, setEndereco] = useState('')
+
 
     function handleContatoTelefonico(e) {
         const { value } = e.target
@@ -34,6 +41,18 @@ export default function Inscricoes() {
             e.target.value = `(${value}) `
         }
 
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        
+        console.log({
+            nomeCompleto,
+            email,
+            senha,
+            contatoTelefonico,
+            endereco
+        })
     }
 
     return (
@@ -51,12 +70,15 @@ export default function Inscricoes() {
             <ImagensInstrumento />
 
             <main>
-                <div className="mb-10 mt-56 px-10 sm:px-0 sm:mt-10 text-4xl text-black">
-                    <span className="text-sm">11º FESTIVAL MAESTRO</span>
+                <header className="mb-10 mt-56 px-10 sm:px-0 sm:mt-10 text-4xl text-black">
+                    <h2 className="text-sm">11º FESTIVAL MAESTRO</h2>
                     <h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
-                </div>
+                </header>
                 <div>
-                    <form className="flex flex-col text-xl max-w-lg items-center justify-center">
+                    <form 
+                        className="flex flex-col text-xl max-w-lg items-center justify-center"
+                        onSubmit={handleSubmit}
+                    >
                         <div className="bg-white rounded p-8">
                             <div className={tailStyles.InputContainer}>
                                 <span className={tailStyles.Labels + " block mb-4"}>Oficinas (Uma ou mais)</span>
@@ -104,6 +126,7 @@ export default function Inscricoes() {
                                     <label htmlFor="tipoMusicoInput" className={tailStyles.Labels}>Tipo de Músico *</label>
                                     <select
                                         id="tipoMusicoInput"
+                                        name="tipoMusico"
                                         className={tailStyles.Input}
                                         defaultValue="1"
                                         required
@@ -117,6 +140,7 @@ export default function Inscricoes() {
                                     <label htmlFor="tempoAtuacaoInput" className={tailStyles.Labels}>Tempo de atuação musical *</label>
                                     <select
                                         id="tempoAtuacaoInput"
+                                        name="tempoAtuacao"
                                         className={tailStyles.Input}
                                         defaultValue="1"
                                         required
@@ -132,6 +156,9 @@ export default function Inscricoes() {
                                 <label htmlFor="nomeCompletoInput" className={tailStyles.Labels}>Nome completo *</label>
                                 <input
                                     id="nomeCompletoInput"
+                                    name="nomeCompleto"
+                                    value={nomeCompleto}
+                                    onChange={e => setNomeCompleto(e.target.value)}
                                     className={tailStyles.Input}
                                     type="text"
                                     placeholder="Felinto Lúcio Dantas"
@@ -142,6 +169,9 @@ export default function Inscricoes() {
                                 <label htmlFor="emailInput" className={tailStyles.Labels}>E-mail *</label>
                                 <input 
                                     id="emailInput"
+                                    name="email"
+                                    value={email}
+                                    onChange={e => setEmail(e.target.value)}
                                     className={tailStyles.Input}
                                     type="email"
                                     placeholder="felinto20@gmail.com"
@@ -152,6 +182,7 @@ export default function Inscricoes() {
                                 <label htmlFor="bandaInput" className={tailStyles.Labels}>Banda *</label>
                                 <select 
                                     id="bandaInput"
+                                    name="banda"
                                     className={tailStyles.Input}
                                     defaultValue="1"
                                     required
@@ -166,6 +197,9 @@ export default function Inscricoes() {
                                 <label htmlFor="senhaInput" className={tailStyles.Labels}>Senha *</label>
                                 <input 
                                     id="senhaInput"
+                                    name="senha"
+                                    value={senha}
+                                    onChange={e => setSenha(e.target.value)}
                                     className={tailStyles.Input}
                                     type="password"
                                     placeholder="***********"
@@ -176,11 +210,15 @@ export default function Inscricoes() {
                                 <label htmlFor="contatoTelefonico" className={tailStyles.Labels}>Contato telefônico *</label>
                                 <input 
                                     type="tel"
-                                    id="contatoTelefonico"
-                                    name="phone"
+                                    id="contatoTelefonicoInput"
+                                    name="contatoTelefonico"
+                                    value={contatoTelefonico}
                                     placeholder="(84) 995154184"
                                     pattern="^\([1-9]{2}\).[0-9]{8,9}$"
-                                    onChange={e => handleContatoTelefonico(e)}
+                                    onChange={e => {
+                                        setContatoTelefonico(e.target.value)
+                                        handleContatoTelefonico(e)
+                                    }}
                                     className={tailStyles.Input}
                                     required
                                 />
@@ -189,6 +227,9 @@ export default function Inscricoes() {
                                 <label htmlFor="enderecoInput" className={tailStyles.Labels}>Endereço (Rua, número, cidade e estado) *</label>
                                 <input 
                                     id="enderecoInput"
+                                    name="endereco"
+                                    value={endereco}
+                                    onChange={e => setEndereco(e.target.value)}
                                     className={tailStyles.Input}
                                     type="text"
                                     placeholder="Rua Flores, 25, Carnaúba dos Dantas, RN"
