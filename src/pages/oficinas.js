@@ -96,6 +96,10 @@ export default function Oficinas() {
                             <a href="https://www.instagram.com/azeitonadotromboneoficial" target="_blank">
                                 <img src="/assets/instagram.svg" width={30} alt="Instagram" />
                             </a>
+
+                            <a href="https://www.facebook.com/gilvando.silva.731135" target="_blank">
+                                <img src="/assets/facebook.svg" width={30} alt="Facebook" />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -132,6 +136,10 @@ export default function Oficinas() {
                             <a href="https://www.instagram.com/jpnatalsopros" target="_blank">
                                 <img src="/assets/instagram.svg" width={30} alt="Instagram" />
                             </a>
+
+                            <a href="https://www.facebook.com/profile.php?id=1779379036" target="_blank">
+                                <img src="/assets/facebook.svg" width={30} alt="Facebook" />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -144,6 +152,12 @@ export default function Oficinas() {
                         <div>
                             <h2 className="font-bold text-black text-xl">Trompete</h2>
                             <p className="mt-4">Ranilson Farias</p>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                            <a href="https://www.facebook.com/ranilson.bezerradefarias" target="_blank">
+                                <img src="/assets/facebook.svg" width={30} alt="Facebook" />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -186,7 +200,12 @@ export default function Oficinas() {
                             <a href="https://www.instagram.com/daday_dantas" target="_blank">
                                 <img src="/assets/instagram.svg" width={30} alt="Instagram" />
                             </a>
+
+                            <a href="https://www.facebook.com/dayanderson.tayronne" target="_blank">
+                                <img src="/assets/facebook.svg" width={30} alt="Facebook" />
+                            </a>
                         </div>
+
                     </div>
                 </div>
             </main>

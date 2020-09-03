@@ -3,7 +3,7 @@ import Link from 'next/link'
 const HeaderDivulgacao = () => (
     <Link href="/">
         <header className="flex flex-col lg:flex-row items-center mb-10">
-            <div className="mb-10 mt-10 sm:mt-56 px-10 sm:px-0 sm:mt-10 text-4xl text-white">
+            <div className="mb-10 px-10 tex-center sm:text-left sm:px-0 mt-10 text-4xl text-white">
                 <h2 className="text-sm">11º FESTIVAL MAESTRO</h2>
                 <h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
             </div>
