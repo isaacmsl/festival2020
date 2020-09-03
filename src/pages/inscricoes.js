@@ -70,16 +70,11 @@ export default function Inscricoes() {
 
     function handleContatoTelefonico(e) {
         let { value } = e.target
-        value = value.replace('(', '')
-        value = value.replace(')', '')
-    
-        if(value.length <= 2) {
+        setContatoTelefonico(value)
+        if (value.length == 2 && !value.includes('(')) {
             setContatoTelefonico(`(${value})`)
-        } else if(value.length > 2) {
-            const ddd = value[0] + value[1]    
-            setContatoTelefonico(setContatoTelefonico(`(${ddd})${value}`))
-        } 
-
+        }
+  
         /*const noPostalCodeRegex = new RegExp('^[1-9]{2}$')
 
         if (noPostalCodeRegex.test(value.trim())) {
@@ -90,8 +85,18 @@ export default function Inscricoes() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        
-        console.log(formData, selectedTipoMusico, selectedTempoAtuacao, selectedBanda, selectedOficinas)
+        const participante = {
+            nomeCompleto: formData.nomeCompleto,
+            email: formData.email,
+            senha: formData.senha,
+            tipoMusico: selectedTipoMusico,
+            tempoAtuacao: selectedTempoAtuacao,
+            banda: selectedBanda,
+            oficinas: selectedOficinas,
+            endereco: formData.endereco,
+            contatoTelefonico     
+        }
+        console.log(participante)
     }
 
     return (
