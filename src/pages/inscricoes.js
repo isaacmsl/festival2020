@@ -11,12 +11,12 @@ const tailStyles = {
 const ImagensInstrumento = () => (
     <>
         <img 
-            src="/sax.png"
+            src="/assets/sax.png"
             alt="Saxofone"
             className="absolute top-0 left-0 w-64 sm:w-1/4" 
         />
         <img
-            src="/trompete.png"
+            src="/assets/trompete.png"
             alt="Trompete"
             className="absolute bottom-0 right-0 w-56 sm:w-1/4"
         />
