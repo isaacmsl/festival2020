@@ -8,7 +8,7 @@ export default function Oficinas() {
     return (
         <div
             style={{
-                background: 'url(/assets/background.png) no-repeat center',
+                background: 'url(https://drive.google.com/thumbnail?id=13IGZJCyDOE9mDglQYeYPcXEPXlY0nkvQ) no-repeat center',
                 backgroundSize: 'cover'
             }}
             className="min-h-screen w-full flex flex-col items-center"
@@ -24,7 +24,7 @@ export default function Oficinas() {
                 <div className="flex items-strech">
                     <img
                         className={styles.imagens}
-                        src="/assets/professores/costinha-saxofone.jpeg"
+                        src="https://drive.google.com/thumbnail?id=1puJW-X9BWsBBr_Hcx4_Lu-8iyYRnRNv8"
                         alt="Heleno Feitosa (Costinha)" />
                     <div className="bg-white w-full sm:max-w-sm rounded flex flex-col justify-between p-4 ml-4">
                         <div>
@@ -42,13 +42,12 @@ export default function Oficinas() {
                 <div className="flex items-strech">
                     <img
                         className={styles.imagens}
-                        src="/assets/professores/eugenio-graca-regencia.jpeg"
-                        width={160}
-                        alt="Eugênio Graça" />
+                        src="https://drive.google.com/thumbnail?id=1ldNmtYJZYI4tshdyk6FjMcnRnS1VO6O9"
+                        alt="Eugénio Graça" />
                     <div className="bg-white w-full sm:max-w-sm rounded flex flex-col justify-between p-4 ml-4">
                         <div>
                             <h2 className="font-bold text-black text-xl">Regência</h2>
-                            <p className="mt-4">Eugênio Graça</p>
+                            <p className="mt-4">Eugénio Graça</p>
                         </div>
 
                         <div className="flex items-center justify-between">
@@ -64,8 +63,7 @@ export default function Oficinas() {
                 <div className="flex items-strech">
                     <img
                         className={styles.imagens}
-                        src="/assets/professores/ivo-shin-flauta.jpeg"
-                        width={160}
+                        src="https://drive.google.com/thumbnail?id=1FiCpvY_8lq4a735-5ILJXZQt3JTIWhty"
                         alt="Ivo Shin" />
                     <div className="bg-white w-full sm:max-w-sm rounded flex flex-col justify-between p-4 ml-4">
                         <div>
@@ -86,8 +84,7 @@ export default function Oficinas() {
                 <div className="flex items-strech">
                     <img
                         className={styles.imagens}
-                        src="/assets/professores/gilvando-silva-trombone.jpeg"
-                        width={160}
+                        src="https://drive.google.com/thumbnail?id=1T1orv_ksxN64UTHoXAiphn17iMmvfE6p"
                         alt="Gilvando Silva (Azeitona)" />
                     <div className="bg-white w-full sm:max-w-sm rounded flex flex-col justify-between p-4 ml-4">
                         <div>
@@ -105,8 +102,7 @@ export default function Oficinas() {
                 <div className="flex items-strech">
                     <img
                         className={styles.imagens}
-                        src="/assets/professores/germanna-cunha-percussao.jpeg"
-                        width={160}
+                        src="https://drive.google.com/thumbnail?id=13DcC2CZtZYjFuoSuTTujn2101hjAPJtE"
                         alt="Germanna Cunha" />
                     <div className="bg-white w-full sm:max-w-sm rounded flex flex-col justify-between p-4 ml-4">
                         <div>
@@ -124,8 +120,7 @@ export default function Oficinas() {
                 <div className="flex items-strech">
                     <img
                         className={styles.imagens}
-                        src="/assets/professores/jotape-clarinete.jpeg"
-                        width={160}
+                        src="https://drive.google.com/thumbnail?id=1KSHn2Q6jP0w_44gIueP1x74vmQRQrLVF"
                         alt="Jotapê" />
                     <div className="bg-white w-full sm:max-w-sm rounded flex flex-col justify-between p-4 ml-4">
                         <div>
@@ -143,8 +138,7 @@ export default function Oficinas() {
                 <div className="flex items-strech">
                     <img
                         className={styles.imagens}
-                        src="/assets/professores/ranilson-farias-trompete.jpeg"
-                        width={160}
+                        src="https://drive.google.com/thumbnail?id=1dDJ-r8g2H6qjMwi757PJlnSk_m5axoed"
                         alt="Ranilson Farias" />
                     <div className="bg-white w-full sm:max-w-sm rounded flex flex-col justify-between p-4 ml-4">
                         <div>
@@ -156,13 +150,12 @@ export default function Oficinas() {
                 <div className="flex items-strech">
                     <img
                         className={styles.imagens}
-                        src="/assets/professores/gilvan-silva-tuba.jpeg"
-                        width={160}
+                        src="https://drive.google.com/thumbnail?id=1J0BFHHeRVL9aXjyUv0pXorc2xQTZ7wfD"
                         alt="Ranilson Farias" />
                     <div className="bg-white w-full sm:max-w-sm rounded flex flex-col justify-between p-4 ml-4">
                         <div>
                             <h2 className="font-bold text-black text-xl">Tuba</h2>
-                            <p className="mt-4">Gilva Silva</p>
+                            <p className="mt-4">Gilvan Silva</p>
                         </div>
 
                             
@@ -180,8 +173,7 @@ export default function Oficinas() {
                 <div className="flex items-strech">
                     <img
                         className={styles.imagens}
-                        src="/assets/professores/dayanderson-dantas-trompa.jpeg"
-                        width={160}
+                        src="https://drive.google.com/thumbnail?id=1xIw4QlyakD8-koZ7hIhMWq89t4eFRmRc"
                         alt="Ranilson Farias" />
                     <div className="bg-white w-full sm:max-w-sm rounded flex flex-col justify-between p-4 ml-4">
                         <div>

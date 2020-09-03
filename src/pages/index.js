@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div 
       style={{
-        background: 'url(/assets/background.png) no-repeat center',
+        background: 'url(https://drive.google.com/thumbnail?id=13IGZJCyDOE9mDglQYeYPcXEPXlY0nkvQ) no-repeat center',
         backgroundSize: 'cover'
       }}
       className="min-h-screen w-full flex flex-col items-center">
@@ -19,11 +19,8 @@ export default function Home() {
       <HeaderDivulgacao />
 
       <main className="flex flex-col items-center">
-        <div className="w-full sm:max-w-md">
-          <video width="400" controls>
-            <source src="/assets/video.mp4" type="video/mp4" />
-            Seu navegador não suporta vídeos.
-          </video>
+        <div>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/wxKJvoFAfJM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div className="mb-10 flex flex-col items-center text-white mt-20">
           <div className="flex flex-col items-center bg-black rounded-full w-48 p-6 border-solid border-8">
