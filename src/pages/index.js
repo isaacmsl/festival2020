@@ -19,8 +19,8 @@ export default function Home() {
       <HeaderDivulgacao />
 
       <main className="flex flex-col items-center">
-        <div>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/wxKJvoFAfJM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div className="w-screen sm:max-w-lg">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/wxKJvoFAfJM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div className="mb-10 flex flex-col items-center text-white mt-20">
           <div className="flex flex-col items-center bg-black rounded-full w-48 p-6 border-solid border-8">
