@@ -2,6 +2,7 @@ import Head from 'next/head'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
+
 import styles from '../../styles/Inscricoes.module.css'
 import { useState, useEffect } from 'react'
 
@@ -27,11 +28,16 @@ const ImagensInstrumento = () => (
 )
 
 export default function Inscricoes() {
+    const [ufs, setUfs] = useState([]);
+    const [cities, setCities] = useState([]);
     const [aguarde, setAguarde] = useState('')
+
     const [contatoTelefonico, setContatoTelefonico] = useState('')
     const [selectedTipoMusico, setSelectedTipoMusico] = useState('1')
     const [selectedTempoAtuacao, setSelectedTempoAtuacao] = useState('1')
     const [selectedBanda, setSelectedBanda] = useState('Não sou integrante de banda')
+    const [selectedUf, setSelectedUf] = useState('0');
+    const [selectedCity, setSelectedCity] = useState('0');
 
     const [selectedOficinas, setSelectedOficinas] = useState([]);
 
@@ -42,14 +48,45 @@ export default function Inscricoes() {
         endereco: ''
     })
 
+    useEffect(() => {
+        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
+            const ufInitials = response.data.map(uf => uf.sigla);
+
+            setUfs(ufInitials);
+        });
+    }, []);
+
+    useEffect(() => {
+        if(selectedUf === '0') return;
+        
+        axios
+            .get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`)
+            .then(response => {
+                const cityNames = response.data.map(city => city.nome);
+
+                setCities(cityNames);
+            });
+
+    }, [selectedUf]);
+
     const router = useRouter()
+
 
     function handleInputChange(e) {
         const { name, value } = e.target
         
         setFormData({ ...formData, [name]: value })
     }
+    function handleSelectUf(e) {
+        const uf = event.target.value;
 
+        setSelectedUf(uf);
+    }
+    function handleSelectCity(e) {
+        const city = event.target.value;
+
+        setSelectedCity(city);
+    }
     function handleSelectTipoMusico(e) {
         const tipoMusico = e.target.value
         setSelectedTipoMusico(tipoMusico);
@@ -98,7 +135,7 @@ export default function Inscricoes() {
             tempoAtuacao: selectedTempoAtuacao,
             banda: selectedBanda,
             oficinas: selectedOficinas,
-            endereco: formData.endereco,
+            endereco: `${selectedCity}, ${selectedUf}. ${formData.endereco}`,    
             contatoTelefonico     
         }
         if(participante.oficinas.length === 0) {
@@ -115,6 +152,7 @@ export default function Inscricoes() {
         }
 
         setAguarde('')
+
     }
 
     return (
@@ -350,15 +388,51 @@ export default function Inscricoes() {
                                     required
                                 />
                             </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4">
+                                <div className="flex flex-col sm:mr-4">
+                                    <label htmlFor="estadoInput" className={tailStyles.Labels}>Estado *</label>
+                                    <select
+                                        id="estadoInput"
+                                        name="estado"
+                                        className={tailStyles.Input}
+                                        value={selectedUf}
+                                        onChange={handleSelectUf}
+                                        defaultValue="1"
+                                        required
+                                    >
+                                        <option value="0">Selecione um Estado</option>
+                                        {ufs.map(uf => (
+                                            <option key={uf} value={uf}>{uf}</option>
+                                        ))};
+                                    </select>
+                                </div>
+                                <div className="flex flex-col mt-4 sm:mt-0">
+                                    <label htmlFor="cidadeInput" className={tailStyles.Labels}>Cidade *</label>
+                                    <select
+                                        id="cidadeInput"
+                                        name="cidade"
+                                        className={tailStyles.Input}
+                                        value={selectedCity}
+                                        onChange={handleSelectCity}
+                                        defaultValue="1"
+                                        required
+                                    >
+                                        <option value="0">Selecione uma cidade</option>
+                                        {cities.map(city => (
+                                            <option key={city} value={city}>{city}</option>
+                                        ))};
+                                    </select>
+                                </div>
+                            </div>
                             <div className="flex flex-col mt-4">
-                                <label htmlFor="enderecoInput" className={tailStyles.Labels}>Endereço (Rua, número, cidade e estado) *</label>
+                                <label htmlFor="enderecoInput" className={tailStyles.Labels}>Endereço (Rua, número) *</label>
                                 <input 
                                     id="enderecoInput"
                                     name="endereco"
                                     onChange={handleInputChange}
                                     className={tailStyles.Input}
                                     type="text"
-                                    placeholder="Rua Flores, 25, Carnaúba dos Dantas, RN"
+                                    placeholder="Rua Flores, 25"
                                     required 
                                 />
                             </div>
