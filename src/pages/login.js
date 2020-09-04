@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import axios from 'axios'
 import { useState } from 'react'
 
 const ImagensInstrumento = () => (
@@ -24,12 +26,26 @@ export default function Login() {
 
 	function handleInputChange(e) {
         const { name, value } = e.target
-        
-        setFormData({ ...formData, [name]: value })
+		
+		setFormData({ ...formData, [name]: value })
 	}
 	
-	function handleSubmit(e) {
+	async function handleSubmit(e) {
 		e.preventDefault()
+		
+		const participanteLogin = {
+			email: formData.email,
+			senha: formData.senha
+		}
+
+		try {
+			await axios.post('/api/login', participanteLogin)
+			alert('Logado!')
+			useRouter.push('/')
+		} catch (e) {
+			alert('Desculpe. Não foi possível fazer o login. Por favor verifique seus dados')
+		}
+		
 	}
   return (
 	<div 
@@ -45,12 +61,14 @@ export default function Login() {
 				<h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
 			</header>
 			
-			<form className="bg-white w-screen sm:max-w-sm p-4 rounded">
+			<form className="bg-white w-screen sm:max-w-sm p-4 rounded" onSubmit={handleSubmit}>
 				<div className="flex flex-col">
-					<label className="mb-4" htmlFor="email">Email</label>
+					<label className="mb-4" htmlFor="emailInput">E-mail</label>
 					<input 
+						id="emailInput"
 						className="border-solid border-2 px-4 py-2 rounded"
 						type="email"
+						name="email"
 						placeholder="Email"
 						onChange={handleInputChange}
 					  	required
@@ -58,19 +76,24 @@ export default function Login() {
 				</div>
 			  	
 				<div className="flex flex-col mt-4">
-					<label className="mb-4" htmlFor="senha">Senha</label>
+					<label className="mb-4" htmlFor="senhaInput">Senha</label>
 					<input 
+						id="senhaInput"
 					  	className="border-solid border-2 px-4 py-2 rounded"
 						type="password"
+						name="senha"
 						placeholder="***********"
+						onChange={handleInputChange}
 						required
 					/>
 				</div>
 
 				<div className="mt-4 flex items-center justify-between">
-					<input className="bg-orange-500 px-4 py-2 rounded font-bold" value="Entrar" type="submit">
-						
-					</input>
+					<input 
+						className="bg-orange-500 px-4 py-2 rounded font-bold" 
+						value="Entrar" 
+						type="submit"
+					/>
 				  	<a className="text-orange-700" href="#">Esqueceu?</a>
 				</div>
 
