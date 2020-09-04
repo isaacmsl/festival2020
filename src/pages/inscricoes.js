@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 
 const tailStyles = {
     Labels: 'mb-2 font-bold',
-    Input: 'p-2 border border-1 rounded bg-transparent',
+    Input: 'p-2 border border-1 rounded bg-transparent max-w-xs',
     Checkboxs: 'mr-2 checked:bg-black'
 }
 
