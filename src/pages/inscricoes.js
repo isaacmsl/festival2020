@@ -359,7 +359,7 @@ export default function Inscricoes() {
                                     defaultValue="1"
                                     required
                                 >
-                                    <option value="Sem banda">Não sou integrante de banda</option>
+                                    <option value="Não sou integrante de banda">Não sou integrante de banda</option>
                                     <option value="FILARMÔNICA MAESTRO FELINTO LÚCIO DANTAS">FILARMÔNICA MAESTRO FELINTO LÚCIO DANTAS</option>
                                     <option value="FILARMÔNICA ELINO JULIÃO">FILARMÔNICA ELINO JULIÃO</option>
                                     <option value="FILARMÔNICA ONZE DE DEZEMBRO">FILARMÔNICA ONZE DE DEZEMBRO</option>
