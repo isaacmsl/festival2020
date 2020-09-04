@@ -128,6 +128,13 @@ export default function Inscricoes() {
 
     async function handleSubmit(event) {
         event.preventDefault()
+
+        
+        if(selectedUf === '0' || selectedCity === '0' ) {
+            alert('É necessário escolher uma cidade e um estado')
+            return
+        }
+
         const participante = {
             nomeCompleto: formData.nomeCompleto,
             email: formData.email,
@@ -139,18 +146,21 @@ export default function Inscricoes() {
             endereco: `${selectedCity}, ${selectedUf}. ${formData.endereco}`,    
             contatoTelefonico     
         }
+
         if(participante.oficinas.length === 0) {
             alert('É necessário escolher uma oficinas ou mais')
-        } else {
-            setAguarde('Estamos te inscrevendo, por favor aguarde...')
-            try {
-                await axios.post('/api/participantes', participante)
-                alert('Você está inscrito no festival! Em breve nosso site permitirá que você realize o login e visualize suas aulas!')
-                router.push('/')
-            } catch (e) {
-                alert('Desculpe. Esse email já foi cadastrado')
-            }
+            return
+        } 
+
+        setAguarde('Estamos te inscrevendo, por favor aguarde...')
+        try {
+            await axios.post('/api/participantes', participante)
+            alert('Você está inscrito no festival! Em breve nosso site permitirá que você realize o login e visualize suas aulas!')
+            router.push('/')
+        } catch (e) {
+            alert('Desculpe. Esse email já foi cadastrado')
         }
+    
 
         setAguarde('')
 
