@@ -370,8 +370,32 @@ export default function Inscricoes() {
                                     required
                                 >
                                     <option value="Sem banda">Não sou integrante de banda</option>
-                                    <option value="BMMJRPU">BMMJRPU</option>
-                                    <option value="Cruzeta">Cruzeta</option>
+                                    <option value="FILARMÔNICA MAESTRO FELINTO LÚCIO DANTAS">FILARMÔNICA MAESTRO FELINTO LÚCIO DANTAS</option>
+                                    <option value="FILARMÔNICA ELINO JULIÃO">FILARMÔNICA ELINO JULIÃO</option>
+                                    <option value="FILARMÔNICA ONZE DE DEZEMBRO">FILARMÔNICA ONZE DE DEZEMBRO</option>
+                                    <option value="FILARMÔNICA 24 DE OUTUBRO">FILARMÔNICA 24 DE OUTUBRO</option>
+                                    <option value="FILARMÔNICA JOVENS MÚSICOS">FILARMÔNICA JOVENS MÚSICOS</option>
+                                    <option value="BANDA DE MÚSICA MESTRE JOÃO ROBERTO PAZ E UNIÃO">BANDA DE MÚSICA MESTRE JOÃO ROBERTO PAZ E UNIÃO</option>
+                                    <option value="BANDA DE MÚSICA TRAMPOLIM DA VITÓRIA">BANDA DE MÚSICA TRAMPOLIM DA VITÓRIA</option>
+                                    <option value="BANDA DE MÚSICA DA POLÍCIA MILITAR DO RN">BANDA DE MÚSICA DA POLÍCIA MILITAR DO RN</option>
+                                    <option value="BANDA DE MÚSICA MAESTRO SANTA ROSA">BANDA DE MÚSICA MAESTRO SANTA ROSA</option>
+                                    <option value="BANDA DE MÚSICA DA BASE AÉREA DE NATAL">BANDA DE MÚSICA DA BASE AÉREA DE NATAL</option>
+                                    <option value="FILARMÔNICA DE SÃO TOMÉ">FILARMÔNICA DE SÃO TOMÉ</option>
+                                    <option value="FILARMÔNICA DE SÃO PEDRO DO POTENGI">FILARMÔNICA DE SÃO PEDRO DO POTENGI</option>
+                                    <option value="EUTERPE JARDINENSE">EUTERPE JARDINENSE</option>
+                                    <option value="FILARMÔNICA JIMMY BRITO">FILARMÔNICA JIMMY BRITO</option>
+                                    <option value="BAMUSGA">BAMUSGA</option>
+                                    <option value="FILARMÔNICA DE MÃE LUIZA">FILARMÔNICA DE MÃE LUIZA</option>
+                                    <option value="BANDA DE MÚSICA INFANTO-JUVENIL DE BREJINHO">BANDA DE MÚSICA INFANTO-JUVENIL DE BREJINHO</option>
+                                    <option value="FILARMÔNICA DE MONTE ALEGRE">FILARMÔNICA DE MONTE ALEGRE</option>
+                                    <option value="FILARMÔNICA DE SANTANA DO MATOS">FILARMÔNICA DE SANTANA DO MATOS</option>
+                                    <option value="FILARMÔNICA DE SÃO FERNANDO">FILARMÔNICA DE SÃO FERNANDO</option>
+                                    <option value="FILARMÔNICA DE SERRA NEGRA DO NORTE">FILARMÔNICA DE SERRA NEGRA DO NORTE</option>
+                                    <option value="BANDA DE MÚSICA DE NOVA FLORESTA ">BANDA DE MÚSICA DE NOVA FLORESTA </option>
+                                    <option value="SOCIEDADE MUSICAL NOVO SÉCULO">SOCIEDADE MUSICAL NOVO SÉCULO</option>
+                                    <option value="BANDA DE MÚSICA DUARTE MACHADO">BANDA DE MÚSICA DUARTE MACHADO</option>
+                                    <option value="FILARMÔNICA MONSENHOR HONÓRIO">FILARMÔNICA MONSENHOR HONÓRIO</option>
+                                    <option value="FILARMÔNICA DE FLORÂNIA">FILARMÔNICA DE FLORÂNIA</option>
                                     <option value="Outra">Outra</option>
                                 </select>
                             </div>
