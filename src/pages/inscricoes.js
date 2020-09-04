@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 
 import styles from '../../styles/Inscricoes.module.css'
@@ -144,7 +145,7 @@ export default function Inscricoes() {
             setAguarde('Estamos te inscrevendo, por favor aguarde...')
             try {
                 await axios.post('/api/participantes', participante)
-                alert('Participante cadastrado com sucesso')
+                alert('Você está inscrito no festival! Em breve nosso site permitirá que você realize o login e visualize suas aulas!')
                 router.push('/')
             } catch (e) {
                 alert('Desculpe. Esse email já foi cadastrado')
@@ -170,10 +171,12 @@ export default function Inscricoes() {
             <ImagensInstrumento />
 
             <main>
-                <header className="mb-10 mt-56 px-10 sm:px-0 sm:mt-10 text-4xl text-black">
-                    <h2 className="text-sm">11º FESTIVAL MAESTRO</h2>
-                    <h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
-                </header>
+                <Link href="/">
+                    <header className="mb-10 mt-56 px-10 sm:px-0 sm:mt-10 text-4xl text-black">
+                        <h2 className="text-sm">11º FESTIVAL MAESTRO</h2>
+                        <h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
+                    </header>
+                </Link>
                 <div>
                     <form 
                         className="flex flex-col text-xl max-w-lg items-center justify-center"
@@ -437,12 +440,12 @@ export default function Inscricoes() {
                                 />
                             </div>
                         </div>
-                        <div className="mt-10 mb-10">
+                        <span className="mt-10">{aguarde}</span>
+                        <div className="mt-10">
                             <input 
                                 className="bg-strongOrange font-bold px-4 py-2 rounded" type="submit"
                                 value="Me inscrever!" />
                         </div>
-                        <span className="">{aguarde}</span>
                     </form>
                 </div>
             </main>

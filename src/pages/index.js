@@ -1,5 +1,7 @@
 import Head from 'next/head'
 
+import Link from 'next/link'
+
 import HeaderDivulgacao from '../components/HeaderDivulgacao.js'
 import FooterDivulgacao from '../components/FooterDivulgacao.js'
 
@@ -29,7 +31,10 @@ export default function Home() {
             <span>DIAS</span>
           </div>
           <div className="border-solid border-l-2 h-20 opacity-75 rounded mt-4 mb-4"></div>
-          <button className="w-full sm:max-w-md px-6 py-4 bg-blue-600 text-white font-bold rounded mb-4">QUERO ME INSCREVER</button>
+          <a className="w-full sm:max-w-md px-6 py-4 bg-blue-600 text-white font-bold rounded mb-4 text-center opacity-25" disabled>LOGIN</a>
+          <Link href="/inscricoes">
+            <a className="w-full sm:max-w-md px-6 py-4 bg-blue-600 text-white font-bold rounded mb-4 text-center">QUERO ME INSCREVER</a>
+          </Link>
           <span>(Disponível em 04/09/2020 - 14/09/2020)</span>
         </div>
       </main>
