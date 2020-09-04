@@ -286,16 +286,6 @@ export default function Inscricoes() {
                                             <span className={styles.checkmark}></span>
                                         </label>
                                     </div>
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Educação Musical
-                                            <input 
-                                                type="checkbox"
-                                                value="Educação Musical"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
                                     
                                 </div>
                             </div>
