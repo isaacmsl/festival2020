@@ -1,26 +1,8 @@
 import Head from 'next/head'
 
-import Link from 'next/link'
-
 import HeaderDivulgacao from '../components/HeaderDivulgacao.js'
 import FooterDivulgacao from '../components/FooterDivulgacao.js'
-import { data } from 'autoprefixer'
-
-const ButtonInscricoes = (props) => {
-  const { diasRestantes } = props
-
-  if (diasRestantes === 0) {
-    return (
-      <a className="w-full sm:max-w-md px-6 py-4 bg-blue-600 text-white font-bold rounded mb-4 text-center opacity-25" disabled>QUERO ME INSCREVER</a>
-    )
-  }
-
-  return (
-    <Link href="/inscricoes">
-      <a className="w-full sm:max-w-md px-6 py-4 bg-blue-600 text-white font-bold rounded mb-4 text-center">QUERO ME INSCREVER</a>
-    </Link>
-  )
-}
+import ButtonInscricoes from '../components/ButtonInscricoes'
 
 export default function Home({ diasRestantes }) {
 

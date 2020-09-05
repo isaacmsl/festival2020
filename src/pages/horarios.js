@@ -1,11 +1,10 @@
 import Head from 'next/head'
 
-import Link from 'next/link'
-
 import HeaderDivulgacao from '../components/HeaderDivulgacao'
 import FooterDivulgacao from '../components/FooterDivulgacao'
+import ButtonInscricoes from '../components/ButtonInscricoes'
 
-export default function Horarios() {
+export default function Horarios({ diasRestantes }) {
     return (
         <div
             style={{
@@ -219,12 +218,30 @@ export default function Horarios() {
                         </li>
                     </ul>
                 </div>
-                <Link href="/inscricoes">
-                    <a className="w-full sm:max-w-md px-6 py-4 bg-blue-600 text-white font-bold rounded mb-4 text-center">QUERO ME INSCREVER</a>
-                </Link>
+                <ButtonInscricoes diasRestantes={diasRestantes}/>
             </main>
 
             <FooterDivulgacao />
         </div>
     )
+}
+
+Horarios.getInitialProps = () => {
+    const dataAtual = new Date()
+    const dataFinalInscricoes = new Date(2020, 9, 14)
+
+    if (dataAtual < dataFinalInscricoes) {
+        const diaAtual = dataAtual.getDate()
+        const diaFinal = dataFinalInscricoes.getDate()
+
+        const diasRestantes = diaFinal - diaAtual
+
+        return {
+            diasRestantes
+        }
+    }
+
+    return {
+        diasRestantes: 0
+    }
 }
