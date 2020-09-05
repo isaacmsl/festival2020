@@ -1,0 +1,8 @@
+.imagens {
+    min-width: 200px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border: 6px solid #FFF;
+    border-radius: 4px;
+}
