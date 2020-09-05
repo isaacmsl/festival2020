@@ -30,6 +30,14 @@ export default function Oficinas() {
                         <div>
                             <h2 className="font-bold text-black text-xl">Saxofone</h2>
                             <p className="mt-4">Heleno Feitosa (Costinha)</p>
+                            <div className="sm: mb-2">
+                                <p className="pt-2 mb-1 text-black font-medium text-base">Horário das aulas</p>
+                                <ul className="text-sm font-medium text-gray-700 ">
+                                    <li>Segunda (14/9) 15:00 às 16:30</li>
+                                    <li>Terça (15/9) 15:00 às 16:30</li>
+                                    <li>Quarta (16/9) 15:00 às 16:30</li>
+                                </ul>
+                            </div>
                         </div>
                 
                         <div className="flex items-center justify-between">
@@ -48,6 +56,14 @@ export default function Oficinas() {
                         <div>
                             <h2 className="font-bold text-black text-xl">Regência</h2>
                             <p className="mt-4">Eugénio Graça</p>
+                            <div className="sm: mb-2">
+                                <p className="pt-2 mb-1 text-black font-medium text-base">Horário das aulas</p>
+                                <ul className="text-sm font-medium text-gray-700 ">
+                                    <li>Quarta (16/9) 20:00 às 21:30</li>
+                                    <li>Quinta (17/9) 20:00 às 21:30</li>
+                                    <li>Sexta (18/9) 20:00 às 21:30</li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div className="flex items-center justify-between">
@@ -69,6 +85,14 @@ export default function Oficinas() {
                         <div>
                             <h2 className="font-bold text-black text-xl">Flauta</h2>
                             <p className="mt-4">Ivo Shin</p>
+                            <div className="sm: mb-2">
+                                <p className="pt-2 mb-1 text-black font-medium text-base">Horário das aulas</p>
+                                <ul className="text-sm font-medium text-gray-700 ">
+                                    <li>Segunda (14/9) 15:00 às 16:30</li>
+                                    <li>Terça (15/9) 15:00 às 16:30</li>
+                                    <li>Quarta (16/9) 15:00 às 16:30</li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div className="flex items-center justify-between">
@@ -90,6 +114,14 @@ export default function Oficinas() {
                         <div>
                             <h2 className="font-bold text-black text-xl">Trombone</h2>
                             <p className="mt-4">Gilvando Silva (Azeitona)</p>
+                            <div className="sm: mb-2">
+                                <p className="pt-2 mb-1 text-black font-medium text-base">Horário das aulas</p>
+                                <ul className="text-sm font-medium text-gray-700 ">
+                                    <li>Segunda (14/9) 09:00 às 10:30</li>
+                                    <li>Terça (15/9) 09:00 às 10:30</li>
+                                    <li>Quarta (16/9) 09:00 às 10:30</li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div className="flex items-center justify-between">
@@ -112,6 +144,14 @@ export default function Oficinas() {
                         <div>
                             <h2 className="font-bold text-black text-xl">Percussão</h2>
                             <p className="mt-4">Germanna Cunha</p>
+                            <div className="sm: mb-2">
+                                <p className="pt-2 mb-1 text-black font-medium text-base">Horário das aulas</p>
+                                <ul className="text-sm font-medium text-gray-700 ">
+                                    <li>Quarta (16/9) 09:00 às 10:30</li>
+                                    <li>Quinta (17/9) 09:00 às 10:30</li>
+                                    <li>Sexta (18/9) 09:00 às 10:30</li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div className="flex items-center justify-between">
@@ -130,6 +170,14 @@ export default function Oficinas() {
                         <div>
                             <h2 className="font-bold text-black text-xl">Clarinete</h2>
                             <p className="mt-4">Jotapê</p>
+                            <div className="sm: mb-2">
+                                <p className="pt-2 mb-1 text-black font-medium text-base">Horário das aulas</p>
+                                <ul className="text-sm font-medium text-gray-700 ">
+                                    <li>Segunda (14/9) 09:00 às 10:30</li>
+                                    <li>Terça (15/9) 09:00 às 10:30</li>
+                                    <li>Quarta (16/9) 09:00 às 10:30</li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div className="flex items-center justify-between">
@@ -152,6 +200,14 @@ export default function Oficinas() {
                         <div>
                             <h2 className="font-bold text-black text-xl">Trompete</h2>
                             <p className="mt-4">Ranilson Farias</p>
+                            <div className="sm: mb-2">
+                                <p className="pt-2 mb-1 text-black font-medium text-base">Horário das aulas</p>
+                                <ul className="text-sm font-medium text-gray-700 ">
+                                    <li>Segunda (14/9) 09:00 às 10:30</li>
+                                    <li>Terça (15/9) 09:00 às 10:30</li>
+                                    <li>Quarta (16/9) 09:00 às 10:30</li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div className="flex items-center justify-between">
@@ -170,6 +226,14 @@ export default function Oficinas() {
                         <div>
                             <h2 className="font-bold text-black text-xl">Tuba</h2>
                             <p className="mt-4">Gilvan Silva</p>
+                            <div className="sm: mb-2">
+                                <p className="pt-2 mb-1 text-black font-medium text-base">Horário das aulas</p>
+                                <ul className="text-sm font-medium text-gray-700 ">
+                                    <li>Segunda (14/9) 15:00 às 16:30</li>
+                                    <li>Terça (15/9) 15:00 às 16:30</li>
+                                    <li>Quarta (16/9) 15:00 às 16:30</li>
+                                </ul>
+                            </div>
                         </div>
 
                             
@@ -193,6 +257,14 @@ export default function Oficinas() {
                         <div>
                             <h2 className="font-bold text-black text-xl">Trompa</h2>
                             <p className="mt-4">Dayanderson Dantas</p>
+                            <div className="sm: mb-2">
+                                <p className="pt-2 mb-1 text-black font-medium text-base">Horário das aulas</p>
+                                <ul className="text-sm font-medium text-gray-700 ">
+                                    <li>Quarta (16/9) 15:00 às 16:30</li>
+                                    <li>Quinta (17/9) 15:00 às 16:30</li>
+                                    <li>Sexta (18/9) 15:00 às 16:30</li>
+                                </ul>
+                            </div>
                         </div>
 
 
