@@ -19,6 +19,8 @@ const ImagensInstrumento = () => (
 )
 
 export default function Login() {
+	const router = useRouter()
+
 	const [formData, setFormData] = useState({
 		email: '',
 		senha: ''
@@ -39,9 +41,13 @@ export default function Login() {
 		}
 
 		try {
-			await axios.post('/api/login', participanteLogin)
-			alert('Logado!')
-			useRouter.push('/')
+			const response = await axios.post('/api/login', participanteLogin)
+
+			if (response.status === 200) {
+				router.push('/')
+			} else {
+				alert('Desculpe. Não foi possível fazer o login. Por favor verifique seus dados')
+			}
 		} catch (e) {
 			alert('Desculpe. Não foi possível fazer o login. Por favor verifique seus dados')
 		}
