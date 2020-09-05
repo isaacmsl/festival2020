@@ -20,8 +20,8 @@ export default function Horarios({ diasRestantes }) {
 
             <HeaderDivulgacao />
 
-            <main className="grid gap-10 grid-cols-1 text-center">
-                <div className="bg-white w-screen sm:max-w-md flex flex-col items-center rounded mb-10 p-8">
+            <main className="text-center flex flex-col items-center">
+                <div className="bg-white w-screen sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
                     <h2 className="font-bold text-xl">SEGUNDA-FEIRA (14/9)</h2>
                     <ul>
                         <li className="mt-8">
@@ -69,7 +69,7 @@ export default function Horarios({ diasRestantes }) {
                         </li>
                     </ul>
                 </div>
-                <div className="bg-white sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                <div className="bg-white w-screen sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
                     <h2 className="font-bold text-xl">TERCA-FEIRA (15/9)</h2>
                     <ul>
                         <li className="mt-8">
@@ -117,7 +117,7 @@ export default function Horarios({ diasRestantes }) {
                         </li>
                     </ul>
                 </div>
-                <div className="bg-white sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                <div className="bg-white w-screen sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
                     <h2 className="font-bold text-xl">QUARTA-FEIRA (16/9)</h2>
                     <ul>
                         <li className="mt-8">
@@ -181,7 +181,7 @@ export default function Horarios({ diasRestantes }) {
                         </li>
                     </ul>
                 </div>
-                <div className="bg-white sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                <div className="bg-white w-screen sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
                     <h2 className="font-bold text-xl">QUINTA-FEIRA</h2>
                     <ul>
                         <li className="mt-8">
@@ -216,7 +216,7 @@ export default function Horarios({ diasRestantes }) {
                         </li>
                     </ul>
                 </div>
-                <div className="bg-white sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                <div className="bg-white w-screen sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
                     <h2 className="font-bold text-xl">SEXTA-FEIRA</h2>
                     <ul>
                         <li className="mt-8">
