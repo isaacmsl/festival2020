@@ -22,7 +22,7 @@ export default function Horarios({ diasRestantes }) {
 
             <main className="grid gap-10 grid-cols-1 text-center">
                 <div className="bg-white w-screen sm:max-w-md flex flex-col items-center rounded mb-10 p-8">
-                    <h2 className="font-bold text-xl">SEGUNDA-FEIRA</h2>
+                    <h2 className="font-bold text-xl">SEGUNDA-FEIRA (14/9)</h2>
                     <ul>
                         <li className="mt-8">
                             <div>
@@ -56,10 +56,21 @@ export default function Horarios({ diasRestantes }) {
                                 </ul>
                             </div>
                         </li>
+                        <li className="mt-8">
+                            <div>
+                                <h3 className="font-bold">19:00</h3>
+                                <ul className="text-center mt-4">
+                                    <li>
+                                        Mesa-redonda: 
+                                    </li>
+                                    <li>"Educação musical, uma realidade virtual ?"</li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div className="bg-white sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
-                    <h2 className="font-bold text-xl">TERCA-FEIRA</h2>
+                    <h2 className="font-bold text-xl">TERCA-FEIRA (15/9)</h2>
                     <ul>
                         <li className="mt-8">
                             <div>
@@ -93,10 +104,21 @@ export default function Horarios({ diasRestantes }) {
                                 </ul>
                             </div>
                         </li>
+                        <li className="mt-8">
+                            <div>
+                                <h3 className="font-bold">19:00</h3>
+                                <ul className="text-center mt-4">
+                                    <li>
+                                        Mesa-redonda: 
+                                    </li>
+                                    <li>"O protagonismo das mulheres nas bandas de música"</li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div className="bg-white sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
-                    <h2 className="font-bold text-xl">QUARTA-FEIRA</h2>
+                    <h2 className="font-bold text-xl">QUARTA-FEIRA (16/9)</h2>
                     <ul>
                         <li className="mt-8">
                             <div>
@@ -143,6 +165,17 @@ export default function Horarios({ diasRestantes }) {
                                     <li>
                                         Oficina de Regência
                                     </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li className="mt-8">
+                            <div>
+                                <h3 className="font-bold">19:00</h3>
+                                <ul className="text-center mt-4">
+                                    <li>
+                                        Mesa-redonda: 
+                                    </li>
+                                    <li>"As bandas de música no contexto social e na formação cidadã"</li>
                                 </ul>
                             </div>
                         </li>
