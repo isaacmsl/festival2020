@@ -1,5 +1,7 @@
 import Head from 'next/head'
 
+import Link from 'next/link'
+
 import HeaderDivulgacao from '../components/HeaderDivulgacao.js'
 import FooterDivulgacao from '../components/FooterDivulgacao.js'
 import ButtonInscricoes from '../components/ButtonInscricoes'
@@ -35,6 +37,32 @@ export default function Home({ diasRestantes }) {
           <ButtonInscricoes diasRestantes={diasRestantes} />
           <span>(Disponível em 04/09/2020 - 13/09/2020)</span>
         </div>
+        <article className="w-full bg-white p-8 sm:max-w-lg flex flex-col items-center rounded mb-20 mt-10">
+          <h1 className="font-bold text-black text-xl">SOBRE O FESTIVAL</h1>
+          <p className="text-justify mt-6">
+            O Festival Maestro Felinto Lúcio Dantas é um encontro de bandas de música e filarmônicas, em caráter não competitivo, que congrega músicos e maestros do Rio Grande do Norte, e outros estados, através de um grande encontro feito em homenagem ao compositor e maestro Potiguar, Felinto Lúcio Dantas. Além do encontro, o festival oferece oficinas de instrumentos e regência, que são ofertados gratuitamente.
+          </p>
+          <article className="mt-4">
+            <h2 className="font-bold text-lg text-justify mb-2">Como será o festival desse ano em tempos de Corona Vírus?</h2>
+            <p>
+              Na sua 11º edição, devido ao <b>COVID-19</b>, o festival ocorrerá em sua forma virtual, com oficinas, mesas redondas e apresentações ao vivo. 
+              <Link href="/horarios">
+                <b className="cursor-pointer">(Horários)</b>
+              </Link>
+            </p>
+          </article>
+          <article className="mt-4">
+            <h2 className="font-bold text-lg text-justify mb-2">
+              As bandas se apresentarão no Teatro Mun. Candinha Bezerra?</h2>
+            <p>
+              Infelizmente, não. Mas nos dias 19 e 20 de setembro de 2020 serão realizadas lives com os melhores momentos de todas as edições anteriores.
+            </p>
+          </article>
+          
+          <div>
+            {/* fotos aqui */}
+          </div>
+        </article>
       </main>
 
 
