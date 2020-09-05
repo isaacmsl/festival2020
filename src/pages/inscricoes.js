@@ -200,7 +200,7 @@ export default function Inscricoes() {
                                 <Link href="/horarios">
                                     <div className="bg-orange-200 p-4 border-solid border-1 mb-8 cursor-pointer">
                                         <p>
-                                            <b>Atenção!</b> Algumas oficinas ocorerrão simultaneamente, por favor planeje a sua escolha observando os horários das oficinas <b>clicando nesse aviso</b>.
+                                            <b>Atenção!</b> Algumas oficinas ocorrerão simultaneamente, por favor planeje a sua escolha observando os horários das oficinas <b>clicando nesse aviso</b>.
                                         </p>
                                         <ul className="mt-4">
                                             <li>
