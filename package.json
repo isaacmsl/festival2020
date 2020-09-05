@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "autoprefixer": "^9.8.6",
+    "axios": "^0.20.0",
     "bcrypt": "^5.0.0",
     "cookie": "^0.4.1",
     "jsonwebtoken": "^8.5.1",
