@@ -194,7 +194,24 @@ export default function Inscricoes() {
                     >
                         <div className="bg-white rounded p-8">
                             <div className={tailStyles.InputContainer}>
-                                <span className={tailStyles.Labels + " block mb-4"}>Oficinas (Uma ou mais)</span>
+                                <div>
+                                    <span className={tailStyles.Labels + " block mb-4"}>Oficinas (Uma ou mais)</span>
+                                </div>
+                                <Link href="/horarios">
+                                    <div className="bg-orange-200 p-4 border-solid border-1 mb-8 cursor-pointer">
+                                        <p>
+                                            <b>Atenção!</b> Algumas oficinas ocorerrão simultaneamente, por favor planeje a sua escolha observando os horários das oficinas <b>clicando nesse aviso</b>.
+                                        </p>
+                                        <ul className="mt-4">
+                                            <li>
+                                                1. Caso inscreva-se em duas ou mais oficinas que conflitem os horários, o participante deverá assistir a mais desejada.
+                                            </li>
+                                            <li className="mt-2">
+                                                2. Para conseguir o certificado de conclusão da oficina o participante deverá assistir todas as três aulas.
+                                            </li>
+                                        </ul>                                            
+                                    </div>
+                                </Link>
                                 <div className="grid gap-2 grid-cols-1 sm:grid-cols-2">
                                     <div>
                                         <label className={styles.checkboxContainer}>Clarinete
