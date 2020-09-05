@@ -29,13 +29,13 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">09:00 às 10:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        Oficina de Flauta
+                                        Oficina de Clarinete
                                     </li>
                                     <li>
-                                        Oficina de Sax
+                                        Oficina de Trompete
                                     </li>
                                     <li>
-                                        Oficina de Tuba
+                                        Oficina de Trombone
                                     </li>
                                 </ul>
                             </div>
@@ -45,13 +45,13 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">15:00 às 16:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        Oficina de Clarinete
+                                        Oficina de Saxofone
                                     </li>
                                     <li>
-                                        Oficina de Trombone
+                                        Oficina de Tuba
                                     </li>
                                     <li>
-                                        Oficina de Trompete
+                                        Oficina de Flauta
                                     </li>
                                 </ul>
                             </div>
@@ -82,13 +82,13 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">15:00 às 16:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        Oficina de Flauta
-                                    </li>
-                                    <li>
-                                        Oficina de Sax
+                                        Oficina de Saxofone
                                     </li>
                                     <li>
                                         Oficina de Tuba
+                                    </li>
+                                    <li>
+                                        Oficina de Flauta
                                     </li>
                                 </ul>
                             </div>
@@ -125,7 +125,7 @@ export default function Horarios({ diasRestantes }) {
                                         Oficina de Flauta
                                     </li>
                                     <li>
-                                        Oficina de Sax
+                                        Oficina de Saxofone
                                     </li>
                                     <li>
                                         Oficina de Tuba
