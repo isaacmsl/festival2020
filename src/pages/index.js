@@ -1,5 +1,7 @@
 import Head from 'next/head'
 
+import Link from 'next/link'
+
 import HeaderDivulgacao from '../components/HeaderDivulgacao.js'
 import FooterDivulgacao from '../components/FooterDivulgacao.js'
 import ButtonInscricoes from '../components/ButtonInscricoes'
@@ -43,7 +45,10 @@ export default function Home({ diasRestantes }) {
           <article className="mt-4">
             <h2 className="font-bold text-lg text-justify mb-2">Como será o festival desse ano em tempos de Corona Vírus?</h2>
             <p>
-              Na sua 11º edição, devido ao <b>COVID-19</b>, o festival ocorrerá em sua forma virtual, com oficinas, mesas redondas e apresentações ao vivo.
+              Na sua 11º edição, devido ao <b>COVID-19</b>, o festival ocorrerá em sua forma virtual, com oficinas, mesas redondas e apresentações ao vivo. 
+              <Link href="/horarios">
+                <b className="cursor-pointer">(Horários)</b>
+              </Link>
             </p>
           </article>
           <article className="mt-4">
