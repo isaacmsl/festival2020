@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 
 const tailStyles = {
     Labels: 'mb-2 font-bold',
-    Input: 'p-2 border border-1 rounded bg-transparent max-w-xs',
+    Input: 'p-2 border border-1 rounded bg-transparent max-w-xs md:max-w-full',
     Checkboxs: 'mr-2 checked:bg-black'
 }
 
@@ -167,7 +167,7 @@ export default function Inscricoes() {
     }
 
     return (
-        <div id="inscricoesContainer" className="relative bg-bgMain min-h-full w-full flex flex-col items-center justify-center">
+        <div id="inscricoesContainer" className="relative bg-bgMain min-h-full w-screen flex flex-col items-center justify-center">
             <Head>
                 <title>Festival - Inscrições</title>
                 <meta charSet="UTF-8 " />
@@ -195,7 +195,7 @@ export default function Inscricoes() {
                         <div className="bg-white rounded p-8">
                             <div className={tailStyles.InputContainer}>
                                 <span className={tailStyles.Labels + " block mb-4"}>Oficinas (Uma ou mais)</span>
-                                <div className="grid gap-2 grid-cols-2">
+                                <div className="grid gap-2 grid-cols-1 sm:grid-cols-2">
                                     <div>
                                         <label className={styles.checkboxContainer}>Clarinete
                                             <input 
