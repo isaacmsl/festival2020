@@ -1,28 +1,36 @@
 import Link from 'next/link'
+import styles from '../../styles/MenuDashboard.module.css'
 
 const MenuDashboard = () => (
-    <Link href="/">
-        <header className=" fixed bg-redHeader h-screen w-56 flex flex-col items-center">
-            <Link href="/dashboard">
-                <a className="bg-redHeaderStrong w-56 h-12 text-white flex flex-row">
-                    <img src="assets/grid.svg"/>
-                    <p className="h">Dashboard</p> 
-                </a>
-            </Link>
-            <Link href="/dashboard">
-                <a className="bg-redHeader w-56 h-12 text-white flex flex-row">
-                    <img src="assets/user.svg"/>
-                    <p>Perfil</p>
-                </a>
-            </Link>
-            <Link href="/dashboard">
-                <a className="bg-redHeaderStrong w-56 h-12 text-white flex flex-row">
-                    <img src="assets/trello.svg"/>
-                    <p>Minhas Oficinas</p>
-                </a>
-            </Link>
+    <>
+        <header className="bg-redHeader h-screen w-56 flex flex-col">
+            <div className="bg-redHeaderStrong items-center">
+                <Link href="/dashboard">
+                   <a className="flex flex-row justify-between mt-3 mb-3">
+                       <img src="assets/grid.svg" className="inline ml-8"/>
+                       <h2 className={styles.dashboard_h2}>Dashboard</h2>
+                   </a>
+                </Link>
+            </div>
+            <div className="bg-redHeader items-center">
+                <Link href="/dashboard">
+                   <a className="flex flex-row justify-between mt-3 mb-3">
+                       <img src="assets/user.svg" className="inline ml-8"/>
+                       <h2 className={styles.perfil_h2}>Perfil</h2>
+                   </a>
+                </Link>
+            </div>
+            <div className="bg-redHeaderStrong items-center">
+                <Link href="/dashboard">
+                   <a className="flex flex-row justify-between mt-3 mb-3">
+                       <img src="assets/trello.svg" className="inline ml-8"/>
+                       <h2 className={styles.oficinas_h2}>Minhas Oficinas</h2>
+                   </a>
+                </Link>
+            </div>
+            
         </header>
-    </Link>
+    </>
 )
  
 export default MenuDashboard

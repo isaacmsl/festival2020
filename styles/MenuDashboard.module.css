@@ -1,0 +1,17 @@
+.dashboard_h2{
+    color: white;
+    font: bold 18px 'Roboto';
+    margin-right: 64px;
+}
+
+.perfil_h2 {
+    color: white;
+    font: bold 18px 'Roboto';
+    margin-right: 111px;
+}
+
+.oficinas_h2 {
+    color: white;
+    font: bold 18px 'Roboto';
+    margin-right: 25px;
+}

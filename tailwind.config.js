@@ -11,9 +11,6 @@ module.exports = {
                 redHeaderStrong: '#ED7464'
             }
         },
-
-        padding: {
-            pRow: '3.4rem'
-        }
+        
     }
 }
