@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
+import InscricoesValidator from '../middlewares/InscricoesValidator'
 
 import styles from '../../styles/Inscricoes.module.css'
 import { useState, useEffect } from 'react'
@@ -128,7 +129,6 @@ export default function Inscricoes() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-
         
         if(selectedUf === '0' || selectedCity === '0' ) {
             alert('É necessário escolher uma cidade e um estado')
@@ -136,7 +136,7 @@ export default function Inscricoes() {
         }
 
         const participante = {
-            nomeCompleto: formData.nomeCompleto,
+            nomeCompleto: formData.nomeCompleto.trim(),
             email: formData.email,
             senha: formData.senha,
             tipoMusico: selectedTipoMusico,
@@ -146,6 +146,13 @@ export default function Inscricoes() {
             endereco: `${selectedCity}, ${selectedUf}. ${formData.endereco}`,    
             contatoTelefonico     
         }
+        
+        if (InscricoesValidator.isValidParticipante(participante)) {
+            // submit
+        } 
+
+        console.log(participante)
+        return
 
         if(participante.oficinas.length === 0) {
             alert('É necessário escolher uma oficinas ou mais')
@@ -361,6 +368,7 @@ export default function Inscricoes() {
                                     onChange={handleInputChange}
                                     className={tailStyles.Input}
                                     type="email"
+                                    pattern="\S+@\S+\.\S+"
                                     placeholder="felinto20@gmail.com"
                                     required
                                 />
@@ -415,6 +423,7 @@ export default function Inscricoes() {
                                     className={tailStyles.Input}
                                     type="password"
                                     placeholder="***********"
+                                    minLength={8}
                                     required
                                 />
                             </div>
