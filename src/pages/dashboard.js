@@ -22,14 +22,16 @@ export default function Dashboard() {
             <MenuDashboard />
 
             <div 
-                className={styles.scrollable + " w-full sm:overflow-y-scroll h-screen p-8"}
+                className={styles.scrollable + " bg-bgMain w-full sm:overflow-y-scroll h-screen p-8"}
             >
-                <header className="flex font-bold">
+                <header className="mb-10 flex font-bold">
                     <img src="assets/dark-trello.svg" />
                     <h1 className="ml-4">Minhas oficinas</h1>
                 </header>
 
-                <main>
+                <main className="flex flex-wrap gap-4">
+                    <OficinaCard oficina={oficina} />
+                    <OficinaCard oficina={oficina} />
                     <OficinaCard oficina={oficina} />
                 </main>
                  
