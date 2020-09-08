@@ -22,7 +22,7 @@ export default function Dashboard() {
             <MenuDashboard />
 
             <div 
-                className={styles.scrollable + " bg-bgMain w-full sm:overflow-y-scroll h-screen p-8"}
+                className={styles.scrollable + " bg-bgMain w-full sm:overflow-y-scroll h-full p-8"}
             >
                 <header className="mb-10 flex font-bold">
                     <img src="assets/dark-trello.svg" />
