@@ -6,8 +6,6 @@ const nomeCompleto = function checkNomeCompleto(nomeCompleto) {
             alertMessage: 'Por favor, informe seu nome completo'
         }
     }
-
-    return
 }
 
 const email = function checkEmail(email) {
@@ -123,6 +121,16 @@ const banda = function checkBanda(banda) {
     }
 }
 
+const endereco = function checkEndereco(endereco) {
+    const qntEspacosEntreNomes = endereco.split(' ').length
+
+    if (endereco.length < 1 || qntEspacosEntreNomes < 2) {
+        return {
+            alertMessage: 'Por favor, informa sua rua corretamente'
+        }
+    }
+}
+
 const checkers = {
     nomeCompleto,
     email,
@@ -131,7 +139,8 @@ const checkers = {
     tempoAtuacao,
     contatoTelefonico,
     oficinas,
-    banda
+    banda,
+    endereco
 }
 
 module.exports = {
