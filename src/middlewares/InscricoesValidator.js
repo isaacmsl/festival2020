@@ -122,11 +122,12 @@ const banda = function checkBanda(banda) {
 }
 
 const endereco = function checkEndereco(endereco) {
-    const qntEspacosEntreNomes = endereco.split(' ').length
+    const ruaNumero = endereco.split(/[A-Z]{2}\. /)[1]
+    const qntEspacosEntreNomes = ruaNumero.split(' ').length
 
     if (endereco.length < 1 || qntEspacosEntreNomes < 2) {
         return {
-            alertMessage: 'Por favor, informa sua rua corretamente'
+            alertMessage: 'Por favor, informa sua rua corretamente. Exemplo: Rua Luz, 21'
         }
     }
 }
