@@ -30,18 +30,18 @@ const ImagensInstrumento = () => (
 )
 
 export default function Inscricoes() {
-    const [ufs, setUfs] = useState([]);
-    const [cities, setCities] = useState([]);
+    const [ufs, setUfs] = useState([])
+    const [cities, setCities] = useState([])
     const [aguarde, setAguarde] = useState('')
 
     const [contatoTelefonico, setContatoTelefonico] = useState('')
     const [selectedTipoMusico, setSelectedTipoMusico] = useState('1')
     const [selectedTempoAtuacao, setSelectedTempoAtuacao] = useState('1')
     const [selectedBanda, setSelectedBanda] = useState('Não sou integrante de banda')
-    const [selectedUf, setSelectedUf] = useState('0');
-    const [selectedCity, setSelectedCity] = useState('0');
+    const [selectedUf, setSelectedUf] = useState('0')
+    const [selectedCity, setSelectedCity] = useState('0')
 
-    const [selectedOficinas, setSelectedOficinas] = useState([]);
+    const [selectedOficinas, setSelectedOficinas] = useState([])
 
     const [formData, setFormData] = useState({
         nomeCompleto: '',
@@ -52,24 +52,24 @@ export default function Inscricoes() {
 
     useEffect(() => {
         axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
-            const ufInitials = response.data.map(uf => uf.sigla);
+            const ufInitials = response.data.map(uf => uf.sigla)
 
-            setUfs(ufInitials);
-        });
-    }, []);
+            setUfs(ufInitials)
+        })
+    }, [])
 
     useEffect(() => {
-        if(selectedUf === '0') return;
+        if(selectedUf === '0') return
         
         axios
             .get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`)
             .then(response => {
-                const cityNames = response.data.map(city => city.nome);
+                const cityNames = response.data.map(city => city.nome)
 
-                setCities(cityNames);
-            });
+                setCities(cityNames)
+            })
 
-    }, [selectedUf]);
+    }, [selectedUf])
 
     const router = useRouter()
 
@@ -80,31 +80,31 @@ export default function Inscricoes() {
         setFormData({ ...formData, [name]: value })
     }
     function handleSelectUf(e) {
-        const uf = event.target.value;
+        const uf = event.target.value
 
-        setSelectedUf(uf);
+        setSelectedUf(uf)
     }
     function handleSelectCity(e) {
-        const city = event.target.value;
+        const city = event.target.value
 
-        setSelectedCity(city);
+        setSelectedCity(city)
     }
     function handleSelectTipoMusico(e) {
         const tipoMusico = e.target.value
-        setSelectedTipoMusico(tipoMusico);
+        setSelectedTipoMusico(tipoMusico)
     }
     function handleSelectTempoAtuacao(e) {
-        const tempoAtuacao = e.target.value;
-        setSelectedTempoAtuacao(tempoAtuacao);
+        const tempoAtuacao = e.target.value
+        setSelectedTempoAtuacao(tempoAtuacao)
     }
     function handleSelectBanda(e) {
-        const banda = e.target.value;
-        setSelectedBanda(banda);
+        const banda = e.target.value
+        setSelectedBanda(banda)
     }
     function handleSelectOficina(e) {
         const oficina = e.target.value
-       
-        if(e.target.checked) {
+        
+        if(e.target.checked && !selectedOficinas.includes(oficina)) {
             selectedOficinas.push(oficina)
             setSelectedOficinas(selectedOficinas)
         } else if(!e.target.checked && selectedOficinas.includes(oficina)) {
@@ -322,7 +322,6 @@ export default function Inscricoes() {
                                         className={tailStyles.Input}
                                         value={selectedTipoMusico}
                                         onChange={handleSelectTipoMusico}
-                                        defaultValue="1"
                                         required
                                     >
                                         <option value="1">Estudante</option>
@@ -338,7 +337,6 @@ export default function Inscricoes() {
                                         className={tailStyles.Input}
                                         value={selectedTempoAtuacao}
                                         onChange={handleSelectTempoAtuacao}
-                                        defaultValue="1"
                                         required
                                     >
                                         <option value="1">Menos de 1 ano</option>
@@ -381,7 +379,6 @@ export default function Inscricoes() {
                                     className={tailStyles.Input}
                                     value={selectedBanda}
                                     onChange={handleSelectBanda}
-                                    defaultValue="1"
                                     required
                                 >
                                     <option value="Não sou integrante de banda">Não sou integrante de banda</option>
@@ -450,13 +447,12 @@ export default function Inscricoes() {
                                         className={tailStyles.Input}
                                         value={selectedUf}
                                         onChange={handleSelectUf}
-                                        defaultValue="1"
                                         required
                                     >
                                         <option value="0">Selecione um Estado</option>
                                         {ufs.map(uf => (
                                             <option key={uf} value={uf}>{uf}</option>
-                                        ))};
+                                        ))}
                                     </select>
                                 </div>
                                 <div className="flex flex-col mt-4 sm:mt-0">
@@ -467,13 +463,12 @@ export default function Inscricoes() {
                                         className={tailStyles.Input}
                                         value={selectedCity}
                                         onChange={handleSelectCity}
-                                        defaultValue="1"
                                         required
                                     >
                                         <option value="0">Selecione uma cidade</option>
                                         {cities.map(city => (
                                             <option key={city} value={city}>{city}</option>
-                                        ))};
+                                        ))}
                                     </select>
                                 </div>
                             </div>

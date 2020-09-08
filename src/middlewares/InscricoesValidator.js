@@ -1,10 +1,6 @@
-import axios from 'axios'
-
 const nomeCompleto = function checkNomeCompleto(nomeCompleto) {
     const qntEspacosEntreNomes = nomeCompleto.split(' ').length
     
-    console.log(qntEspacosEntreNomes)
-    console.log(nomeCompleto)
     if (nomeCompleto.length < 1 || qntEspacosEntreNomes < 2) {
         return {
             alertMessage: 'Por favor, informe seu nome completo'
@@ -21,42 +17,33 @@ const email = function checkEmail(email) {
             alertMessage: 'Por favor, informe seu email corretamente'
         }
     }
-    
-    return
 }
 
 const senha = function checkSenha(senha) {
-    console.log(senha.length)
     if (senha.length < 8) {
         return {
             alertMessage: 'Sua senha deve conter no mínimo 8 caracteres'
         }
     }
-
-    return
 }
 
 const tipoMusico = function checkTipoMusico(tipoMusico) {
     const validValues = ['1', '2', '3']
-    if (!validValues[tipoMusico]) {
+    if (!validValues.includes(tipoMusico)) {
         return {
             alertMessage: 'Por favor, recarregue o formulário. O tipo de músico contém valores inválidos.'
         }
     }
-
-    return
 }
 
 const tempoAtuacao = function checkTempoAtuacao(tempoAtuacao) {
     const validValues = ['1', '2', '3', '4']
     
-    if (!validValues[tempoAtuacao]) {
+    if (!validValues.includes(tempoAtuacao)) {
         return {
             alertMessage: 'Por favor, recarregue o formulário. O tempo de atuação contém valores inválidos.'
         }
     }
-
-    return
 }
 
 const contatoTelefonico = function checkContatoTelefonico(contatoTelefonico) {
@@ -67,8 +54,6 @@ const contatoTelefonico = function checkContatoTelefonico(contatoTelefonico) {
             alertMessage: 'Por favor, informe o seu contato telefônico corretamente seguindo os padrões (99) 999999999'
         }
     }
-
-    return
 }
 
 const oficinas = function checkOficinas(oficinas) {
@@ -84,15 +69,58 @@ const oficinas = function checkOficinas(oficinas) {
         'Regência'
     ]
 
-    oficinas.forEach(oficina => {
-        if (!validValues[oficina]) {
+    if (oficinas.length < 1 ) {
+        return {
+            alertMessage: 'Você precisa escolher uma ou mais oficinas'
+        }
+    }
+
+    for (let i = 0; i < oficinas.length; i++) {
+        if (!validValues.includes(oficinas[i])) {
             return {
                 alertMessage: 'Uma das suas oficinas parece conter um valor inválido, por favor recarregue a página.'
             }
         }
-    })
+    }
+}
 
-    return
+const banda = function checkBanda(banda) {
+    const validValues = [
+        'Não sou integrante de banda',
+        'FILARMÔNICA MAESTRO FELINTO LÚCIO DANTAS',
+        'FILARMÔNICA ELINO JULIÃO',
+        'FILARMÔNICA ONZE DE DEZEMBRO',
+        'FILARMÔNICA 24 DE OUTUBRO',
+        'FILARMÔNICA JOVENS MÚSICOS',
+        'BANDA DE MÚSICA MESTRE JOÃO ROBERTO PAZ E UNIÃO',
+        'BANDA DE MÚSICA TRAMPOLIM DA VITÓRIA',
+        'BANDA DE MÚSICA DA POLÍCIA MILITAR DO RN',
+        'BANDA DE MÚSICA MAESTRO SANTA ROSA',
+        'BANDA DE MÚSICA DA BASE AÉREA DE NATAL',
+        'FILARMÔNICA DE SÃO TOMÉ',
+        'FILARMÔNICA DE SÃO PEDRO DO POTENGI',
+        'EUTERPE JARDINENSE',
+        'FILARMÔNICA JIMMY BRITO',
+        'BAMUSGA',
+        'FILARMÔNICA DE MÃE LUIZA',
+        'BANDA DE MÚSICA INFANTO-JUVENIL DE BREJINHO',
+        'FILARMÔNICA DE MONTE ALEGRE',
+        'FILARMÔNICA DE SANTANA DO MATOS',
+        'FILARMÔNICA DE SÃO FERNANDO',
+        'FILARMÔNICA DE SERRA NEGRA DO NORTE' ,
+        'BANDA DE MÚSICA DE NOVA FLORESTA ',
+        'SOCIEDADE MUSICAL NOVO SÉCULO',
+        'BANDA DE MÚSICA DUARTE MACHADO',
+        'FILARMÔNICA MONSENHOR HONÓRIO',
+        'FILARMÔNICA DE FLORÂNIA',
+        'Outra'
+    ]
+
+    if (!validValues.includes(banda)) {
+        return {
+            alertMessage: 'Por favor, recarregue o formulário. Parece que a banda selecionada contém o valor inválido.'
+        }
+    }
 }
 
 const checkers = {
@@ -102,7 +130,8 @@ const checkers = {
     tipoMusico,
     tempoAtuacao,
     contatoTelefonico,
-    oficinas
+    oficinas,
+    banda
 }
 
 module.exports = {
