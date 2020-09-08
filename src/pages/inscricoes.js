@@ -148,28 +148,18 @@ export default function Inscricoes() {
         }
         
         if (InscricoesValidator.isValidParticipante(participante)) {
-            // submit
+            setAguarde('Estamos te inscrevendo, por favor aguarde...')
+            
+            try {
+                await axios.post('/api/participantes', participante)
+                alert('Você está inscrito no festival! Em breve nosso site permitirá que você realize o login e visualize suas aulas!')
+                router.push('/')
+            } catch (e) {
+                alert('Desculpe. Parece que esse email já foi cadastrado')
+            }
+
+            setAguarde('')
         } 
-
-        console.log(participante)
-        return
-
-        if(participante.oficinas.length === 0) {
-            alert('É necessário escolher uma oficinas ou mais')
-            return
-        } 
-
-        setAguarde('Estamos te inscrevendo, por favor aguarde...')
-        try {
-            await axios.post('/api/participantes', participante)
-            alert('Você está inscrito no festival! Em breve nosso site permitirá que você realize o login e visualize suas aulas!')
-            router.push('/')
-        } catch (e) {
-            alert('Desculpe. Esse email já foi cadastrado')
-        }
-    
-
-        setAguarde('')
 
     }
 
