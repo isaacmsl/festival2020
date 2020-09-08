@@ -1,90 +1,10 @@
-.profileContainer {
-    background-size: cover;
-    width: 100%;
-    padding: 0 30px;
-    margin: 32px auto;
-    font-size: 24px;
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollable::-webkit-scrollbar {
+    display: none;
 }
 
-.profileContainerHeader {
-    display: flex;
-    align-items: center;
-}
-  
-.profileContainerHeaderSpan {
-    font-size: 20px;
-    margin-left: 24px;
-}
-  
-.profileContainerHeaderLink {
-    height: 60px;
-    width: 100px;
-    background-color: #FF9E00;
-    border: 0;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: 700;
-    margin-top: 16px;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 60px;
-    transition: filter 0.2s;
-    
-    margin-left: auto;
-    margin-top: 0;
-}
-  
-.profileContainer header button {
-    height: 60px;
-    width: 60px;
-    border-radius: 4px;
-    border: 1px solid #dcdce6;
-    background: transparent;
-    margin-left: 16px;
-    transition: border-color 0.2s;
-}
-  
-.profileContainerH1 {
-    margin-top: 80px;
-    margin-bottom: 24px;
-    font-weight: bold;
-}
-  
-.profileContainerUl {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 24px;
-    list-style: none;
-}
-  
-.profileContainerUlLi {
-    background: #FFF;
-    padding: 24px;
-    border-width: 1px;
-    border-color: orange;
-    border-radius: 8px;
-    position: relative;
-}
-  
-.profileContainerUlLiButton {
-    position: absolute;
-    right: 24px;
-    top: 24px;
-    border: 0;
-    background: transparent;
-    transition: opacity 0.2s;
-}
-  
-.profileContainerUlLiStrong {
-    display: block;
-    margin-bottom: 16px;
-    color: #41414D;
-}
-
-.profileContainerUlLiP {
-    color: #737380;
-    line-height: 21px;
-    font-size: 16px;
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollable {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

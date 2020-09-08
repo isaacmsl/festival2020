@@ -1,57 +1,39 @@
 import Head from 'next/head'
+
 import styles from '../../styles/Dashboard.module.css'
-
-
+import MenuDashboard from '../components/MenuDashboard'
+import OficinaCard from '../components/OficinaCard'
 
 export default function Dashboard() {
+    
+    const oficina = {
+        nome: 'Flauta',
+        professor: 'Professor Ivo Shin',
+        qntAulasAssistidas: 3
+    }
+
     return (
-        <div
-            className={styles.profileContainer}
-        >
+        <div className="flex">
             <Head>
-                <title>Festival - 2020</title>
+                <title>Festival 2020</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <header className={styles.profileContainerHeader}>
-                <span>Bem-vindo(a), Paulo.</span>
-                <a className={styles.profileContainerHeaderLink} href="/">Sair</a>
-            </header>
+            <MenuDashboard />
 
-            <h1 className={styles.profileContainerH1}>Oficinas:</h1>
+            <div 
+                className={styles.scrollable + " w-full sm:overflow-y-scroll h-screen p-8"}
+            >
+                <header className="flex font-bold">
+                    <img src="assets/dark-trello.svg" />
+                    <h1 className="ml-4">Minhas oficinas</h1>
+                </header>
 
-            <ul className={styles.profileContainerUl}>
-                <li className={styles.profileContainerUlLi}>
-                    <strong>Oficina:</strong>
-                    <p>Saxofne</p>
-
-                    <strong>Professor:</strong>
-                    <p>Costinha</p>
-
-                    <button className={styles.profileContainerUlLiButton}>*</button>
-                </li>
-
-                <li className={styles.profileContainerUlLi}>
-                    <strong>Oficina:</strong>
-                    <p>Saxofne</p>
-
-                    <strong>Professor:</strong>
-                    <p>Costinha</p>
-
-                    <button className={styles.profileContainerUlLiButton}>*</button>
-                </li>
-
-                <li className={styles.profileContainerUlLi}>
-                    <strong>Oficina:</strong>
-                    <p>Saxofne</p>
-
-                    <strong>Professor:</strong>
-                    <p>Costinha</p>
-
-                    <button className={styles.profileContainerUlLiButton}>*</button>
-                </li>
-            </ul>
-           
+                <main>
+                    <OficinaCard oficina={oficina} />
+                </main>
+                 
+            </div>
         </div>
     )
 }
