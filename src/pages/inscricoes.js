@@ -137,13 +137,13 @@ export default function Inscricoes() {
 
         const participante = {
             nomeCompleto: formData.nomeCompleto.trim(),
-            email: formData.email,
+            email: formData.email.trim(),
             senha: formData.senha,
             tipoMusico: selectedTipoMusico,
             tempoAtuacao: selectedTempoAtuacao,
             banda: selectedBanda,
             oficinas: selectedOficinas,
-            endereco: `${selectedCity}, ${selectedUf}. ${formData.endereco}`,    
+            endereco: `${selectedCity}, ${selectedUf}. ${formData.endereco.trim()}`,    
             contatoTelefonico     
         }
         
