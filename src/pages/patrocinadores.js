@@ -21,9 +21,9 @@ export default function Oficinas() {
                 <div className="w-full bg-white p-4 sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
                     <h2 className="font-bold text-black text-xl">PARCERIAS</h2>
                     <div className="flex flex-col items-center mt-10">
-                        <div>
+                        {/* <div>
                             <img src="https://drive.google.com/thumbnail?id=1SUq-Tx41xL17ocwRZ7DweBjFXxKojxwa" width={150} alt="Prefeitura de Santa Cruz - RN" />
-                        </div>
+                        </div> */}
                         <div className="mt-4">
                             <img src="https://drive.google.com/thumbnail?id=1zNk9OX-RNatZZn7PwEHDQiw5V8h9NBce" width={150} alt="Fecomércio RN Sesc Senac" />
                         </div>
