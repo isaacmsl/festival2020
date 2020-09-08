@@ -1,20 +1,6 @@
 import Link from 'next/link'
-import { useState } from 'react'
 
 const MenuDashboard = () => {
-    const [mobibleMenuStatus, setMobileMenuStatus] = useState('hidden')
-    const [mobileMenuBarStatus, setMobileMenuBarStatus] = useState('block')
-    
-    function handleMenuMobile() {
-        if (mobibleMenuStatus === 'hidden') {
-            setMobileMenuStatus('block')
-            setMobileMenuBarStatus('hidden')
-        } else {
-            setMobileMenuStatus('hidden')
-            setMobileMenuBarStatus('block')
-        }
-    }
-
     return (
         <header className="bg-redHeader sm:h-screen sm:w-64 flex flex-col">
             <Link href="/dashboard">
@@ -41,43 +27,13 @@ const MenuDashboard = () => {
                     </div>
                 </a>
             </Link>
-            <a 
-                className={mobileMenuBarStatus + " p-4 sm:hidden flex justify-end cursor-pointer"}
-                onClick={handleMenuMobile}
-            >
-                <img src="assets/menu.svg"/>
-            </a>
-            <div className={mobibleMenuStatus + " bg-redHeader h-screen w-full"}>
+            <Link href="/mobile/menu">
                 <a
-                    className="p-4 sm:hidden flex justify-end cursor-pointer"
-                    onClick={handleMenuMobile}
+                    className={"p-4 sm:hidden flex justify-end cursor-pointer"}
                 >
-                    <img src="assets/x.svg" />
+                    <img src="assets/menu.svg" />
                 </a>
-                <ul>
-                    <li>
-                        <Link href="/dashboard">
-                            <a className="bg-redHeaderStrong flex items-center justify-center py-4 px-6 cursor-pointer">
-                                <h2 className="text-white font-bold">Dashboard</h2>
-                            </a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/dashboard">
-                            <a className="bg-redHeader flex items-center justify-center py-4 px-6 cursor-pointer">
-                                <h2 className="text-white font-bold">Perfil</h2>
-                            </a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/dashboard">
-                            <a className="bg-redHeaderStrong flex items-center justify-center py-4 px-6 cursor-pointer">
-                                <h2 className="text-white font-bold">Minhas oficinas</h2>
-                            </a>
-                        </Link>
-                    </li>
-                </ul>
-            </div>
+            </Link>
         </header>
     )
 }

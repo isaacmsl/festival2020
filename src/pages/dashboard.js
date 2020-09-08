@@ -13,7 +13,7 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row">
             <Head>
                 <title>Festival 2020</title>
                 <link rel="icon" href="/favicon.ico" />

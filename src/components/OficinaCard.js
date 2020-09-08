@@ -28,7 +28,6 @@ const OficinaCard = ({ oficina }) => {
         qntAulasAssistidas
     } = oficina
 
-    console.log(oficina)
     return (
         <div className="bg-white border border-solid inline-block w-full min-w-xs max-w-xs p-4">
             <div>
