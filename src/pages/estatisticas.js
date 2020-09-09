@@ -23,7 +23,7 @@ export default function estatisticas () {
                                 <label for="bandName" className="font-semibold">Nome da banda *</label>
                                 <input type="text" id="bandName" className="border border-solid border-gray-300 w-48 h-6 rounded lg:w-64"></input>
                                 <div className="flex items-center justify-center w-48 lg:w-64">
-                                    <input type="submit" value="Entrar" className="w-24 h-5 rounded text-white font-medium bg-greenButton"></input>
+                                    <input type="submit" value="Enviar" className="w-24 h-5 rounded text-white font-medium bg-greenButton"></input>
                                 </div>
                                 
                             </form>
