@@ -3,7 +3,7 @@ import Link from 'next/link'
 const MenuDashboard = () => {
     return (
         <header className="bg-redHeader sm:h-screen sm:w-64 flex flex-col">
-            <Link href="/dashboard">
+            <Link href="/estatisticas">
                 <a className="bg-redHeaderStrong flex items-center justify-center py-4 px-6 hidden sm:inline-flex">
                     <div className="flex flex-row items-center w-40">
                         <img src="assets/grid.svg" className="" />
