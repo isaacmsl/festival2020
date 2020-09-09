@@ -3,8 +3,8 @@ import dbMiddleware from '../../middlewares/database'
 import { ObjectID } from 'mongodb'
 import { hash, hashSync } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import { authenticated } from './authenticated'
 import cookie from 'cookie'
+import { isAuthenticated } from '../../middlewares/isAuthenticated'
 
 const handler = nextConnect()
 
@@ -12,7 +12,7 @@ const COLLECTION_NAME = 'participantes'
 
 handler.use(dbMiddleware)
 
-handler.get(authenticated(async (req, res) => {
+handler.get(isAuthenticated(async (req, res) => {
     const participantes = await req.db.collection(COLLECTION_NAME).find({}).toArray()
     
     let reqParticipante
@@ -126,7 +126,7 @@ handler.post(async (req, res) => {
     })  
 })
 
-handler.put(authenticated(async (req, res) => {
+handler.put(isAuthenticated(async (req, res) => {
 
     const novosDados = req.body
 
@@ -176,7 +176,7 @@ handler.put(authenticated(async (req, res) => {
     return res.status(401).json({ mensagem: "Você não tem autorização" })
 }))
 
-handler.delete(authenticated(async (req, res) => {
+handler.delete(isAuthenticated(async (req, res) => {
     const idToken = req.participante.id
     const idBody = req.body.id
 
