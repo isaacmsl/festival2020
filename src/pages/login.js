@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import handleAuthentication from '../libs/handleAuthentication'
 
 const ImagensInstrumento = () => (
     <>
@@ -20,6 +21,10 @@ const ImagensInstrumento = () => (
 
 export default function Login() {
 	const router = useRouter()
+
+	useEffect(() => {
+		router.prefetch('/dashboard')
+	}, [])
 
 	const [formData, setFormData] = useState({
 		email: '',
@@ -44,7 +49,7 @@ export default function Login() {
 			const response = await axios.post('/api/login', participanteLogin)
 
 			if (response.status === 200) {
-				router.push({ pathname: '/dashboard' }, '/dashboard')
+				router.push('/dashboard')
 			} else {
 				alert('Desculpe. Não foi possível fazer o login. Por favor verifique seus dados')
 			}
@@ -112,4 +117,10 @@ export default function Login() {
 			</footer>
     </div>
   )
+}
+
+Login.getInitialProps = (ctx) => {
+	const expectedAuthorization = false
+	handleAuthentication(ctx, expectedAuthorization, '/dashboard')
+	return {}
 }

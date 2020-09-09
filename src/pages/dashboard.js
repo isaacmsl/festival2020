@@ -3,21 +3,25 @@ import Head from 'next/head'
 import styles from '../../styles/Dashboard.module.css'
 import MenuDashboard from '../components/MenuDashboard'
 import OficinaCard from '../components/OficinaCard'
-
-import { myGet } from '../api/myGet'
+import handleAuthentication from '../libs/handleAuthentication'
 
 export default function Dashboard({ participante }) {
 
-    console.log(participante)
-    const oficinas = []
-
-    participante.professores.forEach(professor => {
-        oficinas.push({
-            nome: professor.oficinas[0],
-            professor: professor.nomeCompleto,
+    const oficinas = [
+        {
+            nome: 'Sax',
+            professor: 'Costinha',
             qntAulasAssistidas: 0
-        })
-    })
+        }
+    ]
+
+    // participante.professores.forEach(professor => {
+    //     oficinas.push({
+    //         nome: professor.oficinas[0],
+    //         professor: professor.nomeCompleto,
+    //         qntAulasAssistidas: 0
+    //     })
+    // })
 
     return (
         <div className="flex flex-col sm:flex-row">
@@ -47,10 +51,8 @@ export default function Dashboard({ participante }) {
     )
 }
 
-Dashboard.getInitialProps = async (ctx) => {
-    const participante = await myGet('http://localhost:3000/api/participantes', ctx)
-
-    return {
-        participante
-    }
+Dashboard.getInitialProps = (ctx) => {
+    const expectedAuthorization = true
+    handleAuthentication(ctx, expectedAuthorization, '/login')
+    return {}
 }
