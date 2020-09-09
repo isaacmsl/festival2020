@@ -25,6 +25,9 @@ handler.get(authenticated(async (req, res) => {
         }
     })
 
+    participantes.splice(participantes.indexOf(reqParticipante), 1)
+    participantes.unshift(reqParticipante)
+
     switch (reqParticipante.autorizacao) {
         case 1:
             const alunoResponse = {
@@ -50,9 +53,8 @@ handler.get(authenticated(async (req, res) => {
             }
 
             professorResponse.alunos = participantes.filter(part => {
-                return part.autorizacao === 1 && part.oficinas.indexOf(part.oficinas[0]) > -1
+                return reqParticipante !== part && part.oficinas.indexOf(reqParticipante.oficinas[0]) > -1
             })
-
             professorResponse.alunos.forEach(aluno => {
                 delete aluno._id
                 delete aluno.oficinas
@@ -97,25 +99,27 @@ handler.post(async (req, res) => {
         }
 
         const findEmail = await req.db.collection(COLLECTION_NAME).findOne({ "email": email})
-        const response = await req.db.collection(COLLECTION_NAME).insertOne(newDocument)
-    
-        const participante = response.ops[0]
+        
+        if (!findEmail) {  
+            const response = await req.db.collection(COLLECTION_NAME).insertOne(newDocument)
+            const participante = response.ops[0]
+            
+            if(response.insertedCount) {
+                const conteudo = {
+                    id: participante._id
+                }
+                const jwt = sign(conteudo, process.env.SIGN, { expiresIn: '1h' })
 
-        if (response.insertedCount && !findEmail) {  
-            const conteudo = {
-                id: participante._id
-            }
-            const jwt = sign(conteudo, process.env.SIGN, { expiresIn: '1h' })
+                res.setHeader('Set-Cookie', cookie.serialize('authorization', jwt, {
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV !== 'development',
+                    sameSite: 'strict',
+                    maxAge: 3600,
+                    path: '/'
+                }))
 
-            res.setHeader('Set-Cookie', cookie.serialize('authorization', jwt, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV !== 'development',
-                sameSite: 'strict',
-                maxAge: 3600,
-                path: '/'
-            }))
-
-            return res.status(200).json({ mensagem: 'Participante inscrito com sucesso!'})
+                return res.status(200).json({ mensagem: 'Participante inscrito com sucesso!'})
+            } 
         }
 
         return res.status(500).json({ mensagem: 'Desculpa, algo inesperado aconteceu. Por favor, cheque os dados enviados' })

@@ -4,13 +4,20 @@ import styles from '../../styles/Dashboard.module.css'
 import MenuDashboard from '../components/MenuDashboard'
 import OficinaCard from '../components/OficinaCard'
 
-export default function Dashboard() {
-    
-    const oficina = {
-        nome: 'Flauta',
-        professor: 'Professor Ivo Shin',
-        qntAulasAssistidas: 3
-    }
+import { myGet } from '../api/myGet'
+
+export default function Dashboard({ participante }) {
+
+    console.log(participante)
+    const oficinas = []
+
+    participante.professores.forEach(professor => {
+        oficinas.push({
+            nome: professor.oficinas[0],
+            professor: professor.nomeCompleto,
+            qntAulasAssistidas: 0
+        })
+    })
 
     return (
         <div className="flex flex-col sm:flex-row">
@@ -21,8 +28,8 @@ export default function Dashboard() {
 
             <MenuDashboard />
 
-            <div 
-                className={styles.scrollable + " bg-bgMain w-full sm:overflow-y-scroll h-full p-8"}
+            <div
+                className={styles.scrollable + " bg-bgMain w-full sm:overflow-y-scroll h-full sm:h-screen p-8"}
             >
                 <header className="mb-10 flex font-bold">
                     <img src="assets/dark-trello.svg" />
@@ -30,12 +37,20 @@ export default function Dashboard() {
                 </header>
 
                 <main className="flex flex-wrap gap-4">
-                    <OficinaCard oficina={oficina} />
-                    <OficinaCard oficina={oficina} />
-                    <OficinaCard oficina={oficina} />
+                    {oficinas.map(oficina => (
+                        <OficinaCard oficina={oficina} />
+                    ))}
                 </main>
-                 
+
             </div>
         </div>
     )
+}
+
+Dashboard.getInitialProps = async (ctx) => {
+    const participante = await myGet('http://localhost:3000/api/participantes', ctx)
+
+    return {
+        participante
+    }
 }

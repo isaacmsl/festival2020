@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 
 import styles from '../../styles/Inscricoes.module.css'
@@ -8,7 +9,7 @@ import { useState, useEffect } from 'react'
 
 const tailStyles = {
     Labels: 'mb-2 font-bold',
-    Input: 'p-2 border border-1 rounded bg-transparent',
+    Input: 'p-2 border border-1 rounded bg-transparent max-w-xs md:max-w-full',
     Checkboxs: 'mr-2 checked:bg-black'
 }
 
@@ -127,6 +128,13 @@ export default function Inscricoes() {
 
     async function handleSubmit(event) {
         event.preventDefault()
+
+        
+        if(selectedUf === '0' || selectedCity === '0' ) {
+            alert('É necessário escolher uma cidade e um estado')
+            return
+        }
+
         const participante = {
             nomeCompleto: formData.nomeCompleto,
             email: formData.email,
@@ -138,25 +146,28 @@ export default function Inscricoes() {
             endereco: `${selectedCity}, ${selectedUf}. ${formData.endereco}`,    
             contatoTelefonico     
         }
+
         if(participante.oficinas.length === 0) {
             alert('É necessário escolher uma oficinas ou mais')
-        } else {
-            setAguarde('Estamos te inscrevendo, por favor aguarde...')
-            try {
-                await axios.post('/api/participantes', participante)
-                alert('Participante cadastrado com sucesso')
-                router.push('/')
-            } catch (e) {
-                alert('Desculpe. Esse email já foi cadastrado')
-            }
+            return
+        } 
+
+        setAguarde('Estamos te inscrevendo, por favor aguarde...')
+        try {
+            await axios.post('/api/participantes', participante)
+            alert('Você está inscrito no festival! Em breve nosso site permitirá que você realize o login e visualize suas aulas!')
+            router.push('/')
+        } catch (e) {
+            alert('Desculpe. Esse email já foi cadastrado')
         }
+    
 
         setAguarde('')
 
     }
 
     return (
-        <div id="inscricoesContainer" className="relative bg-bgMain min-h-full w-full flex flex-col items-center justify-center">
+        <div id="inscricoesContainer" className="relative bg-bgMain min-h-full w-screen flex flex-col items-center justify-center">
             <Head>
                 <title>Festival - Inscrições</title>
                 <meta charSet="UTF-8 " />
@@ -170,10 +181,12 @@ export default function Inscricoes() {
             <ImagensInstrumento />
 
             <main>
-                <header className="mb-10 mt-56 px-10 sm:px-0 sm:mt-10 text-4xl text-black">
-                    <h2 className="text-sm">11º FESTIVAL MAESTRO</h2>
-                    <h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
-                </header>
+                <Link href="/">
+                    <header className="mb-10 mt-56 px-10 sm:px-0 sm:mt-10 text-4xl text-black">
+                        <h2 className="text-sm">11º FESTIVAL MAESTRO</h2>
+                        <h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
+                    </header>
+                </Link>
                 <div>
                     <form 
                         className="flex flex-col text-xl max-w-lg items-center justify-center"
@@ -181,8 +194,25 @@ export default function Inscricoes() {
                     >
                         <div className="bg-white rounded p-8">
                             <div className={tailStyles.InputContainer}>
-                                <span className={tailStyles.Labels + " block mb-4"}>Oficinas (Uma ou mais)</span>
-                                <div className="grid gap-2 grid-cols-2">
+                                <div>
+                                    <span className={tailStyles.Labels + " block mb-4"}>Oficinas (Uma ou mais)</span>
+                                </div>
+                                <Link href="/horarios">
+                                    <div className="bg-orange-200 p-4 border-solid border-1 mb-8 cursor-pointer">
+                                        <p>
+                                            <b>Atenção!</b> Algumas oficinas ocorrerão simultaneamente, por favor planeje a sua escolha observando os horários das oficinas <b>clicando nesse aviso</b>.
+                                        </p>
+                                        <ul className="mt-4">
+                                            <li>
+                                                1. Caso inscreva-se em duas ou mais oficinas que conflitem os horários, o participante deverá assistir a mais desejada.
+                                            </li>
+                                            <li className="mt-2">
+                                                2. Para conseguir o certificado de conclusão da oficina o participante deverá assistir todas as três aulas.
+                                            </li>
+                                        </ul>                                            
+                                    </div>
+                                </Link>
+                                <div className="grid gap-2 grid-cols-1 sm:grid-cols-2">
                                     <div>
                                         <label className={styles.checkboxContainer}>Clarinete
                                             <input 
@@ -273,16 +303,6 @@ export default function Inscricoes() {
                                             <span className={styles.checkmark}></span>
                                         </label>
                                     </div>
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Educação Musical
-                                            <input 
-                                                type="checkbox"
-                                                value="Educação Musical"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
                                     
                                 </div>
                             </div>
@@ -356,9 +376,33 @@ export default function Inscricoes() {
                                     defaultValue="1"
                                     required
                                 >
-                                    <option value="Sem banda">Não sou integrante de banda</option>
-                                    <option value="BMMJRPU">BMMJRPU</option>
-                                    <option value="Cruzeta">Cruzeta</option>
+                                    <option value="Não sou integrante de banda">Não sou integrante de banda</option>
+                                    <option value="FILARMÔNICA MAESTRO FELINTO LÚCIO DANTAS">FILARMÔNICA MAESTRO FELINTO LÚCIO DANTAS</option>
+                                    <option value="FILARMÔNICA ELINO JULIÃO">FILARMÔNICA ELINO JULIÃO</option>
+                                    <option value="FILARMÔNICA ONZE DE DEZEMBRO">FILARMÔNICA ONZE DE DEZEMBRO</option>
+                                    <option value="FILARMÔNICA 24 DE OUTUBRO">FILARMÔNICA 24 DE OUTUBRO</option>
+                                    <option value="FILARMÔNICA JOVENS MÚSICOS">FILARMÔNICA JOVENS MÚSICOS</option>
+                                    <option value="BANDA DE MÚSICA MESTRE JOÃO ROBERTO PAZ E UNIÃO">BANDA DE MÚSICA MESTRE JOÃO ROBERTO PAZ E UNIÃO</option>
+                                    <option value="BANDA DE MÚSICA TRAMPOLIM DA VITÓRIA">BANDA DE MÚSICA TRAMPOLIM DA VITÓRIA</option>
+                                    <option value="BANDA DE MÚSICA DA POLÍCIA MILITAR DO RN">BANDA DE MÚSICA DA POLÍCIA MILITAR DO RN</option>
+                                    <option value="BANDA DE MÚSICA MAESTRO SANTA ROSA">BANDA DE MÚSICA MAESTRO SANTA ROSA</option>
+                                    <option value="BANDA DE MÚSICA DA BASE AÉREA DE NATAL">BANDA DE MÚSICA DA BASE AÉREA DE NATAL</option>
+                                    <option value="FILARMÔNICA DE SÃO TOMÉ">FILARMÔNICA DE SÃO TOMÉ</option>
+                                    <option value="FILARMÔNICA DE SÃO PEDRO DO POTENGI">FILARMÔNICA DE SÃO PEDRO DO POTENGI</option>
+                                    <option value="EUTERPE JARDINENSE">EUTERPE JARDINENSE</option>
+                                    <option value="FILARMÔNICA JIMMY BRITO">FILARMÔNICA JIMMY BRITO</option>
+                                    <option value="BAMUSGA">BAMUSGA</option>
+                                    <option value="FILARMÔNICA DE MÃE LUIZA">FILARMÔNICA DE MÃE LUIZA</option>
+                                    <option value="BANDA DE MÚSICA INFANTO-JUVENIL DE BREJINHO">BANDA DE MÚSICA INFANTO-JUVENIL DE BREJINHO</option>
+                                    <option value="FILARMÔNICA DE MONTE ALEGRE">FILARMÔNICA DE MONTE ALEGRE</option>
+                                    <option value="FILARMÔNICA DE SANTANA DO MATOS">FILARMÔNICA DE SANTANA DO MATOS</option>
+                                    <option value="FILARMÔNICA DE SÃO FERNANDO">FILARMÔNICA DE SÃO FERNANDO</option>
+                                    <option value="FILARMÔNICA DE SERRA NEGRA DO NORTE">FILARMÔNICA DE SERRA NEGRA DO NORTE</option>
+                                    <option value="BANDA DE MÚSICA DE NOVA FLORESTA ">BANDA DE MÚSICA DE NOVA FLORESTA </option>
+                                    <option value="SOCIEDADE MUSICAL NOVO SÉCULO">SOCIEDADE MUSICAL NOVO SÉCULO</option>
+                                    <option value="BANDA DE MÚSICA DUARTE MACHADO">BANDA DE MÚSICA DUARTE MACHADO</option>
+                                    <option value="FILARMÔNICA MONSENHOR HONÓRIO">FILARMÔNICA MONSENHOR HONÓRIO</option>
+                                    <option value="FILARMÔNICA DE FLORÂNIA">FILARMÔNICA DE FLORÂNIA</option>
                                     <option value="Outra">Outra</option>
                                 </select>
                             </div>
@@ -437,12 +481,12 @@ export default function Inscricoes() {
                                 />
                             </div>
                         </div>
-                        <div className="mt-10 mb-10">
+                        <span className="mt-10">{aguarde}</span>
+                        <div className="mt-10">
                             <input 
                                 className="bg-strongOrange font-bold px-4 py-2 rounded" type="submit"
                                 value="Me inscrever!" />
                         </div>
-                        <span className="">{aguarde}</span>
                     </form>
                 </div>
             </main>

@@ -18,7 +18,7 @@ export default function Oficinas() {
             <HeaderDivulgacao />
 
             <main>
-                <div className="bg-white p-4 max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                <div className="w-full bg-white p-4 sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
                     <h2 className="font-bold text-black text-xl">PARCERIAS</h2>
                     <div className="flex flex-col items-center mt-10">
                         <div>
@@ -52,10 +52,10 @@ export default function Oficinas() {
                         </div>
                     </div>
                 </div>
-                <div className="w-full bg-white p-4 sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                <div className="w-screen bg-white p-4 sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
                     <h2 className="font-bold text-black text-xl">REALIZAÇÃO</h2>
                     <div className="mt-10">
-                        <img src="https://drive.google.com/thumbnail?id=14SblK99zvCHje8ybPHptiFizX5Q0jM8L" width={150} alt="Assomusc Santa Cruz RN"/>
+                        <img src="https://drive.google.com/thumbnail?id=1upuxX19DDn--L0wpL5snrHXKotlYla2w" width={150} alt="Assomusc Santa Cruz RN"/>
                     </div>
                 </div>
             </main>
