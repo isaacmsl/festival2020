@@ -44,7 +44,7 @@ export default function Login() {
 			const response = await axios.post('/api/login', participanteLogin)
 
 			if (response.status === 200) {
-				router.push('/')
+				router.push({ pathname: '/dashboard' }, '/dashboard')
 			} else {
 				alert('Desculpe. Não foi possível fazer o login. Por favor verifique seus dados')
 			}
