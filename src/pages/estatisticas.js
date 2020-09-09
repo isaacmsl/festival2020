@@ -1,22 +1,27 @@
 import Head from 'next/head'
 import MenuDashboard from '../components/MenuDashboard'
+import styles from '../../styles/Dashboard.module.css'
+import handleAuthentication from '../libs/handleAuthentication'
 
-export default function estatisticas () {
+export default function Estatisticas() {
     return (
-        <div>
+        <div className="flex flex-col sm:flex-row">
             <Head>
                 <title>Festival - 2020</title>
             </Head>
 
-            <div className="bg-bgMain flex w-full overflow-auto">
-                <MenuDashboard />
+            <MenuDashboard />
+            
+            <div
+                className={styles.scrollable + " bg-bgMain w-full sm:overflow-y-scroll h-full sm:h-screen p-8"}
+            >
+                <header className="mb-10 flex font-bold">
+                    <img src="assets/dark-grid.svg" />
+                    <h1 className="ml-4">Estatísticas</h1>
+                </header>
 
-                <main className="p-3 flex-grow lg:p-6">
-                    <div className="flex flex-row mt-3">
-                        <img src="assets/dark-grid.svg"></img>
-                        <p className="text-black font-semibold pl-3">Dashboard</p>
-                    </div>
-                    <div className="mt-4 flex flex-wrap flex-col gap-4 items-center justify-center lg:items-start gap-6">
+                <main className="flex-grow">
+                    <div className="mt-4 flex flex-wrap flex-col gap-4 justify-center lg:items-start gap-6">
                         <div>
                             <iframe className="bg-white border-solid border-2 border-gray-200 max-w-screen h-chartsHeight lg:w-chartsWidth" src="https://charts.mongodb.com/charts-festival2020-pmddq/embed/charts?id=dceaa6a9-2e08-4d2f-8633-93424c1d872f&autoRefresh=300&theme=light"></iframe>
                         </div>
@@ -50,4 +55,10 @@ export default function estatisticas () {
             </div>
         </div>
     )
+}
+
+Estatisticas.getInitialProps = (ctx) => {
+    const expectedAuthorization = true
+    handleAuthentication(ctx, expectedAuthorization, '/login')
+    return {}
 }

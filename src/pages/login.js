@@ -9,12 +9,12 @@ const ImagensInstrumento = () => (
         <img 
             src="/assets/sax.png"
             alt="Saxofone"
-            className="absolute top-0 left-0 w-64 sm:w-1/4" 
+            className="absolute top-0 left-0 w-64 hidden sm:w-1/4" 
         />
         <img
             src="/assets/trompete.png"
             alt="Trompete"
-            className="absolute bottom-0 right-0 w-56 sm:w-1/4"
+			className="absolute bottom-0 right-0 w-56 hidden sm:w-1/4"
         />
     </>
 )

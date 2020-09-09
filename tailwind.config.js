@@ -15,13 +15,10 @@ module.exports = {
             },
             width: {
                 chartsWidth: '22rem'
+            },
+            height: {
+                chartsHeight: '18.75rem'
             }
-        },
-        height: {
-            chartsHeight: '18.75rem'
-        },
-        screens: {
-            lg: '700px'
         }
     }
 }
