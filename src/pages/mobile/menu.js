@@ -18,7 +18,7 @@ export default function MenuMobile() {
             </a>
             <ul>
                 <li>
-                    <Link href="/dashboard">
+                    <Link href="/estatisticas">
                         <a className="bg-redHeaderStrong flex items-center justify-center py-4 px-6 cursor-pointer">
                             <h2 className="text-white font-bold">Dashboard</h2>
                         </a>
