@@ -12,7 +12,7 @@ export default function handleAuthentication(ctx, expectedAuthentication, redire
         }
 
     } else {
-        axios.get('http://localhost:3000/api/isAuthenticated').then(response => {
+        axios.get('/api/isAuthenticated').then(response => {
             const { isAuthenticated } = response.data
             
             if (expectedAuthentication && !isAuthenticated || !expectedAuthentication && isAuthenticated) {

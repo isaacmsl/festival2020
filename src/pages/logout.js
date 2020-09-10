@@ -5,7 +5,7 @@ const Logout = () => (<div />)
 
 Logout.getInitialProps = async (ctx) => {
     try {
-        await axios.post('http://localhost:3000/api/logout')
+        await axios.post('/api/logout')
     } 
     catch (e){} 
     finally {
