@@ -2,7 +2,7 @@ import Head from 'next/head'
 import FooterDivulgacao from '../components/FooterDivulgacao'
 import HeaderDivulgacao from '../components/HeaderDivulgacao'
 
-import styles from '../../styles/Oficinas.module.css'
+import styles from '../../styles/Imagens.module.css'
 
 export default function Oficinas() {
     return (
