@@ -25,7 +25,7 @@ export default function NovaSenha() {
                 <main>
                     <form className="flex flex-col gap-6 p-10 bg-white border border-solid border-gray-200 rounded max-w-xl justify-center">
                         <div className="mt-3 flex flex-col gap-4 max-w-lg">
-                            <label for="senhaAtual" className="text-brownText font-semibold">Qual é sua senha atual ?</label>
+                            <label htmlFor="senhaAtual" className="text-brownText font-semibold">Qual é sua senha atual ?</label>
 
                             <input 
                             type="password" 
@@ -35,7 +35,7 @@ export default function NovaSenha() {
                             />
                         </div>
                         <div className="mt-3 flex flex-col gap-4 max-w-lg">
-                            <label for="novaSenha" className="text-brownText font-semibold">Nova Senha</label>
+                            <label htmlFor="novaSenha" className="text-brownText font-semibold">Nova Senha</label>
                             <input 
                             type="password" 
                             id="novaSenha"
@@ -43,7 +43,7 @@ export default function NovaSenha() {
                             
                             />
                         </div>
-                        <div className="flex flex-row gap-4 justify-between max-w-lg py-2 sm:py-0">
+                        <div className="flex flex-col sm:flex-row gap-4 justify-between max-w-lg py-2 sm:py-0">
                             <Link href="/dashboard">
                                 <a className="px-6 py-4 bg-greenButton text-white font-bold rounded text-center ">Cancelar</a>
                             </Link>

@@ -21,9 +21,6 @@ module.exports = {
             height: {
                 chartsHeight: '18.75rem'
             }
-        },
-        screens: {
-            vs:'330px'
         }
     }
 }
