@@ -2,6 +2,7 @@ import Head from 'next/head'
 import MenuDashboard from '../../components/MenuDashboard'
 import styles from '../../../styles/Dashboard.module.css'
 import Link from 'next/link'
+import handleAuthentication from '../../libs/handleAuthentication'
 
 export default function NovaSenha() {
     return (
@@ -57,5 +58,11 @@ export default function NovaSenha() {
             </div>
         </div>
     )
+}
+
+NovaSenha.getInitialProps = (ctx) => {
+    const expectedAuthorization = true
+    handleAuthentication(ctx, expectedAuthorization, '/login')
+    return {}
 }
 
