@@ -9,6 +9,7 @@ export default function NovaSenha() {
         <div className="flex flex-col sm:flex-row">
             <Head>
                 <title>Festival - 2020</title>
+                <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <MenuDashboard />
@@ -45,10 +46,10 @@ export default function NovaSenha() {
                             />
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4 justify-between max-w-lg py-2 sm:py-0">
-                            <Link href="/dashboard">
+                            <Link href="/oficinas/perfil">
                                 <a className="px-6 py-4 bg-greenButton text-white font-bold rounded text-center ">Cancelar</a>
                             </Link>
-                            <Link href="/dashboard">
+                            <Link href="/oficinas/perfil">
                                 <a className="px-6 py-4 bg-greenButton text-white font-bold rounded text-center ">Atualizar</a>
                             </Link>
                         </div>
