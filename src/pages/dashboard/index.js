@@ -70,8 +70,10 @@ export default function Dashboard() {
 
                 <main className="flex flex-wrap gap-4">
                     {oficinas.map(oficina => (
-                        <Link as={`/oficinas/${oficina.nome}`} href="/oficinas/[oficina]">
-                            <OficinaCard oficina={oficina} key={oficina.nome} />
+                        <Link as={`/dashboard/oficinas/${oficina.nome}`} href="/dashboard/oficinas/[oficina]">
+                            <a>
+                                <OficinaCard oficina={oficina} key={oficina.nome} />
+                            </a>
                         </Link>
                     ))}
                 </main>
