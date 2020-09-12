@@ -4,6 +4,7 @@ import styles from '../../../../styles/Dashboard.module.css'
 import styles1 from '../../../../styles/Imagens.module.css'
 import MenuDashboard from '../../../components/MenuDashboard'
 import handleAuthentication from '../../../libs/handleAuthentication'
+import myGet from '../../../libs/myGet'
 
 import Link from 'next/link'
 import { useEffect, useState, useLayoutEffect } from 'react'
@@ -141,20 +142,7 @@ DetalhesOficina.getInitialProps = async (ctx) => {
     const expectedAuthorization = true
     await handleAuthentication(ctx, expectedAuthorization, '/login')
 
-    let oficinas
-
-    if (ctx.req) {
-        const { host, cookie } = ctx.req.headers;
-        const response = await axios.get(`http://${host}/api/oficinas`, {
-            headers: {
-                cookie
-            }
-        })
-        oficinas = response.data
-    } else {
-        const response = await axios.get('/api/oficinas')
-        oficinas = response.data
-    }
+    let oficinas = await myGet(ctx, '/api/oficinas')
 
     return { oficinas }
 }

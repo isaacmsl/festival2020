@@ -7,41 +7,34 @@ import styles from '../../../styles/Dashboard.module.css'
 import MenuDashboard from '../../components/MenuDashboard'
 import OficinaCard from '../../components/OficinaCard'
 import handleAuthentication from '../../libs/handleAuthentication'
+import myGet from '../../libs/myGet'
 
-export default function Dashboard() {
-    const [oficinas, setOficinas] = useState([])
+export default function Dashboard({participante, professores}) {
+    let oficinas
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get('/api/participantes')
-            const { participante, professores } = response.data
+    const partOficinas = []
+    professores.forEach(professor => {
+        let qntAulasAssistidas = 0
 
-            const partOficinas = []
-            professores.forEach(professor => {
-                let qntAulasAssistidas = 0
+        const oficinaProfessor = professor.oficinas[0]
+        const { presencaOficinas } = participante
 
-                const oficinaProfessor = professor.oficinas[0]
-                const { presencaOficinas } = participante
+        if (
+            presencaOficinas &&
+            presencaOficinas[oficinaProfessor]
+        ) {
+            qntAulasAssistidas = presencaOficinas[oficinaProfessor]
+        }
 
-                if (
-                    presencaOficinas &&
-                    presencaOficinas[oficinaProfessor]
-                ) {
-                    qntAulasAssistidas = presencaOficinas[oficinaProfessor]
-                }
+        partOficinas.push({
+            nome: professor.oficinas[0],
+            professor: professor.nomeCompleto,
+            qntAulasAssistidas
+        })
+    })
 
-                partOficinas.push({
-                    nome: professor.oficinas[0],
-                    professor: professor.nomeCompleto,
-                    qntAulasAssistidas
-                })
-            })
-
-            setOficinas(partOficinas)
-        }   
-        
-        fetchData()
-    }, [])
+    oficinas = partOficinas
+         
 
     // participante.professores.forEach(professor => {
     //     oficinas.push({
@@ -85,6 +78,9 @@ export default function Dashboard() {
 
 Dashboard.getInitialProps = async (ctx) => {
     const expectedAuthorization = true
-    handleAuthentication(ctx, expectedAuthorization, '/login')
-    return {}
+    await handleAuthentication(ctx, expectedAuthorization, '/login')
+
+    const { participante, professores } = await myGet(ctx, '/api/participantes')
+
+    return { participante, professores }
 }
