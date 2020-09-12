@@ -6,8 +6,60 @@ import MenuDashboard from '../../../components/MenuDashboard'
 import handleAuthentication from '../../../libs/handleAuthentication'
 
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export default function DetalhesOficina() {
+    const [oficina, setOficina] = useState([])
+
+    const router = useRouter()
+    const queryOficina = router.query.oficina
+
+    useEffect(() => {
+        const fetchData = async () => {
+            // const responseParticipantes = await axios.get('/api/participantes')
+            // const { participante, professores } = responseParticipantes.data
+
+            const responseOficinas = await axios.get('/api/oficinas')
+            const oficinas = responseOficinas.data
+
+            setOficina(oficinas.find(oficina => oficina.nome === queryOficina))
+
+            console.log(oficina)
+            
+            // const professorOficina = professores.find(professor => professor.oficinas[0] === queryOficina)
+
+            // const participanteOficina = participante.oficinas.find(participanteOficina => participanteOficina === queryOficina)
+            // if (participanteOficina) {
+            // } else {
+            //     // impedir visualização
+            // }
+            // const partOficinas = []
+            // professores.forEach(professor => {
+            //     let qntAulasAssistidas = 0
+
+            //     const oficinaProfessor = professor.oficinas[0]
+            //     const { presencaOficinas } = participante
+
+            //     if (
+            //         presencaOficinas &&
+            //         presencaOficinas[oficinaProfessor]
+            //     ) {
+            //         qntAulasAssistidas = presencaOficinas[oficinaProfessor]
+            //     }
+
+            //     partOficinas.push({
+            //         nome: professor.oficinas[0],
+            //         professor: professor.nomeCompleto,
+            //         qntAulasAssistidas
+            //     })
+            // })
+
+            // setOficinas(partOficinas)
+        }
+
+        fetchData()
+    }, [])
+
     return (
         <div className="flex flex-col sm:flex-row">
             <Head>

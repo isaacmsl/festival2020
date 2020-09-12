@@ -1,19 +1,47 @@
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import Link from 'next/link'
 
 import styles from '../../../styles/Dashboard.module.css'
 import MenuDashboard from '../../components/MenuDashboard'
 import OficinaCard from '../../components/OficinaCard'
 import handleAuthentication from '../../libs/handleAuthentication'
 
-export default function Dashboard({ participante }) {
+export default function Dashboard() {
+    const [oficinas, setOficinas] = useState([])
 
-    const oficinas = [
-        {
-            nome: 'Sax',
-            professor: 'Costinha',
-            qntAulasAssistidas: 0
-        }
-    ]
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get('/api/participantes')
+            const { participante, professores } = response.data
+
+            const partOficinas = []
+            professores.forEach(professor => {
+                let qntAulasAssistidas = 0
+
+                const oficinaProfessor = professor.oficinas[0]
+                const { presencaOficinas } = participante
+
+                if (
+                    presencaOficinas &&
+                    presencaOficinas[oficinaProfessor]
+                ) {
+                    qntAulasAssistidas = presencaOficinas[oficinaProfessor]
+                }
+
+                partOficinas.push({
+                    nome: professor.oficinas[0],
+                    professor: professor.nomeCompleto,
+                    qntAulasAssistidas
+                })
+            })
+
+            setOficinas(partOficinas)
+        }   
+        
+        fetchData()
+    }, [])
 
     // participante.professores.forEach(professor => {
     //     oficinas.push({
@@ -42,7 +70,9 @@ export default function Dashboard({ participante }) {
 
                 <main className="flex flex-wrap gap-4">
                     {oficinas.map(oficina => (
-                        <OficinaCard oficina={oficina} />
+                        <Link as={`/oficinas/${oficina.nome}`} href="/oficinas/[oficina]">
+                            <OficinaCard oficina={oficina} key={oficina.nome} />
+                        </Link>
                     ))}
                 </main>
 
@@ -51,7 +81,7 @@ export default function Dashboard({ participante }) {
     )
 }
 
-Dashboard.getInitialProps = (ctx) => {
+Dashboard.getInitialProps = async (ctx) => {
     const expectedAuthorization = true
     handleAuthentication(ctx, expectedAuthorization, '/login')
     return {}

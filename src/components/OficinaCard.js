@@ -29,7 +29,7 @@ const OficinaCard = ({ oficina }) => {
     } = oficina
 
     return (
-        <div className="bg-white border border-solid inline-block w-full min-w-xs max-w-xs p-4">
+        <a className="bg-white border border-solid inline-block w-full min-w-xs max-w-xs p-4">
             <div>
                 <h1 className="font-bold text-xl">{nome}</h1>
                 <p className="mt-2">{professor}</p>
@@ -39,7 +39,7 @@ const OficinaCard = ({ oficina }) => {
                 <h2 className="text-sm">Progresso: {qntAulasAssistidas} de 3</h2>
                 <ProgressBar qntAulasAssistidas={qntAulasAssistidas} />
             </div>
-        </div>
+        </a>
     )
 }
     
