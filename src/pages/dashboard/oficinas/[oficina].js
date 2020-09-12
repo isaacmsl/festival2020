@@ -23,8 +23,47 @@ const DataAula = (dataAula) => {
     ]
     const newDate = new Date(dataAula.dataAula)
     
-    return <p>{dias[newDate.getDay()]} ({newDate.getDate()}/{newDate.getMonth()}) às {newDate.getHours()}:{newDate.getSeconds()}</p>
+    return <p>{dias[newDate.getDay()]} ({newDate.getDate()}/{newDate.getMonth()}) das {newDate.getHours()}:{newDate.getMinutes()} às {newDate.getHours()+1}:{newDate.getMinutes()+30}</p>
 } 
+
+const RedesSociais = (redesSociais) => {
+    let instagram
+    let facebook
+    
+    if(redesSociais.instagram) {
+        instagram = <Instagram />
+    }
+
+    if(redesSociais.facebook) {
+        facebook = <Facebook />
+    }
+
+    return (instagram)
+}
+
+const Instagram = ({redeSocial}) => {
+    if(redeSocial) {
+        return (
+            <a href={redeSocial} target="_blank">
+                 <img src="/assets/instagram.svg" width={30} alt="Instagram" />
+            </a>
+        )
+    }
+
+    return <></>
+}
+
+const Facebook = ({redeSocial}) => {
+    if(redeSocial) {
+        return (
+            <a href={redeSocial} target="_blank">
+                 <img src="/assets/facebook.svg" width={30} alt="Facebook" />
+            </a>
+        )
+    }
+
+    return <></>
+}
 
 export default function DetalhesOficina({ oficinas }) {
     
@@ -62,8 +101,9 @@ export default function DetalhesOficina({ oficinas }) {
                             <li className="flex flex-wrap flex-col gap-4 md:flex-row md:gap-0 md:items-center bg-white p-6 justify-between rounded border border-solid border-gray-200 max-w-2xl">
                                 <div className="flex flex-col gap-4">
                                     <h2 className="font-bold text-xl">Aula {index+1}</h2>
+                                    <DataAula dataAula={aula.data} /> 
                                 </div>
-                                <DataAula dataAula={aula.date} /> 
+                                
                                 <Link href={aula.link}>
                                     <a target="_blank" className="px-6 py-4 bg-blue-600 text-white font-bold rounded text-center">Assistir</a>
                                 </Link>
@@ -73,27 +113,20 @@ export default function DetalhesOficina({ oficinas }) {
                     <div className="flex flex-col md:flex-row p-6 gap-4 bg-white rounder border border-solid border-gray-200  max-w-2xl">
                         <img
                             className={styles1.imagens}
-                            src="https://drive.google.com/thumbnail?id=1puJW-X9BWsBBr_Hcx4_Lu-8iyYRnRNv8"
-                            alt="Heleno Feitosa (Costinha)" />
+                            src={oficina.professor.imgUrl}
+                            alt={oficina.professor.nome} />
                         <div className="w-full gap-6 md:gap-0 flex flex-col justify-between">
                             <div className="flex flex-col gap-4">
                                 <h2 className="font-bold text-xl">
                                     Seu professor
                                 </h2>
                                 <p>
-                                    Costinha
+                                    {oficina.professor.nome}
                                 </p>
                             </div>
                             <div className="flex items-center justify-between">
-                                <a href="https://www.instagram.com/hfeitosa_costinha/" target="_blank">
-                                    <img src="/assets/instagram.svg" width={30} alt="Instagram" />
-                                </a>
-                                <a href="https://www.instagram.com/hfeitosa_costinha/" target="_blank">
-                                    <img src="/assets/instagram.svg" width={30} alt="Instagram" />
-                                </a>
-                                <a href="https://www.instagram.com/hfeitosa_costinha/" target="_blank">
-                                    <img src="/assets/instagram.svg" width={30} alt="Instagram" />
-                                </a>
+                                <Instagram redeSocial={oficina.professor.redesSociais.instagram} />
+                                <Facebook redeSocial={oficina.professor.redesSociais.facebook} />
                             </div>
                         </div>
                     </div>

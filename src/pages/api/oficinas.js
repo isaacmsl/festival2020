@@ -1,6 +1,7 @@
 import nextConnect from 'next-connect'
 import dbMiddleware from '../../middlewares/database'
 import { isAuthenticated } from '../../middlewares/isAuthenticated'
+import crypto from 'crypto'
 
 const handler = nextConnect()
 
@@ -11,6 +12,70 @@ handler.use(dbMiddleware)
 handler.get(isAuthenticated(async (req, res) => {
     const oficinas = await req.db.collection(COLLECTION_NAME).find({}).toArray()
     return res.status(200).json(oficinas)
+}))
+
+/*handler.put(isAuthenticated(async (req, res) => {
+    const { nome, nomeProfessor, redesSociais, imgUrl } = req.body
+    const response = await req.db.collection(COLLECTION_NAME).updateOne(
+        { "nome": nome },
+        {
+            $set: {
+                professor: {
+                    nome: nomeProfessor,
+                    redesSociais,
+                    imgUrl
+                }
+            }
+        }
+    )
+
+    if (response.modifiedCount) {
+        return res.status(200).json({ mensagem: 'Documento atualizado com sucesso' })
+    }
+    return res.status(404).json({ mensagem: 'Documento não foi encontrado. Por favor cheque os dados enviados' })
+}))*/
+
+/*handler.put(isAuthenticated(async (req, res) => {
+    const { nome, aulas, linkMateriais } = req.body
+    for(let i = 0; i < 3; i++) {
+        aulas[i].codigoPresenca = crypto.randomBytes(4).toString('HEX')
+    }
+    const response = await req.db.collection(COLLECTION_NAME).updateOne(
+        { "nome": nome },
+        {
+            $set: {
+                aulas,
+                linkMateriais
+            }
+        }
+    )
+
+    if (response.modifiedCount) {
+        return res.status(200).json({ mensagem: 'Documento atualizado com sucesso' })
+    }
+    return res.status(404).json({ mensagem: 'Documento não foi encontrado. Por favor cheque os dados enviados' })
+}))*/
+handler.put(isAuthenticated(async (req, res) => {
+    const { nome, data } = req.body
+
+    const {aulas} = await req.db.collection(COLLECTION_NAME).findOne({nome})
+    
+    for(let i = 0; i < 3; i++) {
+        aulas[i].data = new Date(data[i])
+    }
+    const response = await req.db.collection(COLLECTION_NAME).updateOne(
+        { "nome": nome },
+        {
+            $set: {
+                aulas
+            }
+        }
+    )
+
+    if (response.modifiedCount) {
+        return res.status(200).json({ mensagem: 'Documento atualizado com sucesso' })
+    }
+    return res.status(404).json({ mensagem: 'Documento não foi encontrado. Por favor cheque os dados enviados' })
 }))
 
 // handler.post(async (req, res) => {
