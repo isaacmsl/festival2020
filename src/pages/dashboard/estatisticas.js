@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import MenuDashboard from '../components/MenuDashboard'
+import MenuDashboard from '../../components/MenuDashboard'
 import styles from '../../styles/Dashboard.module.css'
-import handleAuthentication from '../libs/handleAuthentication'
+import handleAuthentication from '../../libs/handleAuthentication'
 
 export default function Estatisticas() {
     return (

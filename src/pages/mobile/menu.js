@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import axios from 'axios'
 
 export default function MenuMobile() {
     const router = useRouter()
@@ -7,6 +8,12 @@ export default function MenuMobile() {
     function handleMenuMobile() {
         router.back()
     }
+
+    async function handleLogout() {
+        await axios.post('/api/logout')
+        router.replace('/login')
+    }
+
 
     return (
         <div className="bg-redHeader h-screen w-full">
@@ -32,11 +39,12 @@ export default function MenuMobile() {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/logout">
-                        <a className="bg-redHeaderStrong flex items-center justify-center py-4 px-6 cursor-pointer">
-                            <h2 className="text-white font-bold">Sair</h2>
-                        </a>
-                    </Link>
+                    <a 
+                        className="bg-redHeaderStrong flex items-center justify-center py-4 px-6 cursor-pointer"
+                        onClick={handleLogout}
+                    >
+                        <h2 className="text-white font-bold">Sair</h2>
+                    </a>
                 </li>
             </ul>
         </div>

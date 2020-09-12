@@ -1,9 +1,9 @@
 import Head from 'next/head'
 
-import styles from '../../styles/Dashboard.module.css'
-import MenuDashboard from '../components/MenuDashboard'
-import OficinaCard from '../components/OficinaCard'
-import handleAuthentication from '../libs/handleAuthentication'
+import styles from '../../../styles/Dashboard.module.css'
+import MenuDashboard from '../../components/MenuDashboard'
+import OficinaCard from '../../components/OficinaCard'
+import handleAuthentication from '../../libs/handleAuthentication'
 
 export default function Dashboard({ participante }) {
 

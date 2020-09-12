@@ -2,8 +2,8 @@ import Head from 'next/head'
 
 import styles from '../../../styles/Dashboard.module.css'
 import styles1 from '../../../styles/Imagens.module.css'
-import MenuDashboard from '../../components/MenuDashboard'
-import handleAuthentication from '../../libs/handleAuthentication'
+import MenuDashboard from '../../../components/MenuDashboard'
+import handleAuthentication from '../../../libs/handleAuthentication'
 
 import Link from 'next/link'
 
