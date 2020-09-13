@@ -64,17 +64,23 @@ export default function Estatisticas() {
 }
 
 Estatisticas.getInitialProps = async (ctx) => {
-    const expectedAuthorization = true
-    await handleAuthentication(ctx, expectedAuthorization, '/login')
+    try {
+        const expectedAuthorization = true
+        await handleAuthentication(ctx, expectedAuthorization, '/login')
 
-    const responseParticipantes = await myGet(ctx, expectedAuthorization, '/api/participantes')
+        const responseParticipantes = await myGet(ctx, expectedAuthorization, '/api/participantes')
 
-    const { participante } = responseParticipantes
-    const autorizacaoParticipante = participante.autorizacao
+        const { participante } = responseParticipantes
+        const autorizacaoParticipante = participante.autorizacao
 
-    if (autorizacaoParticipante === 1) {
-        redirect(ctx, '/dashboard')
+        if (autorizacaoParticipante === 1) {
+            redirect(ctx, '/dashboard')
+        }
+
+    } finally {
+        return {
+            nextIsPower: true
+        }
     }
-
-    return {}
+    
 }

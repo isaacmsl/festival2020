@@ -133,8 +133,13 @@ export default function Login() {
   )
 }
 
-Login.getInitialProps = (ctx) => {
-	const expectedAuthorization = false
-	handleAuthentication(ctx, expectedAuthorization, '/dashboard')
-	return {}
+Login.getInitialProps = async (ctx) => {
+	try {
+		const expectedAuthorization = false
+		await handleAuthentication(ctx, expectedAuthorization, '/dashboard')
+	} finally {
+		return {
+			nextIsPower: true
+		}
+	}
 }

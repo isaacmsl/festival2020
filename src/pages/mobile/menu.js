@@ -65,13 +65,20 @@ export default function MenuMobile({ autorizacao }) {
 }
 
 MenuMobile.getInitialProps = async (ctx) => {
-    const expectedAuthorization = true
-    await handleAuthentication(ctx, expectedAuthorization, '/login')
+    try {
+        const expectedAuthorization = true
+        await handleAuthentication(ctx, expectedAuthorization, '/login')
 
-    const responseParticipantes = await myGet(ctx, expectedAuthorization, '/api/participantes')
-    const { autorizacao } = responseParticipantes.participante
+        const responseParticipantes = await myGet(ctx, expectedAuthorization, '/api/participantes')
+        const { autorizacao } = responseParticipantes.participante
 
-    return {
-        autorizacao
+        return {
+            autorizacao
+        }
+    } catch (error) {
+        return {
+            autorizacao: undefined
+        }
     }
+    
 }

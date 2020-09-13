@@ -82,10 +82,14 @@ export default function Dashboard({participante, professores}) {
 }
 
 Dashboard.getInitialProps = async (ctx) => {
-    const expectedAuthorization = true
-    await handleAuthentication(ctx, expectedAuthorization, '/login')
-
-    const { participante, professores } = await myGet(ctx, expectedAuthorization,'/api/participantes')
-
-    return { participante, professores }
+    try {
+        const expectedAuthorization = true
+        await handleAuthentication(ctx, expectedAuthorization, '/login')
+        
+        const { participante, professores } = await myGet(ctx, expectedAuthorization, '/api/participantes')
+        
+        return { participante, professores }
+    } catch (error) {
+        return { participante: undefined, professores: undefined }
+    }
 }

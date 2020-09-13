@@ -152,26 +152,34 @@ export default function DetalhesOficina({ autorizacaoParticipante, oficinas }) {
 }
 
 DetalhesOficina.getInitialProps = async (ctx) => {
-    const expectedAuthorization = true
-    await handleAuthentication(ctx, expectedAuthorization, '/login')
+    try {
+        const expectedAuthorization = true
+        await handleAuthentication(ctx, expectedAuthorization, '/login')
 
-    const oficinas = await myGet(ctx, expectedAuthorization, '/api/oficinas')
+        const oficinas = await myGet(ctx, expectedAuthorization, '/api/oficinas')
+
+        const responseParticipantes = await myGet(ctx, expectedAuthorization, '/api/participantes')
+
+        const { participante } = responseParticipantes
+        const participanteOficinas = participante.oficinas
+        const autorizacaoParticipante = participante.autorizacao
+
+
+        const queryOficina = ctx.query.oficina
+
+        if (!participanteOficinas.includes(queryOficina)) {
+            redirect(ctx, '/dashboard')
+        }
+
+        return {
+            autorizacaoParticipante,
+            oficinas
+        }
+    } catch {
+        return {
+            expectedAuthorization: undefined,
+            oficinas: undefined
+        }
+    }
     
-    const responseParticipantes = await myGet(ctx, expectedAuthorization, '/api/participantes')
-
-    const { participante } = responseParticipantes
-    const participanteOficinas = participante.oficinas
-    const autorizacaoParticipante = participante.autorizacao
-
-
-    const queryOficina = ctx.query.oficina
-
-    if (!participanteOficinas.includes(queryOficina)) {
-        redirect(ctx, '/dashboard')
-    }
-
-    return {
-        autorizacaoParticipante, 
-        oficinas
-    }
 }
