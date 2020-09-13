@@ -22,10 +22,6 @@ const ImagensInstrumento = () => (
 export default function Login() {
 	const router = useRouter()
 
-	useEffect(() => {
-		router.prefetch('/dashboard')
-	}, [])
-
 	const [formData, setFormData] = useState({
 		email: '',
 		senha: ''
@@ -119,8 +115,14 @@ export default function Login() {
   )
 }
 
-Login.getInitialProps = (ctx) => {
-	const expectedAuthorization = false
-	handleAuthentication(ctx, expectedAuthorization, '/dashboard')
-	return {}
+Login.getInitialProps = async (ctx) => {
+	try {
+		const expectedAuthorization = false
+		await handleAuthentication(ctx, expectedAuthorization, '/dashboard')
+	} finally {
+		return {
+			imFunny: true
+		}
+	}
+	
 }
