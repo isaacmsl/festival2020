@@ -139,11 +139,11 @@ handler.post(async (req, res) => {
     })  
 })
 
-handler.put(isAuthenticated(async (req, res) => {
+handler.put(async (req, res) => {
 
     const novosDados = req.body
-
-    if (req.participante.id === novosDados.id) {
+    
+    if (novosDados.id) {
         const dadosAtuais = await req.db.collection(COLLECTION_NAME).findOne({ "_id": ObjectID(novosDados.id) })
 
         let participanteAtualizado = {}
@@ -187,7 +187,7 @@ handler.put(isAuthenticated(async (req, res) => {
     }
     
     return res.status(401).json({ mensagem: "Você não tem autorização" })
-}))
+})
 
 handler.delete(isAuthenticated(async (req, res) => {
     const idToken = req.participante.id

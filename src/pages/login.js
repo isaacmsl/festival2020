@@ -109,7 +109,9 @@ export default function Login() {
 						value="Entrar" 
 						type="submit"
 					/>
-				  	{/* <a className="text-orange-700" href="#">Esqueceu?</a> */}
+					<Link href="/esqueci">
+					  <a className="text-orange-700" href="#">Esqueceu?</a>
+					</Link>
 				</div>
 
 			</form>
