@@ -7,6 +7,9 @@ import InscricoesValidator from '../middlewares/InscricoesValidator'
 
 import styles from '../../styles/Inscricoes.module.css'
 import { useState, useEffect } from 'react'
+import myGet from '../libs/myGet'
+
+const DEFAULT_LIMIT_PARTICIPANTES = 95
 
 const tailStyles = {
     Labels: 'mb-2 font-bold',
@@ -29,7 +32,7 @@ const ImagensInstrumento = () => (
     </>
 )
 
-export default function Inscricoes() {
+export default function Inscricoes({ availableOficinas }) {
     const [ufs, setUfs] = useState([])
     const [cities, setCities] = useState([])
     const [aguarde, setAguarde] = useState('')
@@ -129,7 +132,7 @@ export default function Inscricoes() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        
+
         if(selectedUf === '0' || selectedCity === '0' ) {
             alert('É necessário escolher uma cidade e um estado')
             return
@@ -147,13 +150,14 @@ export default function Inscricoes() {
             contatoTelefonico     
         }
         
-        if (InscricoesValidator.isValidParticipante(participante)) {
+        const isValid = await InscricoesValidator.isValidParticipante(participante) 
+
+        if (isValid) {
             setAguarde('Estamos te inscrevendo, por favor aguarde...')
             
             try {
                 await axios.post('/api/participantes', participante)
-                alert('Você está inscrito no festival! Em breve nosso site permitirá que você realize o login e visualize suas aulas!')
-                router.push('/')
+                router.push('/dashboard')
             } catch (e) {
                 alert('Desculpe. Parece que esse email já foi cadastrado')
             }
@@ -164,7 +168,7 @@ export default function Inscricoes() {
     }
 
     return (
-        <div id="inscricoesContainer" className="relative bg-bgMain min-h-full w-screen flex flex-col items-center justify-center">
+        <div id="inscricoesContainer" className="relative bg-bgMain min-h-full w-screen flex flex-col items-center justify-center overflow-auto">
             <Head>
                 <title>Festival - Inscrições</title>
                 <meta charSet="UTF-8 " />
@@ -210,97 +214,18 @@ export default function Inscricoes() {
                                     </div>
                                 </Link>
                                 <div className="grid gap-2 grid-cols-1 sm:grid-cols-2">
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Clarinete
-                                            <input 
-                                                type="checkbox"
-                                                value="Clarinete"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Flauta
-                                            <input 
-                                                type="checkbox"
-                                                value="Flauta"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Saxofone
-                                            <input 
-                                                type="checkbox"
-                                                value="Saxofone"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Trompa
-                                            <input 
-                                                type="checkbox"
-                                                value="Trompa"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Trompete
-                                            <input 
-                                                type="checkbox"
-                                                value="Trompete"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Trombone
-                                            <input 
-                                                type="checkbox"
-                                                value="Trombone"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Tuba
-                                            <input 
-                                                type="checkbox"
-                                                value="Tuba"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Percussão
-                                            <input 
-                                                type="checkbox"
-                                                value="Percussão"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label className={styles.checkboxContainer}>Regência
-                                            <input 
-                                                type="checkbox"
-                                                value="Regência"
-                                                onChange={handleSelectOficina}
-                                            />
-                                            <span className={styles.checkmark}></span>
-                                        </label>
-                                    </div>
-                                    
+                                    {availableOficinas.map(availableOficina => (
+                                        <div key={availableOficina.oficina}>
+                                            <label className={styles.checkboxContainer}>{availableOficina.oficina}
+                                            <input
+                                                    type="checkbox"
+                                                    value={availableOficina.oficina}
+                                                    onChange={handleSelectOficina}
+                                                />
+                                                <span className={styles.checkmark}></span>
+                                            </label>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4">
@@ -478,7 +403,7 @@ export default function Inscricoes() {
                         <span className="mt-10">{aguarde}</span>
                         <div className="mt-10">
                             <input 
-                                className="bg-strongOrange font-bold px-4 py-2 rounded" type="submit"
+                                className="bg-orange-500 font-bold w-56 px-6 py-4 rounded" type="submit"
                                 value="Me inscrever!" />
                         </div>
                     </form>
@@ -487,9 +412,16 @@ export default function Inscricoes() {
             
 
             <footer className="mb-64 mt-20 text-center">
-                © 2020. Assomusic. Todos os direitos reservados.
+                © 2020. Assomusc. Todos os direitos reservados.
             </footer>
         </div>
     )
 }
 
+Inscricoes.getInitialProps = async (ctx) => {
+    const oficinas = await myGet(ctx, false, '/api/oficinas/quantidade-participantes')
+    const quantideMaxima = DEFAULT_LIMIT_PARTICIPANTES
+    const availableOficinas = oficinas.filter(oficina => oficina.participantes <= quantideMaxima)
+
+    return { availableOficinas }
+}

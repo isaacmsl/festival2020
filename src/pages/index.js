@@ -33,7 +33,9 @@ export default function Home({ diasRestantes }) {
             <span>DIA(S)</span>
           </div>
           <div className="border-solid border-l-2 h-20 opacity-75 rounded mt-4 mb-4"></div>
-          <a className="w-full sm:max-w-md px-6 py-4 bg-blue-600 text-white font-bold rounded mb-4 text-center opacity-25" disabled>LOGIN</a>
+          <Link href="/login">
+            <a className="w-full sm:max-w-md px-6 py-4 bg-blue-600 text-white font-bold rounded mb-4 text-center">LOGIN</a>
+          </Link>
           <ButtonInscricoes diasRestantes={diasRestantes} />
           <span>(Disponível em 04/09/2020 - 13/09/2020)</span>
         </div>

@@ -3,8 +3,8 @@ import dbMiddleware from '../../middlewares/database'
 import { ObjectID } from 'mongodb'
 import { hash, hashSync } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import { authenticated } from './authenticated'
 import cookie from 'cookie'
+import { isAuthenticated } from '../../middlewares/isAuthenticated'
 
 const handler = nextConnect()
 
@@ -12,7 +12,7 @@ const COLLECTION_NAME = 'participantes'
 
 handler.use(dbMiddleware)
 
-handler.get(authenticated(async (req, res) => {
+handler.get(isAuthenticated(async (req, res) => {
     const participantes = await req.db.collection(COLLECTION_NAME).find({}).toArray()
     
     let reqParticipante
@@ -42,13 +42,12 @@ handler.get(authenticated(async (req, res) => {
             alunoResponse.professores.forEach(professor => {
                 delete professor._id
                 delete professor.endereco
-                delete professor.autorizacao
             })
 
             return res.status(200).json(alunoResponse)
         case 2:
             const professorResponse = {
-                professor: reqParticipante,
+                participante: reqParticipante,
                 alunos: []
             }
 
@@ -59,12 +58,26 @@ handler.get(authenticated(async (req, res) => {
                 delete aluno._id
                 delete aluno.oficinas
                 delete aluno.endereco
-                delete aluno.autorizacao
             })
 
             return res.status(200).json(professorResponse)
         case 3:   
-            return res.status(200).json(participantes)                
+            const admResponse = {
+                participante: reqParticipante,
+                professores: [],
+                allParticipantes: participantes
+            }
+
+            admResponse.professores = participantes.filter(part => {
+                return part.autorizacao === 2 && reqParticipante.oficinas.indexOf(part.oficinas[0]) > -1
+            })
+
+            admResponse.professores.forEach(professor => {
+                delete professor._id
+                delete professor.endereco
+            })
+
+            return res.status(200).json(admResponse)             
     }
     
 }))
@@ -126,7 +139,7 @@ handler.post(async (req, res) => {
     })  
 })
 
-handler.put(authenticated(async (req, res) => {
+handler.put(isAuthenticated(async (req, res) => {
 
     const novosDados = req.body
 
@@ -176,7 +189,7 @@ handler.put(authenticated(async (req, res) => {
     return res.status(401).json({ mensagem: "Você não tem autorização" })
 }))
 
-handler.delete(authenticated(async (req, res) => {
+handler.delete(isAuthenticated(async (req, res) => {
     const idToken = req.participante.id
     const idBody = req.body.id
 
