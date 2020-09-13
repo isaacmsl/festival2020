@@ -1,8 +1,25 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import handleAuthentication from '../../libs/handleAuthentication'
+import myGet from '../../libs/myGet'
 
-export default function MenuMobile() {
+const Estatisticas = ({ autorizacao }) => {
+    if (autorizacao && autorizacao > 1) {
+        return (
+            <Link href="/dashboard/estatisticas">
+                <a className="bg-redHeader flex items-center justify-center py-4 px-6 cursor-pointer">
+                    <h2 className="text-white font-bold">Estatísticas</h2>
+                </a>
+            </Link>
+        )
+    }
+
+    return <></>
+
+}
+
+export default function MenuMobile({ autorizacao }) {
     const router = useRouter()
 
     function handleMenuMobile() {
@@ -32,11 +49,7 @@ export default function MenuMobile() {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/estatisticas">
-                        <a className="bg-redHeader flex items-center justify-center py-4 px-6 cursor-pointer">
-                            <h2 className="text-white font-bold">Estatísticas</h2>
-                        </a>
-                    </Link>
+                    <Estatisticas autorizacao={autorizacao} />
                 </li>
                 <li>
                     <a 
@@ -49,4 +62,16 @@ export default function MenuMobile() {
             </ul>
         </div>
     )
+}
+
+MenuMobile.getInitialProps = async (ctx) => {
+    const expectedAuthorization = true
+    await handleAuthentication(ctx, expectedAuthorization, '/login')
+
+    const responseParticipantes = await myGet(ctx, expectedAuthorization, '/api/participantes')
+    const { autorizacao } = responseParticipantes.participante
+
+    return {
+        autorizacao
+    }
 }
