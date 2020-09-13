@@ -42,13 +42,12 @@ handler.get(isAuthenticated(async (req, res) => {
             alunoResponse.professores.forEach(professor => {
                 delete professor._id
                 delete professor.endereco
-                delete professor.autorizacao
             })
 
             return res.status(200).json(alunoResponse)
         case 2:
             const professorResponse = {
-                professor: reqParticipante,
+                participante: reqParticipante,
                 alunos: []
             }
 
@@ -59,12 +58,26 @@ handler.get(isAuthenticated(async (req, res) => {
                 delete aluno._id
                 delete aluno.oficinas
                 delete aluno.endereco
-                delete aluno.autorizacao
             })
 
             return res.status(200).json(professorResponse)
         case 3:   
-            return res.status(200).json(participantes)                
+            const admResponse = {
+                participante: reqParticipante,
+                professores: [],
+                allParticipantes: participantes
+            }
+
+            admResponse.professores = participantes.filter(part => {
+                return part.autorizacao === 2 && reqParticipante.oficinas.indexOf(part.oficinas[0]) > -1
+            })
+
+            admResponse.professores.forEach(professor => {
+                delete professor._id
+                delete professor.endereco
+            })
+
+            return res.status(200).json(admResponse)             
     }
     
 }))
