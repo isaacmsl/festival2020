@@ -1,15 +1,13 @@
 import Head from 'next/head'
 
-import styles from '../../../../styles/Dashboard.module.css'
 import styles1 from '../../../../styles/Imagens.module.css'
 import MenuDashboard from '../../../components/MenuDashboard'
 import handleAuthentication from '../../../libs/handleAuthentication'
 import myGet from '../../../libs/myGet'
 
 import Link from 'next/link'
-import { useEffect, useState, useLayoutEffect } from 'react'
 import { useRouter } from 'next/router'
-import axios from 'axios'
+import redirect from '../../../libs/redirect'
 
 
 const DataAula = (dataAula) => {
@@ -26,21 +24,6 @@ const DataAula = (dataAula) => {
     
     return <p>{dias[newDate.getDay()]} ({newDate.getDate()}/{newDate.getMonth()}) das {newDate.getHours()}:{newDate.getMinutes()} às {newDate.getHours()+1}:{newDate.getMinutes()+30}</p>
 } 
-
-const RedesSociais = (redesSociais) => {
-    let instagram
-    let facebook
-    
-    if(redesSociais.instagram) {
-        instagram = <Instagram />
-    }
-
-    if(redesSociais.facebook) {
-        facebook = <Facebook />
-    }
-
-    return (instagram)
-}
 
 const Instagram = ({redeSocial}) => {
     if(redeSocial) {
@@ -66,13 +49,44 @@ const Facebook = ({redeSocial}) => {
     return <></>
 }
 
-export default function DetalhesOficina({ oficinas }) {
+const AvisoProfessor = ({ autorizacao }) => {
+    if (autorizacao === 2) {
+        return (
+            <Link href="/dashboard/estatisticas">
+                <div className="font-normal bg-orange-200 p-4 border border-solid mb-8 cursor-pointer max-w-2xl border-gray-200 rounded">
+                    <p>
+                        <b>Atenção, professor(a):</b> em breve será possível visualizar a relação com os seus alunos.
+                        Apesar disso, você ainda pode ver as estatísticas relacionadas ao Festival <b>clicando aqui.</b>
+                    </p>
+                </div>
+            </Link>
+        )
+    }
+
+    return <></>
+}
+
+const ButtonAula = ({ autorizacao, link }) => {
+    if (autorizacao !== 2) {
+        return (
+            <Link href={link}>
+                <a target="_blank" className="px-6 py-4 bg-blue-600 text-white font-bold rounded text-center">Assistir</a>
+            </Link>
+        )
+    }
+
+    return (
+        <Link href={link}>
+            <a target="_blank" className="px-6 py-4 bg-blue-600 text-white font-bold rounded text-center">Dar aula</a>
+        </Link>
+    )
+}
+
+export default function DetalhesOficina({ autorizacaoParticipante, oficinas }) {
     
-    
-    const router = useRouter()
-    
+    const router = useRouter()    
     const oficina = oficinas.find(oficinaAtual => oficinaAtual.nome === router.query.oficina)
-    
+
 
     return (
         <div className="flex flex-col sm:flex-row">
@@ -81,10 +95,10 @@ export default function DetalhesOficina({ oficinas }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <MenuDashboard />
+            <MenuDashboard autorizacao={autorizacaoParticipante} />
 
             <div
-                className={styles.scrollable + " bg-bgMain w-full sm:overflow-y-scroll h-full sm:h-screen p-4 overflow-auto sm:p-8"}
+                className={"bg-bgMain w-full sm:overflow-y-scroll h-full sm:h-screen p-4 overflow-auto sm:p-8"}
             >
                 <header className="mb-10 flex flex-col font-bold gap-6 items-start">
                     <header className="flex items-center font-bold">
@@ -94,20 +108,19 @@ export default function DetalhesOficina({ oficinas }) {
                     <Link href={oficina.linkMateriais}>
                         <a target="_blank" className="px-6 py-4 bg-blue-600 text-white font-bold rounded mb-4 text-center">Materiais das aulas</a>
                     </Link>
+                    <AvisoProfessor autorizacao={autorizacaoParticipante} />
                 </header>
 
                 <main className="flex flex-col flex-wrap gap-4">
                     <ul className="flex flex-col gap-4">
                         {oficina.aulas.map((aula, index) => (
-                            <li className="flex flex-wrap flex-col gap-4 md:flex-row md:gap-0 md:items-center bg-white p-6 justify-between rounded border border-solid border-gray-200 max-w-2xl">
+                            <li className="flex flex-wrap flex-col gap-4 md:flex-row md:gap-0 md:items-center bg-white p-6 justify-between rounded border border-solid border-gray-200 max-w-2xl" key={index}>
                                 <div className="flex flex-col gap-4">
                                     <h2 className="font-bold text-xl">Aula {index+1}</h2>
                                     <DataAula dataAula={aula.data} /> 
                                 </div>
                                 
-                                <Link href={aula.link}>
-                                    <a target="_blank" className="px-6 py-4 bg-blue-600 text-white font-bold rounded text-center">Assistir</a>
-                                </Link>
+                                <ButtonAula autorizacao={autorizacaoParticipante} link={aula.link}/>
                             </li>
                         ))}   
                     </ul>
@@ -119,7 +132,7 @@ export default function DetalhesOficina({ oficinas }) {
                         <div className="w-full gap-6 md:gap-0 flex flex-col justify-between">
                             <div className="flex flex-col gap-4">
                                 <h2 className="font-bold text-xl">
-                                    Seu professor
+                                    Professor(a)
                                 </h2>
                                 <p>
                                     {oficina.professor.nome}
@@ -139,10 +152,34 @@ export default function DetalhesOficina({ oficinas }) {
 }
 
 DetalhesOficina.getInitialProps = async (ctx) => {
-    const expectedAuthorization = true
-    await handleAuthentication(ctx, expectedAuthorization, '/login')
+    try {
+        const expectedAuthorization = true
+        await handleAuthentication(ctx, expectedAuthorization, '/login')
 
-    let oficinas = await myGet(ctx, '/api/oficinas')
+        const oficinas = await myGet(ctx, expectedAuthorization, '/api/oficinas')
 
-    return { oficinas }
+        const responseParticipantes = await myGet(ctx, expectedAuthorization, '/api/participantes')
+
+        const { participante } = responseParticipantes
+        const participanteOficinas = participante.oficinas
+        const autorizacaoParticipante = participante.autorizacao
+
+
+        const queryOficina = ctx.query.oficina
+
+        if (!participanteOficinas.includes(queryOficina)) {
+            redirect(ctx, '/dashboard')
+        }
+
+        return {
+            autorizacaoParticipante,
+            oficinas
+        }
+    } catch {
+        return {
+            expectedAuthorization: undefined,
+            oficinas: undefined
+        }
+    }
+    
 }

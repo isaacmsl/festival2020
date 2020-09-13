@@ -1,6 +1,6 @@
 import nextConnect from 'next-connect'
-import dbMiddleware from '../../middlewares/database'
-import { isAuthenticated } from '../../middlewares/isAuthenticated'
+import dbMiddleware from '../../../middlewares/database'
+import { isAuthenticated } from '../../../middlewares/isAuthenticated'
 import crypto from 'crypto'
 
 const handler = nextConnect()

@@ -20,22 +20,22 @@ export default function Horarios({ diasRestantes }) {
 
             <HeaderDivulgacao />
 
-            <main className="grid gap-10 grid-cols-1">
-                <div className="bg-white w-screen sm:max-w-md flex flex-col items-center rounded mb-10 p-8">
-                    <h2 className="font-bold text-xl">SEGUNDA-FEIRA</h2>
+            <main className="text-center flex flex-col items-center">
+                <div className="bg-white w-screen sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                    <h2 className="font-bold text-xl">SEGUNDA-FEIRA (14/9)</h2>
                     <ul>
                         <li className="mt-8">
                             <div>
                                 <h3 className="font-bold">09:00 às 10:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        FLAUTA
+                                        Oficina de Clarinete
                                     </li>
                                     <li>
-                                        SAX
+                                        Oficina de Trompete
                                     </li>
                                     <li>
-                                        TUBA
+                                        Oficina de Trombone
                                     </li>
                                 </ul>
                             </div>
@@ -45,34 +45,45 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">15:00 às 16:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        CLARINETE
+                                        Oficina de Saxofone
                                     </li>
                                     <li>
-                                        TROMBONE
+                                        Oficina de Tuba
                                     </li>
                                     <li>
-                                        TROMPETE
+                                        Oficina de Flauta
                                     </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li className="mt-8">
+                            <div>
+                                <h3 className="font-bold">19:00</h3>
+                                <ul className="text-center mt-4">
+                                    <li>
+                                        Mesa-redonda: 
+                                    </li>
+                                    <li>"Educação musical, uma realidade virtual ?"</li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div className="bg-white sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
-                    <h2 className="font-bold text-xl">TERCA-FEIRA</h2>
+                <div className="bg-white w-screen sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                    <h2 className="font-bold text-xl">TERCA-FEIRA (15/9)</h2>
                     <ul>
                         <li className="mt-8">
                             <div>
                                 <h3 className="font-bold">09:00 às 10:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        CLARINETE
+                                        Oficina de Clarinete
                                     </li>
                                     <li>
-                                        TROMBONE
+                                        Oficinad de Trombone
                                     </li>
                                     <li>
-                                        TROMPETE
+                                        Oficina de Trompete
                                     </li>
                                 </ul>
                             </div>
@@ -82,37 +93,48 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">15:00 às 16:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        FLAUTA
+                                        Oficina de Saxofone
                                     </li>
                                     <li>
-                                        SAX
+                                        Oficina de Tuba
                                     </li>
                                     <li>
-                                        TUBA
+                                        Oficina de Flauta
                                     </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li className="mt-8">
+                            <div>
+                                <h3 className="font-bold">19:00</h3>
+                                <ul className="text-center mt-4">
+                                    <li>
+                                        Mesa-redonda: 
+                                    </li>
+                                    <li>"O protagonismo das mulheres nas bandas de música"</li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div className="bg-white sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
-                    <h2 className="font-bold text-xl">QUARTA-FEIRA</h2>
+                <div className="bg-white w-screen sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                    <h2 className="font-bold text-xl">QUARTA-FEIRA (16/9)</h2>
                     <ul>
                         <li className="mt-8">
                             <div>
                                 <h3 className="font-bold">09:00 às 10:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        CLARINETE
+                                        Oficina de Clarinete
                                     </li>
                                     <li>
-                                        PERCUSSÃO
+                                        Oficina de Percussão
                                     </li>
                                     <li>
-                                        TROMBONE
+                                        Oficina de Trombone
                                     </li>
                                     <li>
-                                        TROMPETE
+                                        Oficina de Trompete
                                     </li>
                                 </ul>
                             </div>
@@ -122,16 +144,16 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">15:00 às 16:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        FLAUTA
+                                        Oficina de Flauta
                                     </li>
                                     <li>
-                                        SAX
+                                        Oficina de Saxofone
                                     </li>
                                     <li>
-                                        TUBA
+                                        Oficina de Tuba
                                     </li>
                                     <li>
-                                        TROMPA
+                                        Oficina de Trompa
                                     </li>
                                 </ul>
                             </div>
@@ -141,14 +163,25 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">20:00 às 21:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        REGÊNCIA
+                                        Oficina de Regência
                                     </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li className="mt-8">
+                            <div>
+                                <h3 className="font-bold">19:00</h3>
+                                <ul className="text-center mt-4">
+                                    <li>
+                                        Mesa-redonda: 
+                                    </li>
+                                    <li>"As bandas de música no contexto social e na formação cidadã"</li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div className="bg-white sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                <div className="bg-white w-screen sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
                     <h2 className="font-bold text-xl">QUINTA-FEIRA</h2>
                     <ul>
                         <li className="mt-8">
@@ -156,7 +189,7 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">09:00 às 10:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        PERCUSSÃO
+                                        Oficina de Percussão
                                     </li>
                                 </ul>
                             </div>
@@ -166,7 +199,7 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">15:00 às 16:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        TROMPA
+                                        Oficina de Trompa
                                     </li>
                                 </ul>
                             </div>
@@ -176,14 +209,14 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">20:00 às 21:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        REGÊNCIA
+                                        Oficina de Regência
                                     </li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div className="bg-white sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
+                <div className="bg-white w-screen sm:max-w-lg flex flex-col items-center rounded mb-10 p-8">
                     <h2 className="font-bold text-xl">SEXTA-FEIRA</h2>
                     <ul>
                         <li className="mt-8">
@@ -191,7 +224,7 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">09:00 às 10:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        PERCUSSÃO
+                                        Oficina de Percussão
                                     </li>
                                 </ul>
                             </div>
@@ -201,7 +234,7 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">15:00 às 16:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        TROMPA
+                                        Oficina de Trompa
                                     </li>
                                 </ul>
                             </div>
@@ -211,7 +244,7 @@ export default function Horarios({ diasRestantes }) {
                                 <h3 className="font-bold">20:00 às 21:30</h3>
                                 <ul className="text-center mt-4">
                                     <li>
-                                        REGÊNCIA
+                                        Oficina de Regência
                                     </li>
                                 </ul>
                             </div>

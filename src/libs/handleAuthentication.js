@@ -11,7 +11,7 @@ export default function handleAuthentication(ctx, expectedAuthentication, redire
             if (expectedAuthentication && !authorization || !expectedAuthentication && authorization) {
                 ctx.res.writeHead(303, { Location: redirect })
                 ctx.res.end()
-                reject()
+                reject(new Error('Participante não está autenticado'))
             }
 
             resolve()
@@ -27,7 +27,8 @@ export default function handleAuthentication(ctx, expectedAuthentication, redire
                 }
 
                 resolve()
-            } catch (error) { reject() }
+            } 
+            catch (error) { reject() }
         })
     }
 }

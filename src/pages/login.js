@@ -3,24 +3,27 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import handleAuthentication from '../libs/handleAuthentication'
+import Link from 'next/link'
+
 
 const ImagensInstrumento = () => (
-    <>
-        <img 
-            src="/assets/sax.png"
-            alt="Saxofone"
-            className="absolute top-0 left-0 w-64 hidden sm:w-1/4" 
-        />
-        <img
-            src="/assets/trompete.png"
-            alt="Trompete"
-			className="absolute bottom-0 right-0 w-56 hidden sm:w-1/4"
-        />
-    </>
+	<>
+		<img
+			src="/assets/sax.png"
+			alt="Saxofone"
+			className="absolute top-0 left-0 w-64 sm:w-1/4"
+		/>
+		<img
+			src="/assets/trompete.png"
+			alt="Trompete"
+			className="absolute bottom-0 right-0 w-56 sm:w-1/4"
+		/>
+	</>
 )
 
 export default function Login() {
 	const router = useRouter()
+	const [aguarde, setAguarde] = useState('')
 
 	const [formData, setFormData] = useState({
 		email: '',
@@ -35,6 +38,8 @@ export default function Login() {
 	
 	async function handleSubmit(e) {
 		e.preventDefault()
+
+		setAguarde('Por favor, aguarde. Estamos realizando o seu login.')
 		
 		const participanteLogin = {
 			email: formData.email,
@@ -51,19 +56,22 @@ export default function Login() {
 			}
 		} catch (e) {
 			alert('Desculpe. Não foi possível fazer o login. Por favor verifique seus dados')
+		} finally {
+			setAguarde('')
 		}
 		
 	}
   return (
 	<div 
-		className="bg-bgMain p-4 min-h-screen min-w-full flex flex-col items-center justify-center"
+		className="relative bg-bgMain min-h-screen min-w-full flex flex-col items-center justify-center"
 	>
       <Head>
         <title>Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-		<ImagensInstrumento/>
-			<header className="mb-10 text-4xl text-black">
+			<ImagensInstrumento/>
+
+		  	<header className="mt-56 px-10 sm:px-0 sm:mt-0 mb-10 text-4xl text-black">
 				<span className="text-sm">11º FESTIVAL MAESTRO</span>
 				<h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
 			</header>
@@ -97,19 +105,25 @@ export default function Login() {
 
 				<div className="mt-4 flex items-center justify-between">
 					<input 
-						className="bg-orange-500 px-4 py-2 rounded font-bold" 
+					  className="bg-orange-500 px-6 py-4 rounded font-bold" 
 						value="Entrar" 
 						type="submit"
 					/>
-				  	<a className="text-orange-700" href="#">Esqueceu?</a>
+				  	{/* <a className="text-orange-700" href="#">Esqueceu?</a> */}
 				</div>
 
 			</form>
-		
-			<button className="bg-orange-500 w-full sm:max-w-sm font-bold px-4 py-2 mt-10 rounded">Quero me inscrever</button>
+
+		  	<span className="mt-10">{aguarde}</span>
+
+			<Link href="/inscricoes">
+				<a className="bg-orange-500 w-56 font-bold px-6 py-4 mt-10 rounded text-center">
+					Quero me inscrever
+				</a>
+		  	</Link>
 	
-			<footer className="text-orange-700 text-center mt-8">
-				© 2020 Associação Musical de Santa Cruz. Todos os direitos reservados.
+		  <footer className="text-center mt-8 mb-64">
+			  © 2020. Assomusc. Todos os direitos reservados.
 			</footer>
     </div>
   )
@@ -124,5 +138,4 @@ Login.getInitialProps = async (ctx) => {
 			imFunny: true
 		}
 	}
-	
 }
