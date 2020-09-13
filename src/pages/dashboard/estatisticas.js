@@ -4,14 +4,16 @@ import handleAuthentication from '../../libs/handleAuthentication'
 import redirect from '../../libs/redirect'
 import myGet from '../../libs/myGet'
 
-export default function Estatisticas() {
+export default function Estatisticas({ autorizacaoParticipante }) {
+
+    console.log(autorizacaoParticipante)
     return (
         <div className="flex flex-col sm:flex-row">
             <Head>
                 <title>Festival - 2020</title>
             </Head>
 
-            <MenuDashboard />
+            <MenuDashboard autorizacao={autorizacaoParticipante} />
             
             <div
                 className={"bg-bgMain w-full sm:overflow-y-scroll h-full sm:h-screen p-8"}
@@ -77,9 +79,12 @@ Estatisticas.getInitialProps = async (ctx) => {
             redirect(ctx, '/dashboard')
         }
 
-    } finally {
         return {
-            nextIsPower: true
+            autorizacaoParticipante
+        }
+    } catch(error) {
+        return {
+            autorizacaoParticipante: undefined
         }
     }
     
