@@ -85,9 +85,8 @@ Dashboard.getInitialProps = async (ctx) => {
     try {
         const expectedAuthorization = true
         await handleAuthentication(ctx, expectedAuthorization, '/login')
-        
         const { participante, professores } = await myGet(ctx, expectedAuthorization, '/api/participantes')
-        
+
         return { participante, professores }
     } catch (error) {
         return { participante: undefined, professores: undefined }

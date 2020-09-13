@@ -1,8 +1,10 @@
 import Router from 'next/router'
 import axios from 'axios'
 
+const isServer = () => typeof window === 'undefined'
+
 export default function handleAuthentication(ctx, expectedAuthentication, redirect) {
-    if (ctx.req) {
+    if (isServer()) {
         return new Promise((resolve, reject) => {
             const authorization = ctx.req.headers.cookie
 
@@ -14,8 +16,6 @@ export default function handleAuthentication(ctx, expectedAuthentication, redire
 
             resolve()
         })
-        
-
     } else {
         return new Promise(async (resolve, reject) => {
             try {

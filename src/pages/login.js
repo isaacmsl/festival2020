@@ -25,10 +25,6 @@ export default function Login() {
 	const router = useRouter()
 	const [aguarde, setAguarde] = useState('')
 
-	useEffect(() => {
-		router.prefetch('/dashboard')
-	}, [])
-
 	const [formData, setFormData] = useState({
 		email: '',
 		senha: ''
@@ -139,7 +135,7 @@ Login.getInitialProps = async (ctx) => {
 		await handleAuthentication(ctx, expectedAuthorization, '/dashboard')
 	} finally {
 		return {
-			nextIsPower: true
+			imFunny: true
 		}
 	}
 }
