@@ -20,7 +20,7 @@ const ProgressBar = ({ qntAulasAssistidas }) => {
 
 }
 
-const OficinaCard = ({ oficina }) => {
+const OficinaCard = ({ autorizacao, oficina }) => {
     
     const {
         nome,
@@ -28,19 +28,36 @@ const OficinaCard = ({ oficina }) => {
         qntAulasAssistidas
     } = oficina
 
+    if (autorizacao !== 2) {
+        return (
+            <>
+                <div className="bg-white border border-solid inline-block w-screen max-w-xs p-4 cursor-pointer">
+                    <div>
+                        <h1 className="font-bold text-xl">{nome}</h1>
+                        <p className="mt-2">{professor}</p>
+                    </div>
+                    {/* <p className="mt-4 italic text-sm">Próxima aula: Amanhã</p> */}
+                    <div className="mt-4">
+                        <h2 className="text-sm">Progresso: {qntAulasAssistidas} de 3</h2>
+                        <ProgressBar qntAulasAssistidas={qntAulasAssistidas} />
+                    </div>
+                </div>
+            </>
+        )
+    }
+
     return (
-        <div className="bg-white border border-solid inline-block w-full min-w-xs max-w-xs p-4 cursor-pointer">
-            <div>
-                <h1 className="font-bold text-xl">{nome}</h1>
-                <p className="mt-2">{professor}</p>
+        <>
+            <div className="bg-white border border-solid inline-block w-screen max-w-xs p-4 cursor-pointer">
+                <div>
+                    <h1 className="font-bold text-xl">{nome}</h1>
+                    <p className="mt-2">{professor}</p>
+                </div>
+                {/* <p className="mt-4 italic text-sm">Próxima aula: Amanhã</p> */}
             </div>
-            <p className="mt-4 italic text-sm">Próxima aula: Amanhã</p>
-            <div className="mt-4">
-                <h2 className="text-sm">Progresso: {qntAulasAssistidas} de 3</h2>
-                <ProgressBar qntAulasAssistidas={qntAulasAssistidas} />
-            </div>
-        </div>
+        </>
     )
+    
 }
     
 
