@@ -22,7 +22,7 @@ export default function Dashboard({participante, professores}) {
                 presencaOficinas &&
                 presencaOficinas[oficinaProfessor]
             ) {
-                qntAulasAssistidas = presencaOficinas[oficinaProfessor]
+                qntAulasAssistidas = presencaOficinas[oficinaProfessor].length
             }
 
             partOficinas.push({
