@@ -1,3 +1,7 @@
+import myGet from '../libs/myGet'
+
+const DEFAULT_LIMIT_PARTICIPANTES = 95
+
 const nomeCompleto = function checkNomeCompleto(nomeCompleto) {
     const qntEspacosEntreNomes = nomeCompleto.split(' ').length
     
@@ -54,18 +58,14 @@ const contatoTelefonico = function checkContatoTelefonico(contatoTelefonico) {
     }
 }
 
-const oficinas = function checkOficinas(oficinas) {
-    const validValues = [
-        'Clarinete',
-        'Flauta',
-        'Saxofone',
-        'Trompa',
-        'Trompete',
-        'Trombone',
-        'Tuba',
-        'Percussão',
-        'Regência'
-    ]
+const oficinas = async function checkOficinas(oficinas) {
+
+    const responseOficinas = await myGet(undefined, false, '/api/oficinas/quantidade-participantes')
+
+    const quantideMaxima = DEFAULT_LIMIT_PARTICIPANTES
+    const availableOficinas = responseOficinas.filter(responseOficina => responseOficina.participantes <= quantideMaxima)
+
+    const validValues = availableOficinas.map(availableOficina => availableOficina.oficina)
 
     if (oficinas.length < 1 ) {
         return {
@@ -145,12 +145,12 @@ const checkers = {
 }
 
 module.exports = {
-    isValidParticipante: (participante) => {
+    isValidParticipante: async (participante) => {
         for (const key in participante) {
             const keyChecker = checkers[key]
 
             if (keyChecker) {
-                const isInvalid = keyChecker(participante[key])
+                const isInvalid = await keyChecker(participante[key])
                 if (isInvalid) {
                     alert(isInvalid.alertMessage)
                     return false
