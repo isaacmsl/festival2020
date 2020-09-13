@@ -11,7 +11,7 @@ const COLLECTION_OFICINAS = 'oficinas'
 
 handler.use(dbMiddleware)
 
-handler.put(isAuthenticated(async (req, res) => {
+handler.get(isAuthenticated(async (req, res) => {
     const { codigoPresenca } = req.query
 
     const oficina = await req.db.collection(COLLECTION_OFICINAS).findOne({ "aulas": { "$elemMatch": {codigoPresenca}} })
