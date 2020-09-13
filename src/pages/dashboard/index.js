@@ -1,9 +1,6 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import Link from 'next/link'
 
-import styles from '../../../styles/Dashboard.module.css'
 import MenuDashboard from '../../components/MenuDashboard'
 import OficinaCard from '../../components/OficinaCard'
 import handleAuthentication from '../../libs/handleAuthentication'
@@ -13,25 +10,33 @@ export default function Dashboard({participante, professores}) {
     let oficinas
 
     const partOficinas = []
-    professores.forEach(professor => {
-        let qntAulasAssistidas = 0
+    
+    if (participante.autorizacao !== 2) {
+        professores.forEach(professor => {
+            let qntAulasAssistidas = 0
 
-        const oficinaProfessor = professor.oficinas[0]
-        const { presencaOficinas } = participante
+            const oficinaProfessor = professor.oficinas[0]
+            const { presencaOficinas } = participante
 
-        if (
-            presencaOficinas &&
-            presencaOficinas[oficinaProfessor]
-        ) {
-            qntAulasAssistidas = presencaOficinas[oficinaProfessor]
-        }
+            if (
+                presencaOficinas &&
+                presencaOficinas[oficinaProfessor]
+            ) {
+                qntAulasAssistidas = presencaOficinas[oficinaProfessor]
+            }
 
-        partOficinas.push({
-            nome: professor.oficinas[0],
-            professor: professor.nomeCompleto,
-            qntAulasAssistidas
+            partOficinas.push({
+                nome: professor.oficinas[0],
+                professor: professor.nomeCompleto,
+                qntAulasAssistidas
+            })
         })
-    })
+    } else {
+        partOficinas.push({
+            nome: participante.oficinas[0],
+            professor: participante.nomeCompleto
+        })
+    }
 
     oficinas = partOficinas
          
@@ -51,10 +56,10 @@ export default function Dashboard({participante, professores}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <MenuDashboard />
+            <MenuDashboard autorizacao={participante.autorizacao} />
 
             <div
-                className={styles.scrollable + " bg-bgMain w-full sm:overflow-y-scroll h-full min-h-screen sm:h-screen p-8"}
+                className={"bg-bgMain w-full sm:overflow-y-scroll h-full min-h-screen sm:h-screen p-8"}
             >
                 <header className="mb-10 flex font-bold">
                     <img src="assets/dark-trello.svg" />
@@ -62,10 +67,10 @@ export default function Dashboard({participante, professores}) {
                 </header>
 
                 <main className="flex flex-wrap gap-4">
-                    {oficinas.map(oficina => (
-                        <Link as={`/dashboard/oficinas/${oficina.nome}`} href="/dashboard/oficinas/[oficina]">
+                    {oficinas.map((oficina, index) => (
+                        <Link as={`/dashboard/oficinas/${oficina.nome}`} href="/dashboard/oficinas/[oficina]" key={index}>
                             <a>
-                                <OficinaCard oficina={oficina} key={oficina.nome} />
+                                <OficinaCard autorizacao={participante.autorizacao} oficina={oficina}  />
                             </a>
                         </Link>
                     ))}
@@ -80,7 +85,7 @@ Dashboard.getInitialProps = async (ctx) => {
     const expectedAuthorization = true
     await handleAuthentication(ctx, expectedAuthorization, '/login')
 
-    const { participante, professores } = await myGet(ctx, '/api/participantes')
+    const { participante, professores } = await myGet(ctx, expectedAuthorization,'/api/participantes')
 
     return { participante, professores }
 }
