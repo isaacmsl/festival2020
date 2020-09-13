@@ -157,8 +157,7 @@ export default function Inscricoes({ availableOficinas }) {
             
             try {
                 await axios.post('/api/participantes', participante)
-                alert('Você está inscrito no festival! Em breve nosso site permitirá que você realize o login e visualize suas aulas!')
-                router.push('/')
+                router.push('/dashboard')
             } catch (e) {
                 alert('Desculpe. Parece que esse email já foi cadastrado')
             }
