@@ -45,6 +45,8 @@ export default function Esqueci() {
             codigoRecuperacao: formData.codigoRecuperacao
         }
         
+
+        setAguarde('Por favor, aguarde. Estamos verificando seu email...')
         try {
             const response = await axios.post('/api/esqueci', participanteRecuperacao)
 
@@ -62,7 +64,7 @@ export default function Esqueci() {
                 alert('Desculpe. Não foi possível fazer o enviar o código de recuperação. Por favor verifique seus dados')
             }
         } catch (e) {
-            alert('Desculpe. Não foi possível fazer o login. Por favor verifique seus dados')
+            alert('Desculpe. Não foi possível fazer o enviar o código de recuperação. Por favor verifique seus dados')
         } finally {
             setAguarde('')
         }
@@ -70,7 +72,7 @@ export default function Esqueci() {
     }
     return (
         <div
-            className="relative bg-bgMain min-h-screen min-w-full flex flex-col items-center justify-center"
+            className="relative bg-bgMain min-h-screen min-w-full flex flex-col items-center justify-center overflow-auto"
         >
             <Head>
                 <title>Festival - Esqueci a senha</title>
@@ -78,13 +80,15 @@ export default function Esqueci() {
             </Head>
             <ImagensInstrumento />
 
-            <header className="mt-56 px-10 sm:px-0 sm:mt-0 mb-10 text-4xl text-black">
-                <span className="text-sm">11º FESTIVAL MAESTRO</span>
-                <h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
-            </header>
-
-            <form className="bg-white w-screen sm:max-w-sm p-4 rounded" onSubmit={handleSubmit}>
-                <div className="flex flex-col">
+            <Link href="/login">
+                <header className="mt-56 px-10 sm:px-0 sm:mt-0 mb-10 text-4xl text-black">
+                    <span className="text-sm">11º FESTIVAL MAESTRO</span>
+                    <h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
+                </header>
+            </Link>
+            
+            <form className="flex flex-col items-center bg-white w-screen sm:max-w-sm p-6 sm:p-4 rounded" onSubmit={handleSubmit}>
+                <div className="flex flex-col w-full">
                     <label className="mb-4" htmlFor="emailInput">E-mail</label>
                     <input
                         id="emailInput"
@@ -97,7 +101,7 @@ export default function Esqueci() {
                     />
                 </div>
 
-                <div className={displayCodigoRecuperacao + " flex flex-col mt-4"}>
+                <div className={displayCodigoRecuperacao + " flex flex-col mt-4 w-full"}>
                     <label className="mb-4" htmlFor="codigoRecuperacaoInput">Código de recuperação</label>
                     <input
                         id="codigoRecuperacaoInput"

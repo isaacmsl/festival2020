@@ -56,7 +56,7 @@ export default function Esqueci({ idParticipante }) {
     }
     return (
         <div
-            className="relative bg-bgMain min-h-screen min-w-full flex flex-col items-center justify-center"
+            className="relative bg-bgMain min-h-screen min-w-full flex flex-col items-center justify-center overflow-auto"
         >
             <Head>
                 <title>Festival - Nova senha</title>
@@ -69,12 +69,12 @@ export default function Esqueci({ idParticipante }) {
                 <h1 className="font-extrabold">FELINTO LÚCIO DANTAS</h1>
             </header>
 
-            <form className="bg-white w-screen sm:max-w-sm p-4 rounded" onSubmit={handleSubmit}>
-                <div className="flex flex-col">
+            <form className="flex flex-col items-center bg-white w-screen sm:max-w-sm p-4 rounded" onSubmit={handleSubmit}>
+                <div className="flex flex-col w-full">
                     <label className="mb-4" htmlFor="novaSenhaInput">Nova senha</label>
                     <input
                         id="novaSenhaInput"
-                        className="border-solid border-2 px-4 py-2 rounded"
+                        className="border-solid border-2 px-4 py-2 rounded w-full"
                         type="password"
                         name="novaSenha"
                         placeholder="************"
