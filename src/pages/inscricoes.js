@@ -9,7 +9,7 @@ import styles from '../../styles/Inscricoes.module.css'
 import { useState, useEffect } from 'react'
 import myGet from '../libs/myGet'
 
-const DEFAULT_LIMIT_PARTICIPANTES = 95
+const DEFAULT_LIMIT_PARTICIPANTES = 300
 
 const tailStyles = {
     Labels: 'mb-2 font-bold',

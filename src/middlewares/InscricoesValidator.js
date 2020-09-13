@@ -1,6 +1,6 @@
 import myGet from '../libs/myGet'
 
-const DEFAULT_LIMIT_PARTICIPANTES = 95
+const DEFAULT_LIMIT_PARTICIPANTES = 300
 
 const nomeCompleto = function checkNomeCompleto(nomeCompleto) {
     const qntEspacosEntreNomes = nomeCompleto.split(' ').length
