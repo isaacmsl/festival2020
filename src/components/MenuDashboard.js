@@ -43,11 +43,28 @@ const GerarCodigo = ({ autorizacao }) => {
 const Chamadas = ({ autorizacao }) => {
     if(autorizacao !== 2) {
         return (
-            <Link href="/chamadas">
+            <Link href="/dashboard/chamadas">
                 <a className="flex items-center justify-center py-4 px-6 hidden sm:inline-flex w-56">
                     <div className="flex flex-row items-center w-40">
-                        <img src="/assets/trello.svg" className="" />
+                        <img src="/assets/check-circle.svg" className="" />
                         <h2 className="ml-4 text-white font-bold">Chamadas</h2>
+                    </div>
+                </a>
+            </Link>
+        )
+    }
+
+    return <></>
+}
+
+const Presencas = ({ autorizacao }) => {
+    if (autorizacao === 3) {
+        return (
+            <Link href="/dashboard/presencas">
+                <a className="flex items-center justify-center py-4 px-6 hidden sm:inline-flex w-56">
+                    <div className="flex flex-row items-center w-40">
+                        <img src="/assets/check-circle.svg" className="" />
+                        <h2 className="ml-4 text-white font-bold">Presenças</h2>
                     </div>
                 </a>
             </Link>
@@ -86,6 +103,7 @@ const MenuDashboard = ({ autorizacao }) => {
                 </a>
             </Link> */}
                 <Chamadas autorizacao={autorizacao} />
+                <Presencas autorizacao={autorizacao} />
                 <Estatisticas autorizacao={autorizacao} />
                 <GerarCodigo autorizacao={autorizacao} />
 
