@@ -111,6 +111,12 @@ export default function DetalhesOficina({ autorizacaoParticipante, oficinas }) {
                     <AvisoProfessor autorizacao={autorizacaoParticipante} />
                 </header>
 
+                <div className="font-normal bg-orange-200 p-4 border border-solid mb-8 max-w-2xl border-gray-200 rounded">
+                    <p>
+                        <b>Atenção, participante:</b> caso você esteja acessando nossa plataforma por meio de um <b>dispositivo celular</b>, antes de acessar os links das aulas você deverá baixar o aplicativo do <b>GOOGLE MEET</b>.
+                        </p>
+                </div>
+
                 <main className="flex flex-col flex-wrap gap-4">
                     <ul className="flex flex-col gap-4">
                         {oficina.aulas.map((aula, index) => (

@@ -66,7 +66,7 @@ export default function Dashboard({participante, professores}) {
                     <h1 className="ml-4">Minhas oficinas</h1>
                 </header>
 
-                <div className="font-normal bg-orange-200 p-4 border border-solid mb-8 cursor-pointer max-w-2xl border-gray-200 rounded">
+                <div className="font-normal bg-orange-200 p-4 border border-solid mb-8 max-w-2xl border-gray-200 rounded">
                     <p>
                         <b>Atenção, participantes:</b> tivemos uma pequena instabilidade no acesso às aulas, mas já foi corrigido. (Manhã da Segunda, 14/09/20 - 10:30 - Horário de Brasília)
                         </p>
