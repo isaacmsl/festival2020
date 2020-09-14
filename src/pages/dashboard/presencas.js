@@ -112,7 +112,7 @@ export default function Presencas({ autorizacaoParticipante, allParticipantes })
 
                     <div className={"flex flex-wrap flex-col gap-4 md:flex-row md:gap-0 md:items-center bg-white p-6 justify-between rounded border border-solid border-gray-200 max-w-2xl "} >
                         <div className="flex flex-col gap-4">
-                            <h2 className="font-bold text-xl">Aula {Number(dia) + 1} - {oficina}</h2>
+                            <h2 className="font-bold text-xl">Aula {Number(dia)} - {oficina}</h2>
                             <p id="codigoPresenca">Presenças: {qntPresencas}</p>
                         </div>
                         <a onClick={updateQntPresencas} className={"cursor-pointer"}>
