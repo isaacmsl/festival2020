@@ -31,6 +31,8 @@ export default function GerarCodigo ({autorizacaoParticipante, responseCodigos})
         window.getSelection().addRange(range);
         document.execCommand('copy');
         window.getSelection().removeAllRanges();
+
+        alert('Código copiado')
     }
 
     async function handleChangeDia(e) {        
