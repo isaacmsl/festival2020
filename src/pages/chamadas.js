@@ -21,14 +21,11 @@ const ImagensInstrumento = () => (
     </>
 )
 
-export default function Chamada({ codigoPresenca }) {
+export default function Chamada() {
     const router = useRouter()
     const [aguarde, setAguarde] = useState('')
 
-    const [formData, setFormData] = useState({
-        email: '',
-        codigoRecuperacao: ''
-    })
+    const [codigoPresenca, setCodigoPresenca] = useState('')
 
 async function handleSubmit(e) {
     e.preventDefault()
@@ -39,6 +36,7 @@ async function handleSubmit(e) {
 
         if (response.status === 200) {
             alert('A sua presença foi contabilizada')
+            router.replace('/dashboard')
         } else {
             alert('Desculpe. Não foi possível contabilizar a sua presença')
         }
@@ -74,7 +72,20 @@ async function handleSubmit(e) {
                     </p>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between">
+                <div className="flex flex-col w-full">
+                    <label className="mb-4" htmlFor="codigoPresencaInput">Código de presença</label>
+                    <input
+                        id="codigoPresencaInput"
+                        className="border-solid border-2 px-4 py-2 rounded"
+                        type="text"
+                        name="codigoPresenca"
+                        placeholder="Código informado pelo mediador"
+                        onChange={e => setCodigoPresenca(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className="mt-10 flex items-center justify-between">
                     <input
                         className="bg-orange-500 px-6 py-4 rounded font-bold cursor-pointer"
                         value="Confirmar presença na aula de hoje"
@@ -97,13 +108,9 @@ Chamada.getInitialProps = async (ctx) => {
     try {
         const expectedAuthorization = true
         await handleAuthentication(ctx, expectedAuthorization, '/login')
-
+    } finally {
         return {
-            codigoPresenca: ctx.query.codigoPresenca
-        }
-    } catch (error) {
-        return {
-            codigoPresenca: undefined
+            imCrazy: true
         }
     }
 }
