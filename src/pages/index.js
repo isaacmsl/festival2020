@@ -14,7 +14,7 @@ export default function Home({ diasRestantes }) {
         background: 'url(/assets/background.png) no-repeat center',
         backgroundSize: 'cover'
       }}
-      className="min-h-screen w-full flex flex-col items-center">
+      className="min-h-screen flex flex-col items-center overflow-auto">
       <Head>
         <title>Festival - 2020</title>
         <link rel="icon" href="/favicon.ico" />
@@ -43,7 +43,7 @@ export default function Home({ diasRestantes }) {
             <span className="text-6xl">{diasRestantes}</span>
             <span>DIA(S)</span>
           </div> */}
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-4xl text-center font-bold px-10">
             Área para participantes
           </h2>
           <div className="border-solid border-l-2 h-20 opacity-25 rounded mt-4 mb-4"></div>
