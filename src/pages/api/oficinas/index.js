@@ -15,7 +15,7 @@ handler.get(isAuthenticated(async (req, res) => {
 
     const participante = await req.db.collection(COLLECTION_PARTICIPANTES).findOne({ "_id": ObjectID(req.participante.id) })
 
-    if (participante && participante.autorizacao === 3) {
+    if (participante) {
         const oficinas = await req.db.collection(COLLECTION_OFICINAS).find({}).toArray()
         return res.status(200).json(oficinas)
     }

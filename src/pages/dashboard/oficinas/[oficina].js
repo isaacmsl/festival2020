@@ -157,7 +157,7 @@ DetalhesOficina.getInitialProps = async (ctx) => {
         await handleAuthentication(ctx, expectedAuthorization, '/login')
 
         const oficinas = await myGet(ctx, expectedAuthorization, '/api/oficinas')
-
+        
         const responseParticipantes = await myGet(ctx, expectedAuthorization, '/api/participantes')
 
         const { participante } = responseParticipantes
@@ -175,7 +175,7 @@ DetalhesOficina.getInitialProps = async (ctx) => {
             autorizacaoParticipante,
             oficinas
         }
-    } catch {
+    } catch (e) {
         return {
             expectedAuthorization: undefined,
             oficinas: undefined
