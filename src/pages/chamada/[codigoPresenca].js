@@ -30,25 +30,25 @@ export default function Chamada({ codigoPresenca }) {
         codigoRecuperacao: ''
     })
 
-async function handleSubmit(e) {
-    e.preventDefault()
+    async function handleSubmit(e) {
+        e.preventDefault()
 
-    setAguarde('Por favor, aguarde. Estamos fazendo algumas verificações...')
-    try {
-        const response = await axios.get(`/api/chamada?codigoPresenca=${codigoPresenca}`)
+        setAguarde('Por favor, aguarde. Estamos fazendo algumas verificações...')
+        try {
+            const response = await axios.get(`/api/chamada?codigoPresenca=${codigoPresenca}`)
 
-        if (response.status === 200) {
-            alert('A sua presença foi contabilizada')
-        } else {
-            alert('Desculpe. Não foi possível contabilizar a sua presença')
+            if (response.status === 200) {
+                alert('A sua presença foi contabilizada')
+            } else {
+                alert('Desculpe. Não foi possível contabilizar a sua presença')
+            }
+        } catch (e) {
+            alert('Desculpe. Algo inesperado aconteceu e não foi possível contabilizar a sua presença')
+        } finally {
+            setAguarde('')
         }
-    } catch (e) {
-        alert('Desculpe. Algo inesperado aconteceu e não foi possível contabilizar a sua presença')
-    } finally {
-        setAguarde('')
-    }
 
-}
+    }
     return (
         <div
             className="relative bg-bgMain min-h-screen min-w-full flex flex-col items-center justify-center overflow-auto"
