@@ -4,6 +4,7 @@ import axios from 'axios'
 import handleAuthentication from '../../libs/handleAuthentication'
 import myGet from '../../libs/myGet'
 
+
 const Estatisticas = ({ autorizacao }) => {
     if (autorizacao && autorizacao > 1) {
         return (
@@ -17,6 +18,21 @@ const Estatisticas = ({ autorizacao }) => {
 
     return <></>
 
+}
+
+
+const GerarCodigo = ({ autorizacao }) => {
+    if (autorizacao && autorizacao === 3) {
+        return (
+            <Link href="/dashboard/gerar-codigo">
+                <a className="bg-redHeader flex items-center justify-center py-4 px-6 cursor-pointer">
+                    <h2 className="ml-4 text-white font-bold">Gerar Código</h2>
+                </a>
+            </Link>
+        )
+    }
+
+    return <></>
 }
 
 export default function MenuMobile({ autorizacao }) {
@@ -50,6 +66,9 @@ export default function MenuMobile({ autorizacao }) {
                 </li>
                 <li>
                     <Estatisticas autorizacao={autorizacao} />
+                </li>
+                <li>
+                    <GerarCodigo autorizacao={autorizacao} />
                 </li>
                 <li>
                     <a 
