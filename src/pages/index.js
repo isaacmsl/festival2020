@@ -38,17 +38,20 @@ export default function Home({ diasRestantes }) {
           <iframe width="100%" height="315" src="https://www.youtube.com/embed/onNN-F8lB2w" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
         <div className="mb-10 flex flex-col items-center text-white mt-20">
-          <div className="flex flex-col items-center bg-black rounded-full w-48 p-6 border-solid border-8">
+          {/* <div className="flex flex-col items-center bg-black rounded-full w-48 p-6 border-solid border-8">
             <span>FALTA(M)</span>
             <span className="text-6xl">{diasRestantes}</span>
             <span>DIA(S)</span>
-          </div>
-          <div className="border-solid border-l-2 h-20 opacity-75 rounded mt-4 mb-4"></div>
+          </div> */}
+          <h2 className="text-4xl font-bold">
+            Área para participantes
+          </h2>
+          <div className="border-solid border-l-2 h-20 opacity-25 rounded mt-4 mb-4"></div>
           <Link href="/login">
             <a className="w-full sm:max-w-md px-6 py-4 bg-blue-600 text-white font-bold rounded mb-4 text-center">LOGIN</a>
           </Link>
           <ButtonInscricoes diasRestantes={diasRestantes} />
-          <span>(Disponível em 04/09/2020 - 13/09/2020)</span>
+          <span>(Inscrições finalizadas no dia 13/09/2020)</span>
         </div>
         <article className="w-full bg-white p-8 sm:max-w-lg flex flex-col items-center rounded mb-20 mt-10">
           <h1 className="font-bold text-black text-xl">SOBRE O FESTIVAL</h1>
