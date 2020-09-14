@@ -1,0 +1,15 @@
+.menuLateral > div > *:nth-child(even) {
+    background-color: #FF7C6B;
+}
+
+.menuLateral > div > *:nth-child(odd) {
+    background-color: #ED7464;
+}
+
+.menuMobile > li:nth-child(even) {
+    background-color: #FF7C6B;
+}
+
+.menuMobile > li:nth-child(odd) {
+    background-color: #ED7464;
+}

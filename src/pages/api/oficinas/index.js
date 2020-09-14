@@ -2,16 +2,25 @@ import nextConnect from 'next-connect'
 import dbMiddleware from '../../../middlewares/database'
 import { isAuthenticated } from '../../../middlewares/isAuthenticated'
 import crypto from 'crypto'
+import { ObjectID } from 'mongodb'
 
 const handler = nextConnect()
 
-const COLLECTION_NAME = 'oficinas'
+const COLLECTION_OFICINAS = 'oficinas'
+const COLLECTION_PARTICIPANTES = 'participantes'
 
 handler.use(dbMiddleware)
 
 handler.get(isAuthenticated(async (req, res) => {
-    const oficinas = await req.db.collection(COLLECTION_NAME).find({}).toArray()
-    return res.status(200).json(oficinas)
+
+    const participante = await req.db.collection(COLLECTION_PARTICIPANTES).findOne({ "_id": ObjectID(req.participante.id) })
+
+    if (participante && participante.autorizacao === 3) {
+        const oficinas = await req.db.collection(COLLECTION_OFICINAS).find({}).toArray()
+        return res.status(200).json(oficinas)
+    }
+    
+    return res.status(401).json({ mensagem: 'Você não tem autorização'})
 }))
 
 /*handler.put(isAuthenticated(async (req, res) => {
