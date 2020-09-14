@@ -22,6 +22,41 @@ const Estatisticas = ({ autorizacao }) => {
 
 }
 
+
+const GerarCodigo = ({ autorizacao }) => {
+    if (autorizacao && autorizacao === 3) {
+        return (
+            <Link href="/dashboard/gerar-codigo">
+                <a className="bg-redHeaderStrong flex items-center justify-center py-4 px-6 hidden sm:inline-flex w-56">
+                    <div className="flex flex-row items-center w-40">
+                        <img src="/assets/trello.svg" className="" />
+                        <h2 className="ml-4 text-white font-bold">Gerar Código</h2>
+                    </div>
+                </a>
+            </Link>
+        )
+    }
+
+    return <></>
+}
+
+const Chamadas = ({ autorizacao }) => {
+    if(autorizacao !== 2) {
+        return (
+            <Link href="/chamadas">
+                <a className="flex items-center justify-center py-4 px-6 hidden sm:inline-flex w-56">
+                    <div className="flex flex-row items-center w-40">
+                        <img src="/assets/trello.svg" className="" />
+                        <h2 className="ml-4 text-white font-bold">Chamadas</h2>
+                    </div>
+                </a>
+            </Link>
+        )
+    }
+
+    return <></>
+}
+
 const MenuDashboard = ({ autorizacao }) => {
 
     const router = useRouter()
@@ -50,15 +85,10 @@ const MenuDashboard = ({ autorizacao }) => {
                     </div>
                 </a>
             </Link> */}
-                <Link href="/chamadas">
-                    <a className="flex items-center justify-center py-4 px-6 hidden sm:inline-flex w-56">
-                        <div className="flex flex-row items-center w-40">
-                            <img src="/assets/trello.svg" className="" />
-                            <h2 className="ml-4 text-white font-bold">Chamadas</h2>
-                        </div>
-                    </a>
-                </Link>
+                <Chamadas autorizacao={autorizacao} />
                 <Estatisticas autorizacao={autorizacao} />
+                <GerarCodigo autorizacao={autorizacao} />
+
                 <Link href="/mobile/menu">
                     <a
                         className={"p-4 sm:hidden flex justify-end cursor-pointer"}
