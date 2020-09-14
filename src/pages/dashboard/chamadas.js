@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import { useState } from 'react'
-import handleAuthentication from '../libs/handleAuthentication'
+import handleAuthentication from '../../libs/handleAuthentication'
 import Link from 'next/link'
 
 

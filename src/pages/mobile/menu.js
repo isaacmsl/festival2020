@@ -39,9 +39,23 @@ const GerarCodigo = ({ autorizacao }) => {
 const Chamadas = ({ autorizacao }) => {
     if(autorizacao !== 2) {
         return (
-            <Link href="/chamadas">
+            <Link href="/dashboard/chamadas">
                 <a className="flex items-center justify-center py-4 px-6 cursor-pointer">
                     <h2 className="text-white font-bold">Chamadas</h2>
+                </a>
+            </Link>
+        )
+    }
+
+    return <></>
+}
+
+const Presencas = ({ autorizacao }) => {
+    if (autorizacao !== 2) {
+        return (
+            <Link href="/dashboard/presencas">
+                <a className="flex items-center justify-center py-4 px-6 cursor-pointer">
+                    <h2 className="text-white font-bold">Presenças</h2>
                 </a>
             </Link>
         )
@@ -87,6 +101,9 @@ export default function MenuMobile({ autorizacao }) {
                 </li>
                 <li>
                     <GerarCodigo autorizacao={autorizacao} />
+                </li>
+                <li>
+                    <Presencas autorizacao={autorizacao} />
                 </li>
                 <li>
                     <a 
