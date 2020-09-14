@@ -4,11 +4,13 @@ import axios from 'axios'
 import handleAuthentication from '../../libs/handleAuthentication'
 import myGet from '../../libs/myGet'
 
+import styles from '../../../styles/Menus.module.css'
+
 const Estatisticas = ({ autorizacao }) => {
     if (autorizacao && autorizacao > 1) {
         return (
             <Link href="/dashboard/estatisticas">
-                <a className="bg-redHeader flex items-center justify-center py-4 px-6 cursor-pointer">
+                <a className="flex items-center justify-center py-4 px-6 cursor-pointer">
                     <h2 className="text-white font-bold">Estatísticas</h2>
                 </a>
             </Link>
@@ -40,11 +42,18 @@ export default function MenuMobile({ autorizacao }) {
             >
                 <img src="/assets/x.svg" />
             </a>
-            <ul>
+            <ul className={styles.menuMobile}>
                 <li>
                     <Link href="/dashboard">
-                        <a className="bg-redHeaderStrong flex items-center justify-center py-4 px-6 cursor-pointer">
+                        <a className="flex items-center justify-center py-4 px-6 cursor-pointer">
                             <h2 className="text-white font-bold">Minhas oficinas</h2>
+                        </a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/chamadas">
+                        <a className="flex items-center justify-center py-4 px-6 cursor-pointer">
+                            <h2 className="text-white font-bold">Chamadas</h2>
                         </a>
                     </Link>
                 </li>
@@ -53,7 +62,7 @@ export default function MenuMobile({ autorizacao }) {
                 </li>
                 <li>
                     <a 
-                        className="bg-redHeaderStrong flex items-center justify-center py-4 px-6 cursor-pointer"
+                        className="flex items-center justify-center py-4 px-6 cursor-pointer"
                         onClick={handleLogout}
                     >
                         <h2 className="text-white font-bold">Sair</h2>
