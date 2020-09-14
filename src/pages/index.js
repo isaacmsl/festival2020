@@ -24,7 +24,18 @@ export default function Home({ diasRestantes }) {
 
       <main className="flex flex-col items-center">
         <div className="w-screen sm:max-w-lg">
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/CINitoglzTg?rel=0" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <div className="flex flex-wrap bg-red-600 text-white items-center justify-evenly p-4 rounded">
+            <img src="/assets/youtube.svg" alt="Youtube" width={50} className="animate-pulse" />
+            <div className="text-center sm:text-left">
+              <h2 className="text-xl font-bold">
+                Estamos ao vivo!
+              </h2>
+              <p>
+                Educação musical: Uma realidade virtual?
+              </p>
+            </div>
+          </div>
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/onNN-F8lB2w" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
         <div className="mb-10 flex flex-col items-center text-white mt-20">
           <div className="flex flex-col items-center bg-black rounded-full w-48 p-6 border-solid border-8">
