@@ -27,7 +27,7 @@ const GerarCodigo = ({ autorizacao }) => {
         return (
             <Link href="/dashboard/gerar-codigo">
                 <a className="bg-redHeader flex items-center justify-center py-4 px-6 cursor-pointer">
-                    <h2 className="ml-4 text-white font-bold">Gerar Código</h2>
+                    <h2 className="text-white font-bold">Gerar Código</h2>
                 </a>
             </Link>
         )

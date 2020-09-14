@@ -17,17 +17,17 @@ handler.get(isAuthenticated(async (req, res) => {
     if (participante && participante.autorizacao === 3) {
         const oficinas = await req.db.collection(COLLECTION_OFICINAS).find({}).toArray()
         
-        let oficinasLinks = []
+        let oficinaCodigos = []
         oficinas.forEach(oficina => {
-            const presencaLinks = oficina.aulas.map(aula => { return `http://${req.headers.host}/api/chamada?codigoPresenca=${aula.codigoPresenca}` })
+            const codigo = oficina.aulas.map(aula => { return aula.codigoPresenca })
 
-            oficinasLinks.push({
+            oficinaCodigos.push({
                 nome: oficina.nome,
-                presencaLinks
+                codigo
             })
         })
 
-        return res.status(200).json(oficinasLinks)
+        return res.status(200).json(oficinaCodigos)
     }
 
     return res.status(401).json({ mensagem: 'Você não tem autorização' })
