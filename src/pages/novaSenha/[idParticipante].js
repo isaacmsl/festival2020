@@ -95,11 +95,11 @@ export default function Esqueci({ idParticipante }) {
 
             <span className="mt-10">{aguarde}</span>
 
-            <Link href="/inscricoes">
+            {/* <Link href="/inscricoes">
                 <a className="bg-orange-500 w-56 font-bold px-6 py-4 mt-10 rounded text-center">
                     Quero me inscrever
 				</a>
-            </Link>
+            </Link> */}
 
             <footer className="text-center mt-8 mb-64">
                 © 2020. Assomusc. Todos os direitos reservados.
