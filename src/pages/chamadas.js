@@ -32,16 +32,16 @@ async function handleSubmit(e) {
 
     setAguarde('Por favor, aguarde. Estamos fazendo algumas verificações...')
     try {
-        const response = await axios.get(`/api/chamada?codigoPresenca=${codigoPresenca}`)
+        const response = await axios.get(`/api/chamada?codigoPresenca=${codigoPresenca.trim()}`)
 
         if (response.status === 200) {
             alert('A sua presença foi contabilizada')
             router.replace('/dashboard')
         } else {
-            alert('Desculpe. Não foi possível contabilizar a sua presença')
+            alert('Desculpe. Não foi possível contabilizar a sua presença. Você já não confirmou a presença dessa aula?')
         }
     } catch (e) {
-        alert('Desculpe. Algo inesperado aconteceu e não foi possível contabilizar a sua presença')
+        alert('Desculpe. Não foi possível contabilizar a sua presença. Você já não confirmou a presença dessa aula?')
     } finally {
         setAguarde('')
     }
