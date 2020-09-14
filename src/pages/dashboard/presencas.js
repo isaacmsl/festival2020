@@ -67,8 +67,8 @@ export default function Presencas({ autorizacaoParticipante, allParticipantes })
             >
                 <header className="mb-10 flex flex-col font-bold gap-6 items-start">
                     <div className="flex items-center font-bold">
-                        <img src="/assets/dark-grid.svg" />
-                        <h1 className="ml-3">Gerar Código</h1>
+                        <img src="/assets/check-circle.svg" />
+                        <h1 className="ml-3">Presenças</h1>
                     </div>
 
                 </header>
