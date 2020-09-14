@@ -74,7 +74,7 @@ export default function Home({ diasRestantes }) {
 }
 
 Home.getInitialProps = () => {
-  const dataAtual = new Date()
+  const dataAtual = new Date(2020, 9, 13)
   const dataFinalInscricoes = new Date(2020, 9, 14)
 
   if (dataAtual < dataFinalInscricoes) {
