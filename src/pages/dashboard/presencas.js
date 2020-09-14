@@ -17,6 +17,7 @@ export default function Presencas({ autorizacaoParticipante, allParticipantes })
     const [oficina, setOficina] = useState('Clarinete')
     const [dia, setDia] = useState('1')
     const [qntPresencas, setQntPresencas] = useState(0)
+    const [matchParticipantes, setMatchParticipantes] = useState([])
 
 
     async function updateQntPresencas() {
@@ -25,15 +26,17 @@ export default function Presencas({ autorizacaoParticipante, allParticipantes })
         const response = await axios('/api/participantes')
         allParticipantes = response.data.allParticipantes
 
-        const matchParticipantes = allParticipantes.filter(participante => {
+        const newMatchParticipantes = allParticipantes.filter(participante => {
             return participante.oficinas.includes(oficina)
                 && participante.presencaOficinas
                 && participante.presencaOficinas[oficina]
                 && participante.presencaOficinas[oficina].includes(Number(dia))
         })
 
+        setMatchParticipantes(newMatchParticipantes)
+
         if (matchParticipantes) {
-            setQntPresencas(matchParticipantes.length)
+            setQntPresencas(newMatchParticipantes.length)
         } else {
             setQntPresencas(0)
         }
@@ -114,6 +117,22 @@ export default function Presencas({ autorizacaoParticipante, allParticipantes })
                         <div className="flex flex-col gap-4">
                             <h2 className="font-bold text-xl">Aula {Number(dia)} - {oficina}</h2>
                             <p id="codigoPresenca">Presenças: {qntPresencas}</p>
+                        </div>
+                        <a onClick={updateQntPresencas} className={"cursor-pointer"}>
+                            <img src="/assets/refresh.svg" />
+                        </a>
+                    </div>
+
+                    <div className={"flex flex-wrap flex-col gap-4 md:flex-row md:gap-0 md:items-center bg-white p-6 justify-between rounded border border-solid border-gray-200 max-w-2xl "} >
+                        <div className="flex flex-col gap-4">
+                            <h2 className="font-bold text-xl">Participantes presentes</h2>
+                            <ul className="flex flex-col gap-4">
+                                {matchParticipantes.map(participante => (
+                                    <li>
+                                        {participante.nomeCompleto}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                         <a onClick={updateQntPresencas} className={"cursor-pointer"}>
                             <img src="/assets/refresh.svg" />
