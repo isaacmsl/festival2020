@@ -97,13 +97,13 @@ export default function MenuMobile({ autorizacao }) {
                     <Chamadas autorizacao={autorizacao} />
                 </li>
                 <li>
+                    <Presencas autorizacao={autorizacao} />
+                </li>
+                <li>
                     <Estatisticas autorizacao={autorizacao} />
                 </li>
                 <li>
                     <GerarCodigo autorizacao={autorizacao} />
-                </li>
-                <li>
-                    <Presencas autorizacao={autorizacao} />
                 </li>
                 <li>
                     <a 

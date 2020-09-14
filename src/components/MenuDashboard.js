@@ -103,9 +103,9 @@ const MenuDashboard = ({ autorizacao }) => {
                 </a>
             </Link> */}
                 <Chamadas autorizacao={autorizacao} />
+                <Presencas autorizacao={autorizacao} />
                 <Estatisticas autorizacao={autorizacao} />
                 <GerarCodigo autorizacao={autorizacao} />
-                <Presencas autorizacao={autorizacao} />
 
                 <Link href="/mobile/menu">
                     <a
