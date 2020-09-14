@@ -137,7 +137,7 @@ GerarCodigo.getInitialProps = async (ctx) => {
         const { participante } = responseParticipantes
         const autorizacaoParticipante = participante.autorizacao
 
-        if (autorizacaoParticipante === 1) {
+        if (autorizacaoParticipante < 3) {
             redirect(ctx, '/dashboard')
         }
 

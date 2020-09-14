@@ -36,6 +36,20 @@ const GerarCodigo = ({ autorizacao }) => {
     return <></>
 }
 
+const Chamadas = ({ autorizacao }) => {
+    if(autorizacao !== 2) {
+        return (
+            <Link href="/chamadas">
+                <a className="flex items-center justify-center py-4 px-6 cursor-pointer">
+                    <h2 className="text-white font-bold">Chamadas</h2>
+                </a>
+            </Link>
+        )
+    }
+
+    return <></>
+}
+
 export default function MenuMobile({ autorizacao }) {
     const router = useRouter()
 
@@ -66,11 +80,7 @@ export default function MenuMobile({ autorizacao }) {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/chamadas">
-                        <a className="flex items-center justify-center py-4 px-6 cursor-pointer">
-                            <h2 className="text-white font-bold">Chamadas</h2>
-                        </a>
-                    </Link>
+                    <Chamadas autorizacao={autorizacao} />
                 </li>
                 <li>
                     <Estatisticas autorizacao={autorizacao} />
