@@ -28,7 +28,7 @@ export default function Home({ diasRestantes }) {
             <img src="/assets/youtube.svg" alt="Youtube" width={50} className="animate-pulse" />
             <div className="text-center sm:text-left">
               <h2 className="text-xl font-bold">
-                Estamos ao vivo!
+                De olho no festival
               </h2>
               <p>
                 Educação musical: Uma realidade virtual?
