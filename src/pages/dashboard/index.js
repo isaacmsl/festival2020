@@ -68,7 +68,7 @@ export default function Dashboard({participante, professores}) {
 
                 <div className="font-normal bg-orange-200 p-4 border border-solid mb-8 max-w-2xl border-gray-200 rounded">
                     <p>
-                        <b>Atenção, participantes:</b> tivemos uma pequena instabilidade no acesso às aulas, mas já foi corrigido. (Manhã da Segunda, 14/09/20 - 10:30 - Horário de Brasília)
+                        <b>CERTIFICADOS:</b> os participantes deverão possuir 100% de presença nas oficinas para poderem ganhar os certificados. A previsão de disponibilidade é até o dia de domingo (20/09).
                         </p>
                 </div>
 
