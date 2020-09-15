@@ -25,7 +25,7 @@ export default function Home({ diasRestantes }) {
       <main className="flex flex-col items-center">
         <div className="w-screen sm:max-w-lg">
           <div className="flex flex-wrap bg-red-600 text-white items-center justify-evenly p-4 rounded">
-            <img src="/assets/youtube.svg" alt="Youtube" width={50} className="animate-pulse" />
+            <img src="/assets/youtube.svg" alt="Youtube" width={50} className="" />
             <div className="text-center sm:text-left">
               <h2 className="text-xl font-bold">
                 De olho no festival
