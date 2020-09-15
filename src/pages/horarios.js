@@ -251,7 +251,7 @@ export default function Horarios({ diasRestantes }) {
                         </li>
                     </ul>
                 </div>
-                <ButtonInscricoes diasRestantes={diasRestantes}/>
+                {/* <ButtonInscricoes diasRestantes={diasRestantes}/> */}
             </main>
 
             <FooterDivulgacao />
