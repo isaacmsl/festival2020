@@ -118,7 +118,7 @@ export default function Dashboard({participante, professores}) {
                                 rows="4"
                                 cols="50"
                                 maxLength={300}
-                                onChange={e => setFeedback(e.target.value)}
+                                onChange={e => setFeedback(e.target.value.trim())}
                                 required
                             />
                         </div>
