@@ -9,6 +9,14 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import redirect from '../../../libs/redirect'
 
+const HoraTemplate = ({ hours, minutes }) => {
+    let result = hours
+    result += (minutes > 0)
+        ? `:${minutes}`
+        : `:00`
+
+    return result
+}
 
 const DataAula = (dataAula) => {
     const dias = [
@@ -22,7 +30,12 @@ const DataAula = (dataAula) => {
     ]
     const newDate = new Date(dataAula.dataAula)
     
-    return <p>{dias[newDate.getDay()]} ({newDate.getDate()}/{newDate.getMonth() + 1}) das {newDate.getHours()}:{newDate.getMinutes()} às {newDate.getHours()+1}:{newDate.getMinutes()+30}</p>
+    return (
+        <p>
+            {dias[newDate.getDay()]} ({newDate.getDate()}/{newDate.getMonth() + 1}) das {HoraTemplate({ hours: newDate.getHours(), minutes: newDate.getMinutes() })} às {HoraTemplate({ hours: newDate.getHours() + 1, minutes: newDate.getMinutes() + 30 })}
+            <span title="Horário de Brasília" className="cursor-pointer"> (BRT)</span>
+        </p>
+    )
 } 
 
 const Instagram = ({redeSocial}) => {
