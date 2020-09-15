@@ -22,7 +22,7 @@ const DataAula = (dataAula) => {
     ]
     const newDate = new Date(dataAula.dataAula)
     
-    return <p>{dias[newDate.getDay()]} ({newDate.getDate()}/{newDate.getMonth()}) das {newDate.getHours()}:{newDate.getMinutes()} às {newDate.getHours()+1}:{newDate.getMinutes()+30}</p>
+    return <p>{dias[newDate.getDay()]} ({newDate.getDate()}/{newDate.getMonth() + 1}) das {newDate.getHours()}:{newDate.getMinutes()} às {newDate.getHours()+1}:{newDate.getMinutes()+30}</p>
 } 
 
 const Instagram = ({redeSocial}) => {
