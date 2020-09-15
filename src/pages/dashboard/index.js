@@ -136,7 +136,6 @@ export default function Dashboard({participante, professores}) {
                 <main className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-4">
                     {oficinas.map((oficina, index) => (
                         <Link as={`/dashboard/oficinas/${oficina.nome}`} href="/dashboard/oficinas/[oficina]" key={index}>
-                            {/* <a className="w-full sm:max-w-xs"> */}
                             <a className="cursor-pointer">
                                 <OficinaCard autorizacao={participante.autorizacao} oficina={oficina}  />
                             </a>
