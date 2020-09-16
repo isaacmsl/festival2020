@@ -28,7 +28,7 @@ export default function Home({ diasRestantes }) {
             <img src="/assets/youtube.svg" alt="Youtube" width={50} className="" />
             <div className="text-center">
               <h2 className="text-xl font-bold">
-                Hoje às 19:00H (BRT)
+                De olho no festival
               </h2>
               <p>
                 Mulheres nas bandas de música, trajetórias e mercado de trabalho
