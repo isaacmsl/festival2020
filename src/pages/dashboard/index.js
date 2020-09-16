@@ -52,7 +52,7 @@ export default function Dashboard({participante, professores}) {
             const newFeedback = {
                 nomeParticipante: participante.nomeCompleto,
                 emailParticipante: participante.email,
-                feedback
+                feedback: feedback.trim()
             }
             
             try {
@@ -60,6 +60,7 @@ export default function Dashboard({participante, professores}) {
                 const response = await axios.post('/api/feedbacks', newFeedback)
 
                 if (response.status === 200) {
+                    setFeedback('')
                     alert('Obrigado pelo seu feedback. Agradecemos muito o seu carinho!')
                 } else {
                     alert('Desculpe, não foi possível enviar o feedback, por favor tente novamente.')
@@ -117,8 +118,9 @@ export default function Dashboard({participante, professores}) {
                                 placeholder="Seu feedback é muito importante..."
                                 rows="4"
                                 cols="50"
+                                value={feedback}
                                 maxLength={300}
-                                onChange={e => setFeedback(e.target.value.trim())}
+                                onChange={e => setFeedback(e.target.value)}
                                 required
                             />
                         </div>
