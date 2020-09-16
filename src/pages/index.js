@@ -28,14 +28,14 @@ export default function Home({ diasRestantes }) {
             <img src="/assets/youtube.svg" alt="Youtube" width={50} className="" />
             <div className="text-center">
               <h2 className="text-xl font-bold">
-                De olho no festival
+                Última mesa redonda! 19H (BRT)
               </h2>
               <p>
-                Mulheres nas bandas de música, trajetórias e mercado de trabalho
+                A importância das bandas de música no contexto social e na formação cidadã
               </p>
             </div>
           </div>
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/ih0YSZDAc6I" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/7wMgkf68PQA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
         <div className="mb-10 flex flex-col items-center text-white mt-20">
           {/* <div className="flex flex-col items-center bg-black rounded-full w-48 p-6 border-solid border-8">
