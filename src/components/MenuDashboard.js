@@ -41,7 +41,7 @@ const GerarCodigo = ({ autorizacao }) => {
 }
 
 const Chamadas = ({ autorizacao }) => {
-    if(autorizacao !== 2) {
+    if (autorizacao && autorizacao !== 2) {
         return (
             <Link href="/dashboard/chamadas">
                 <a className="flex items-center justify-center py-4 px-6 hidden sm:inline-flex w-56">
@@ -58,7 +58,7 @@ const Chamadas = ({ autorizacao }) => {
 }
 
 const Presencas = ({ autorizacao }) => {
-    if (autorizacao === 3) {
+    if (autorizacao && autorizacao === 3) {
         return (
             <Link href="/dashboard/presencas">
                 <a className="flex items-center justify-center py-4 px-6 hidden sm:inline-flex w-56">
