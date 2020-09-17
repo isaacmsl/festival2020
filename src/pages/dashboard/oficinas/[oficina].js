@@ -126,8 +126,8 @@ export default function DetalhesOficina({ autorizacaoParticipante, oficinas }) {
 
                 <div className="font-normal bg-orange-200 p-4 border border-solid mb-8 max-w-2xl border-gray-200 rounded">
                     <p>
-                        <b>Atenção, participante:</b> caso você esteja acessando nossa plataforma por meio de um <b>dispositivo celular</b>, antes de acessar os links das aulas você deverá baixar o aplicativo do <b>GOOGLE MEET</b>.
-                        </p>
+                        <b>Atenção, participante:</b> a previsão para disponibilidade das aulas gravadas é entre os dias 21/09/20 - 28/09/20.
+                    </p>    
                 </div>
 
                 <main className="flex flex-col flex-wrap gap-4">
