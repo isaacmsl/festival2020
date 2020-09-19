@@ -31,7 +31,7 @@ export default function Home({ diasRestantes }) {
                 Estamos ao vivo!
               </h2>
               <p>
-                Live tributo 10 anos - 1ª Noite
+                Live Tributo 10 Anos - 1ª Noite
               </p>
             </div>
           </div>
