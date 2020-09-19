@@ -25,17 +25,17 @@ export default function Home({ diasRestantes }) {
       <main className="flex flex-col items-center">
         <div className="w-screen sm:max-w-lg">
           <div className="flex gap-4 flex-wrap bg-red-600 text-white items-center justify-evenly p-4 rounded">
-            <img src="/assets/youtube.svg" alt="Youtube" width={50} className="" />
+            <img src="/assets/youtube.svg" alt="Youtube" width={50} className="animate-pulse" />
             <div className="text-center">
               <h2 className="text-xl font-bold">
-                De olho no festival
+                Estamos ao vivo!
               </h2>
               <p>
-                A importância das bandas de música no contexto social e na formação cidadã
+                Live tributo 10 anos - 1ª Noite
               </p>
             </div>
           </div>
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/7wMgkf68PQA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/FB11EX74ZQM" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
         <div className="mb-10 flex flex-col items-center text-white mt-20">
           {/* <div className="flex flex-col items-center bg-black rounded-full w-48 p-6 border-solid border-8">
