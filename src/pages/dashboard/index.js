@@ -94,7 +94,7 @@ export default function Dashboard({participante, professores}) {
 
                 <div className="font-normal bg-orange-200 p-4 border border-solid mb-8 max-w-2xl border-gray-200 rounded">
                     <p className="text-justify">
-                        <b>Certificados:</b> os participantes deverão possuir 100% de presença nas oficinas para poderem ganhar os certificados. A previsão de disponibilidade é até o dia de domingo (20/09).
+                        <b>Atualização sobre os certificados:</b> os participantes deverão possuir no mínimo 67% de presença nas oficinas para poderem ganhar os certificados (assistido duas aulas). A previsão de disponibilidade dos certificados foi adiada para segunda (21/09).
                         </p>
                 </div>
 
