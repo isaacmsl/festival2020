@@ -28,14 +28,14 @@ export default function Home({ diasRestantes }) {
             <img src="/assets/youtube.svg" alt="Youtube" width={50} className="" />
             <div className="text-center">
               <h2 className="text-xl font-bold">
-                De olho no festival!
+                Estamos ao vivo!
               </h2>
               <p>
-                Live Tributo 10 Anos - 1ª Noite
+                Live Tributo 10 Anos - 2ª Noite
               </p>
             </div>
           </div>
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/FB11EX74ZQM" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/RCPBYVbkZAU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
         <div className="mb-10 flex flex-col items-center text-white mt-20">
           {/* <div className="flex flex-col items-center bg-black rounded-full w-48 p-6 border-solid border-8">
