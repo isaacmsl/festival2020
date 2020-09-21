@@ -13,8 +13,7 @@ const ButtonCertificados = ({ linkCertificados }) => {
         return (
             <a  href={linkCertificados} target="_blank">
                 <div className="cursor-pointer px-6 py-4 bg-blue-600 text-white font-bold rounded text-center max-w-2xl animate-pulse">
-                    <div>Acessar certificados obtidos</div>
-                    <div>(Desativado para manutenção)</div>
+                    Acessar certificados obtidos
                 </div>
             </a>
         )
