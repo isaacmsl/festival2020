@@ -8,6 +8,20 @@ import OficinaCard from '../../components/OficinaCard'
 import handleAuthentication from '../../libs/handleAuthentication'
 import myGet from '../../libs/myGet'
 
+const ButtonCertificados = ({ linkCertificados }) => {
+    if (linkCertificados) {
+        return (
+            <a  href={linkCertificados} target="_blank">
+                <div className="cursor-pointer px-6 py-4 bg-blue-600 text-white font-bold rounded text-center max-w-2xl animate-pulse">
+                    Acessar certificados obtidos
+                </div>
+            </a>
+        )
+    }
+
+    return <></>
+} 
+
 export default function Dashboard({participante, professores}) {
     const [feedback, setFeedback] = useState('')
     
@@ -92,9 +106,11 @@ export default function Dashboard({participante, professores}) {
                     <h1 className="ml-4">Minhas oficinas</h1>
                 </header>
 
-                <div className="font-normal bg-orange-200 p-4 border border-solid mb-8 max-w-2xl border-gray-200 rounded">
+                <ButtonCertificados linkCertificados={participante.linkCertificados} />
+
+                <div className="font-normal bg-orange-200 p-4 border border-solid mb-8 max-w-2xl border-gray-200 rounded mt-6">
                     <p className="text-justify">
-                        <b>Atualização sobre os certificados:</b> os participantes deverão possuir no mínimo 67% de presença nas oficinas para poderem ganhar os certificados (assistido duas aulas). A previsão de disponibilidade dos certificados foi adiada para segunda (21/09).
+                        <b>Os certificados já estão disponíveis:</b> se você possui no mínimo 67% de presença em uma oficina mas não conseguiu acessar o certificado, por favor nos envie um feedback relatando o problema.
                         </p>
                 </div>
 
