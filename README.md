@@ -1,4 +1,6 @@
 # Plataforma Virtual do 11º Festival Maestro Felinto Lúcio Dantas
+![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)
+![License](https://img.shields.io/github/license/isaacmsl/festival2020)
 
 <a href="https://vercel.com" target="_blank" rel="noopener">
     <img src="https://user-images.githubusercontent.com/31693006/94614158-1b2bfd00-027c-11eb-87af-d078ea2a621f.png" width="175" alt="Powered by Vercel" />
@@ -14,7 +16,7 @@
 
 ## Motivo
 
-Devido ao contexto atual causado pela pandemia do Coronavírus-19 (COVID-19), o Festival Maestro Felinto Lúcio Dantas optou por realizar a sua 11ª edição de maneira totalmente virtual. Para tanto, foi desenvolvida esta plataforma, contendo:
+Devido ao contexto atual causado pela pandemia do Coronavírus-19 (COVID-19), o Festival Maestro Felinto Lúcio Dantas optou por realizar a sua 11ª edição de maneira totalmente virtual. Para tanto, foi desenvolvida este projeto, contendo:
 
 1. Área de divulgação do evento (*Landing page*);
     - Contextualização histórica;
@@ -28,7 +30,8 @@ Devido ao contexto atual causado pela pandemia do Coronavírus-19 (COVID-19), o 
         - Visualizar avisos do festival;
         - Acessar links paras aulas das oficinas escolhidas;
         - Confirmar presenças nas aulas das oficinas escolhidas;
-        - Acessar link para certificados obtidos.
+        - Acessar link para certificados obtidos;
+        - Enviar feedbacks sobre o festival em geral.
     
     - Professores e administradores, podem:
         - Visualizar estatísticas em tempo real do banco de dados [(*MongoDb Charts*)](https://www.mongodb.com/charts).
@@ -56,6 +59,8 @@ Para que fosse possível o monitoramento dos dados do sistema em tempo real, foi
 
 Na **Figura 1**, resumidamente, é possível observar as funcionalidades disponíveis para os administradores. Já na **Figura 2** é possível observar a tela em que todos os usuários confirmam as presenças nas aulas das oficinas.
 
+[Clique aqui para conferir o site completo](https://festivalmfld2020.vercel.app/)
+
 <div style="display: flex; flex-wrap: wrap;">
     <a style="width: 50%" href="https://user-images.githubusercontent.com/31693006/94610888-5972ed80-0277-11eb-9661-d3674563eba4.png">
         <img src="https://user-images.githubusercontent.com/31693006/94610888-5972ed80-0277-11eb-9661-d3674563eba4.png" width="100%" style="margin-bottom: 20px">
@@ -78,20 +83,32 @@ Na **Figura 1**, resumidamente, é possível observar as funcionalidades dispon�
 
 ### Contribuidores
     
-Esse projeto só possível graças as constribuições de:
+Este projeto só possível graças as constribuições da equipe do festival, em especial à:
 - Camilo Henrique Dantas Soares;
-- Ivanilde Maria Santos da Cruz;
+- Ivanilde Maria Santos da Cruz; e
 - Alana Freire Santos;
-- Moisés da Rocha Soares; e
-- Equipe do festival.
 
 ### Vercel
 
-Esse projeto foi principalmente baseado no framework [Next.js](https://nextjs.org/) e foi colocado em "produção" na [Edge Network](https://vercel.com/docs/edge-network/overview) da [Vercel Platform](https://vercel.com/home?utm_source=next-site&utm_medium=banner&utm_campaign=next-website)
+Este projeto foi principalmente baseado no framework [Next.js](https://nextjs.org/) e foi colocado em "produção" na [Edge Network](https://vercel.com/docs/edge-network/overview) da [Vercel Platform](https://vercel.com/home?utm_source=next-site&utm_medium=banner&utm_campaign=next-website)
 
 - [Aprenda Next.js](https://nextjs.org/learn);
 - Confira também a [documentação de deployment no Next.js](https://nextjs.org/docs/deployment);
 - Veja o [respositório do Next.js no GitHub](https://github.com/vercel/next.js/) - seu feedback e suas contribuições são bem-vindos.
+
+## Considerações finais
+
+Em geral, este projeto conseguiu resolver a demanda de inscrições e manutenção do festival. Entretanto, devido ao curto tempo de desenvolvimento, algumas funcionalidades não puderam ser desenvolvidas, como:
+
+- Editar perfil de participante;
+- Editar oficinas escolhidas pelo participante;
+- Serviço de notificação por email;
+- Tabela para Professores/Administradores visualizarem os participantes;
+- Criar gráficos específicos para cada oficina (tempo de atuação, cidade etc) - importante para análise mais detalhada do professor;
+- Participantes que escolheram "Outras" no campo "banda" informarem o nome de sua banda;
+- Gráficos comparativos na relação número de inscritos x números de presentes nas oficinas.  
+
+Para o 12º Festival Maestro Felinto Lúcio dantas, os [autores](#autores) pretendem refatorar boa parte do software e adicionar as funcionalidades carentes.
 
 ## Autores
 
