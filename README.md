@@ -48,17 +48,11 @@ Para que fosse possível o monitoramento dos dados do sistema em tempo real, foi
 
 [Clique aqui para visualizar todos os gráficos](https://charts.mongodb.com/charts-festival2020-pmddq/public/dashboards/5f52a994-7e7d-4e9a-81a4-e54d968a06aa)
 
-<a style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 40px; color: black; flex-direction: column" href="https://charts.mongodb.com/charts-festival2020-pmddq/public/dashboards/5f52a994-7e7d-4e9a-81a4-e54d968a06aa">
-<img width="50%" height="220" src="https://user-images.githubusercontent.com/31678236/94849652-1ee68d80-03fc-11eb-96b0-f05a38b2dbf6.png"></img>   
-<img width="50%" height="220" src="https://user-images.githubusercontent.com/31678236/94849797-56553a00-03fc-11eb-961a-98a246d60391.png"></img> 
-
-<img width="50%" height="220" src="https://user-images.githubusercontent.com/31678236/94850118-d4194580-03fc-11eb-840a-f8ebb4a45aaa.png"></img> 
-<b>Seis estados com maior quantidade de participantes</b>
-
-<img width="50%" height="220" src="https://user-images.githubusercontent.com/31678236/94850026-b64be080-03fc-11eb-9ba4-8051d3cfa21f.png"></img>  
-<b>Seis bandas com maior quantidade de participantes</b>
-
-
+<a style="display: flex; flex-wrap: wrap; flex-direction: column; gap: 4px; margin-bottom: 40px; color: black;" href="https://charts.mongodb.com/charts-festival2020-pmddq/public/dashboards/5f52a994-7e7d-4e9a-81a4-e54d968a06aa">
+<img width="50%" height="210" src="https://user-images.githubusercontent.com/31678236/94849652-1ee68d80-03fc-11eb-96b0-f05a38b2dbf6.png"></img>   
+<img width="50%" height="210" src="https://user-images.githubusercontent.com/31678236/94849797-56553a00-03fc-11eb-961a-98a246d60391.png"></img> 
+<img width="50%" height="210" src="https://user-images.githubusercontent.com/31678236/94850118-d4194580-03fc-11eb-840a-f8ebb4a45aaa.png"></img> 
+<img width="50%" height="210" src="https://user-images.githubusercontent.com/31678236/94850026-b64be080-03fc-11eb-9ba4-8051d3cfa21f.png"></img>  
 </a>
 
 ### Exemplos de telas
