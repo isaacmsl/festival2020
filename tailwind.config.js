@@ -8,7 +8,10 @@ module.exports = {
                 bgMain: '#FFFBDB',
                 strongOrange: '#FF9E00',
                 redHeader: '#FF7C6B',
-                redHeaderStrong: '#ED7464'
+                redHeaderStrong: '#ED7464',
+                greenButton:'#00ACB3',
+                greenButtonStrong:'#03979d',
+                bgCard:'#FCF2C5'
             },
             fill: {
                 black: '#000'
