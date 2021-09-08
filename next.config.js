@@ -3,7 +3,7 @@ module.exports = {
     return [
       {
         source: '/',
-        destination: 'https://www.festivalfelintolucio.com.br', 
+        destination: 'https://www.festivalfelintolucio.com.br/inscritos', 
         permanent: true,
       },
     ]
